@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 
 <head>
@@ -201,7 +202,7 @@
                                 </li>
                                 <li><a href="#!">Account</a>
                                     <ul>
-                                        <li><a href="login-register.html">Login / Register</a></li>
+                                        <li><a th:href="@{/login-register}">Login / Register</a></li>
                                         <li><a href="account-password-recovery.html">Password Recovery</a></li>
                                         <li><a href="account-orders.html">Orders List</a></li>
                                         <li><a href="account-wishlist.html">Wishlist</a></li>

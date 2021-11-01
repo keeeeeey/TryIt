@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 
 <head>
@@ -538,15 +539,28 @@
                                 <p class="no-margin-bottom">There's lots of fun in Register.</p>
                             </div>
 
-                            <form method="post">
+                            <form name="frmMember">
+								
+								<div class="row">
 
+                                    <div class="col-sm-6 mb-2">
+
+                                        <div class="form-group">
+                                            <label>Your ID</label>
+                                            <input type="text" class="form-control" name="user_id" placeholder="Your id here">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                
                                 <div class="row">
 
                                     <div class="col-sm-6 mb-2">
 
                                         <div class="form-group">
                                             <label>Your Name</label>
-                                            <input type="text" class="form-control" name="name" placeholder="Your name here">
+                                            <input type="text" class="form-control" name="user_name" placeholder="Your name here">
                                         </div>
 
                                     </div>
@@ -555,7 +569,7 @@
 
                                         <div class="form-group">
                                             <label>Your User Name</label>
-                                            <input type="text" class="form-control" name="username" placeholder="Your user name here">
+                                            <input type="text" class="form-control" name="user_nickname" placeholder="Your nickname here">
                                         </div>
 
                                     </div>
@@ -568,7 +582,7 @@
 
                                         <div class="form-group">
                                             <label>Email Address</label>
-                                            <input type="email" class="form-control" name="email" placeholder="Your email here">
+                                            <input type="email" class="form-control" name="user_email" placeholder="Your email here">
                                         </div>
 
                                     </div>
@@ -577,7 +591,7 @@
 
                                         <div class="form-group">
                                             <label>Contact Number</label>
-                                            <input type="text" class="form-control" name="phone" placeholder="+40-123 456 789">
+                                            <input type="text" class="form-control" name="user_phonenum" placeholder="+40-123 456 789">
                                         </div>
 
                                     </div>
@@ -590,7 +604,7 @@
 
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input type="password" class="form-control" name="password" placeholder="Your password here">
+                                            <input type="password" class="form-control" name="user_pw" placeholder="Your password here">
                                         </div>
 
                                     </div>
@@ -599,14 +613,14 @@
 
                                         <div class="form-group">
                                             <label>Re-Password</label>
-                                            <input type="password" class="form-control" name="re-password" placeholder="Your re-password here">
+                                            <input type="password" class="form-control" name="user_re_pw" placeholder="Your re-password here">
                                         </div>
 
                                     </div>
 
                                 </div>
 
-                                <div class="row">
+                               <!--  <div class="row">
                                     <div class="col-sm-12 mb-2">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="terms-condition">
@@ -614,9 +628,9 @@
                                         </div>
                                     </div>
 
-                                </div>
+                                </div> -->
 
-                                <button type="button" class="butn-style2 margin-20px-top">Register</button>
+                                <button type="button" class="butn-style2 margin-20px-top" onClick="fn_register()">Register</button>
 
                             </form>
 
@@ -822,7 +836,14 @@
     <script src="js/main.js"></script>
 
     <!-- all js include end -->
-
+	<script>
+		function fn_register() {
+			var frmMember = document.frmMember;
+			frmMember.method="post";
+			frmMember.action="/member/register.do";
+			frmMember.submit();
+		}
+	</script>
 </body>
 
 </html>
