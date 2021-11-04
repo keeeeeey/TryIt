@@ -15,6 +15,7 @@ public class KKY_MemberVO {
 	private String user_phonenum;
 	private Timestamp user_join_date;
 	private int user_yn;
+	
 	public int getId() {
 		return id;
 	}
@@ -81,5 +82,4 @@ public class KKY_MemberVO {
 	public void setUser_yn(int user_yn) {
 		this.user_yn = user_yn;
 	}
-		
 }

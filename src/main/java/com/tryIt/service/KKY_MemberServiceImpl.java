@@ -18,9 +18,9 @@ public class KKY_MemberServiceImpl implements KKY_MemberService {
 	}
 	
 	@Override
-	public int loginMember(String user_id) {
-		int result = mapper.loginMember(user_id);
-		return result;
+	public KKY_MemberVO loginMember(String user_id, String user_pw) {
+		KKY_MemberVO memberVO = mapper.loginMember(user_id, user_pw);
+		return memberVO;
 	}
 	
 }

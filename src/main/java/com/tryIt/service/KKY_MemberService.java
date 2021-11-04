@@ -10,7 +10,7 @@ public interface KKY_MemberService {
 	public void createMember(KKY_MemberVO memberVO);
 	
 	//login
-	public int loginMember(@Param("user_id") String user_id);
+	public KKY_MemberVO loginMember(@Param("user_id") String user_id, @Param("user_pw") String user_pw);
 		
 	
 }

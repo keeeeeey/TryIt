@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+
+    <!-- metas -->
+    <meta charset="utf-8">
+    <meta name="author" content="Chitrakoot Web" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="Multipurpose Business and Admin HTML5 Template" />
+    <meta name="description" content="Smartshop - Multipurpose eCommerce Template" />
+
+    <!-- title  -->
+    <title>Smartshop - Multipurpose eCommerce Template</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="img/logos/favicon.png">
+    <link rel="apple-touch-icon" href="img/logos/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/logos/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/logos/apple-touch-icon-114x114.png">
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="css/plugins.css">
+
+    <!-- custom css -->
+    <link href="css/styles.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- start page loading -->
+    <div id="preloader">
+        <div class="row loader">
+            <div class="loader-icon"></div>
+        </div>
+    </div>
+    <!-- end page loading -->
+
+    <!-- start main-wrapper section -->
+    <div class="main-wrapper mp-pusher" id="mp-pusher">
+
+        <!-- start header section -->
+        <header class="fixed header-light-nav">
+
+            <div id="top-bar">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-3 col-md-6">
+                            <div class="top-bar-info">
+                                <ul>
+                                    <li><a href="tel:01234567890"><i class="ti-mobile"></i><span class="d-none d-md-inline-block padding-10px-left">(+123) 456 7890</span></a></li>
+                                    <li><a href="mailto:addyour@emailhere"><i class="ti-email"></i><span class="d-none d-md-inline-block padding-10px-left">addyour@emailhere</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-6">
+                            <ul class="top-nav">
+                                <li class="nav-item dropdown">
+                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="far fa-user"></i></a>
+                                    <ul class="dropdown-menu padding-20px-all">
+                                        <li class="margin-10px-bottom">
+                                            <div class="media align-items-center">
+                                                <img class="width-40px rounded-circle mr-3" src="img/avatar/01.png" alt="...">
+                                                <div class="media-body">Nancy Miller</div>
+                                            </div>
+
+                                        </li>
+                                        <li>
+                                            <a href="#!" class="dropdown-item">My Profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="#!" class="dropdown-item">Order List</a>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/member/logout.do}" class="dropdown-item">Log Out</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="#!"><i class="far fa-heart"></i></a></li>
+                                <li>
+                                    <select>
+                                        <option>English</option>
+                                        <option>Deutsch</option>
+                                        <option>Italiano</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <select>
+                                        <option>$ USD</option>
+                                        <option>€ EUR</option>
+                                        <option>£ UKP</option>
+                                        <option>¥ JPY</option>
+                                    </select>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>

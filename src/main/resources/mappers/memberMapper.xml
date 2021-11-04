@@ -22,8 +22,8 @@
 		
     </select> -->
     
-    <select id="loginMember" resultType="int" >
-		<![CDATA[select * from userinfo where user_id = #{user_id}]]>
+    <select id="loginMember" resultType="com.tryIt.domain.KKY_MemberVO">
+		<![CDATA[select * from userinfo where user_id = #{user_id} and user_pw = #{user_pw}]]>
     </select>   
     
     <insert id="createMember">

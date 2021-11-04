@@ -17,4 +17,9 @@ public class MainController {
     public String toLoginForm() {
     	return "login-register";
     }
+    
+    @GetMapping("/mypage")
+    public String toMyPage() {
+    	return "account-profile";
+    }
 }
