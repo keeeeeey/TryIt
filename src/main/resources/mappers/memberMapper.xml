@@ -5,7 +5,7 @@
   
 <mapper namespace="com.tryIt.mapper.KKY_MemberMapper">
 
-	<resultMap id="memberResult" type="com.tryIt.domain.KKY_MemberVO">
+	<resultMap id="memberMap" type="com.tryIt.domain.KKY_MemberVO">
 		<result column="user_id" property="user_id"></result>
 		<result column="user_pw" property="user_pw"></result>
 		<result column="user_email" property="user_email"></result>
@@ -14,13 +14,15 @@
 		<result column="user_address" property="user_address"></result>
 		<result column="user_zipcode" property="user_zipcode"></result>
 		<result column="user_phonenum" property="user_phonenum"></result>
-		<result column="user_join_date" property="user_user_join_date"></result>
-		<result column="user_yn" property="user_user_yn"></result>
+		<result column="user_join_date" property="user_join_date"></result>
+		<result column="user_yn" property="user_yn"></result>
+		<collection property="roleList" resultMap = "authMap"></collection>
 	</resultMap>
 	
-    <!-- <select id="getName" resultType="java.lang.String" >
-		
-    </select> -->
+	<resultMap id="authMap" type="com.tryIt.domain.KKY_AuthVO">
+		<result property ="user_id" column="user_id"/>
+		<result property ="role" column="role"></result>
+	</resultMap>
     
     <select id="loginMember" resultType="com.tryIt.domain.KKY_MemberVO">
 		<![CDATA[select * from userinfo where user_id = #{user_id} and user_pw = #{user_pw}]]>

@@ -11,5 +11,4 @@ public interface KKY_MemberMapper {
 	public void createMember(KKY_MemberVO memberVO);
 	
 	public KKY_MemberVO loginMember(@Param("user_id") String user_id, @Param("user_pw") String user_pw);
-	
 }
