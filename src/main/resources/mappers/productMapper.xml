@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tryIt.mapper.NYJ_ProductMapper">
+    <resultMap id="productMap" type="com.tryIt.domain.NYJ_ProductVO">
+        <id column="id" property="id"></id>
+        <result column="product_name" property="product_name"></result>
+        <result column="product_info" property="product_info"></result>
+        <result column="product_price" property="product_price"></result>
+        <result column="product_weight" property="product_weight"></result>
+        <result column="product_company" property="product_company"></result>
+        <result column="product_reg_date" property="product_reg_date"></result>
+        <result column="product_img" property="product_img"></result>
+        <result column="product_category" property="product_category"></result>
+        <result column="product_score" property="product_score"></result>
+    </resultMap>
+
+    <select id="getProduct" resultMap="productMap">
+        SELECT * FROM product where id = #{product_id}
+    </select>
+
+    <select id="getAllProducts" resultMap = "productMap">
+        SELECT * FROM product
+    </select>
+
+    <delete id="deleteProduct" parameterType="Long">
+        delete from product where id = #{product_id}
+    </delete>
+
+    <select id="getSearchProducts" resultMap="productMap">
+        SELECT * FROM product WHERE product_name like CONCAT('%',#{keyword},'%') OR product_info like CONCAT('%',#{keyword},'%')
+    </select>
+
+    <select id="getRelateProducts" resultMap = "productMap">
+        SELECT * FROM product WHERE product_category = #{category}
+    </select>
+</mapper>
