@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <!-- metas -->
     <meta charset="utf-8">
     <meta name="author" content="Chitrakoot Web" />
@@ -485,15 +484,15 @@
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Shirts</button>
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">남성 추천 아이웨어</button>
                                         </h5>
                                     </div>
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                         <div class="card-body">
                                             <ul>
-                                                <li><a href="#!">Casual Shirts</a></li>
-                                                <li><a href="#!">Formal Shirts</a></li>
-                                                <li><a href="#!">Longline Shirts</a></li>
+                                                <li><a href="#!">일반안경</a></li>
+                                                <li><a href="#!">패션안경</a></li>
+                                                <li><a href="#!">선글라스</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -502,17 +501,16 @@
                                     <div class="card-header" id="headingTwo">
                                         <h5 class="mb-0">
                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                      Jeans
+                                      여성 추천 아이웨어
                                     </button>
                                   </h5>
                                     </div>
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                         <div class="card-body">
                                             <ul>
-                                                <li><a href="#!">Regular Jeans</a></li>
-                                                <li><a href="#!">Denim Jeans</a></li>
-                                                <li><a href="#!">Low Rise Jeans</a></li>
-                                                <li><a href="#!">Mid Rise Denims</a></li>
+                                                <li><a href="#!">일반안경</a></li>
+                                                <li><a href="#!">패션안경</a></li>
+                                                <li><a href="#!">선글라스</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -521,16 +519,16 @@
                                     <div class="card-header" id="headingThree">
                                         <h5 class="mb-0">
                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                      Shoes
+                                        키즈 추천 아이웨어
                                     </button>
                                   </h5>
                                     </div>
                                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                                         <div class="card-body">
                                             <ul>
-                                                <li><a href="#!">Sports Shoes</a></li>
-                                                <li><a href="#!">Wedding Shoes</a></li>
-                                                <li><a href="#!">Loafers Shoes</a></li>
+                                                <li><a href="#!">일반안경</a></li>
+                                                <li><a href="#!">패션안경</a></li>
+                                                <li><a href="#!">선글라스</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -539,40 +537,21 @@
                                     <div class="card-header" id="headingFour">
                                         <h5 class="mb-0">
                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                      T-Shirts
+                                        안경 관련 상품
                                     </button>
                                   </h5>
                                     </div>
                                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                                         <div class="card-body">
                                             <ul>
-                                                <li><a href="#!">Polo T-Shirt</a></li>
-                                                <li><a href="#!">V-neck T-Shirt</a></li>
-                                                <li><a href="#!">Striped T-Shirt</a></li>
-                                                <li><a href="#!">Graphic T-Shirt</a></li>
+                                                <li><a href="#!">안경케이스</a></li>
+                                                <li><a href="#!">세척용액</a></li>
+                                                <li><a href="#!">기능성 렌즈</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingFive">
-                                        <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                      Mobile
-                                    </button>
-                                  </h5>
-                                    </div>
-                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#!">Intex</a></li>
-                                                <li><a href="#!">Google</a></li>
-                                                <li><a href="#!">Samsung</a></li>
-                                                <li><a href="#!">Apple</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
 
@@ -724,12 +703,12 @@
 
                         </div>
 
-                        <div class="row no-gutters product-listing">
+                        <div class="row no-gutters product-listing" th:each="product:${productlist}">
 
                             <div class="col-sm-4">
                                 <div class="product-img">
                                     <a href="shop-product-detail.html">
-                                        <div class="label-offer bg-red">Sale</div><img src="img/products/product-grid/product-01.jpg" alt="..."></a>
+                                        <img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="..."></a>
                                 </div>
                             </div>
 
@@ -738,47 +717,11 @@
                                 <div class="product-list">
 
                                     <div class="product-description">
-                                        <h3><a href="shop-product-detail.html">Smart Digital Watch</a></h3>
+                                        <h3><a th:href="'/products/'+${product.getId()}" th:text="${product.getProduct_name()}">Desktop Speakers</a></h3>
                                         <h4 class="price">
-                                                                                <span class="regular-price line-through">$99.00</span>
-                                                                                <span class="offer-price">$90.00</span>
-                                                                            </h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-
-                                    <div class="product-buttons">
-                                        <ul>
-                                            <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
-                                            <li><a href="#!" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
-                                            <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="row no-gutters product-listing">
-
-                            <div class="col-sm-4">
-                                <div class="product-img">
-                                    <a href="shop-product-detail.html">
-                                        <img src="img/products/product-grid/product-02.jpg" alt="..."></a>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-8">
-
-                                <div class="product-list">
-
-                                    <div class="product-description">
-                                        <h3><a href="shop-product-detail.html">Desktop Speakers</a></h3>
-                                        <h4 class="price">
-                                                        <span class="offer-price">$29.00</span>
+                                                        <span class="offer-price" th:text="${product.getProduct_price()}+'원'">$29.00</span>
                                                     </h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <p th:text="${product.getProduct_info()}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                     </div>
 
                                     <div class="product-buttons">
@@ -795,111 +738,6 @@
 
                         </div>
 
-                        <div class="row no-gutters product-listing">
-
-                            <div class="col-sm-4">
-                                <div class="product-img">
-                                    <a href="shop-product-detail.html">
-                                        <div class="label-offer left-align bg-theme">New</div><img src="img/products/product-grid/product-03.jpg" alt="..."></a>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-8">
-
-                                <div class="product-list">
-
-                                    <div class="product-description">
-                                        <h3><a href="shop-product-detail.html">Wireless Controller</a></h3>
-                                        <h4 class="price">
-                                                        <span class="regular-price line-through">$57.00</span>
-                                                        <span class="offer-price">$55.00</span>
-                                                    </h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-
-                                    <div class="product-buttons">
-                                        <ul>
-                                            <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
-                                            <li><a href="#!" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
-                                            <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="row no-gutters product-listing">
-
-                            <div class="col-sm-4">
-                                <div class="product-img">
-                                    <a href="shop-product-detail.html">
-                                        <img src="img/products/product-grid/product-04.jpg" alt="..."></a>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-8">
-
-                                <div class="product-list">
-
-                                    <div class="product-description">
-                                        <h3><a href="shop-product-detail.html">Wireless Headset</a></h3>
-                                        <h4 class="price">
-                                                        <span class="offer-price">$28.00</span>
-                                                    </h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-
-                                    <div class="product-buttons">
-                                        <ul>
-                                            <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
-                                            <li><a href="#!" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
-                                            <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="row no-gutters product-listing no-margin-bottom">
-
-                            <div class="col-sm-4">
-                                <div class="product-img">
-                                    <a href="shop-product-detail.html">
-                                        <img src="img/products/product-grid/product-05.jpg" alt="..."></a>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-8">
-
-                                <div class="product-list">
-
-                                    <div class="product-description">
-                                        <h3><a href="shop-product-detail.html">Hp Wireless Printer</a></h3>
-                                        <h4 class="price">
-                                                    <span class="offer-price">$90.00</span>
-                                                </h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-
-                                    <div class="product-buttons">
-                                        <ul>
-                                            <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
-                                            <li><a href="#!" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
-                                            <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
 
                         <!-- start pagination -->
                         <div class="pagination text-small text-uppercase text-extra-dark-gray margin-50px-top sm-margin-35px-top">
