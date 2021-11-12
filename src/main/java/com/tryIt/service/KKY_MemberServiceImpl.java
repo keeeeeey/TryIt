@@ -18,9 +18,26 @@ public class KKY_MemberServiceImpl implements KKY_MemberService {
 	}
 	
 	@Override
+	public void updateMember(KKY_MemberVO memberVO) {
+		mapper.updateMember(memberVO);
+	}
+	
+	@Override
 	public KKY_MemberVO loginMember(String user_id, String user_pw) {
 		KKY_MemberVO memberVO = mapper.loginMember(user_id, user_pw);
 		return memberVO;
 	}
 	
+	@Override
+	public String overLappedID(String user_id) {
+		String result = mapper.overLappedID(user_id);
+		return result;
+		
+	}
+	
+	@Override
+	public String overLappedNickName(String user_nickname) {
+		String result = mapper.overLappedNickName(user_nickname);
+		return result;
+	}
 }

@@ -52,6 +52,9 @@
                                         <span class="badge bg-theme">3</span>
                                     </a>
                                 </li>
+                                <li th:if="${session.memberVO == null}">
+                                    <a th:href="@{/login-register}"><i class="ti-user"></i></a>
+                                </li>
                                 <li th:if="${session.memberVO != null}">
                                     <a th:href="@{/mypage}"><i class="ti-user"></i></a>
                                 </li>

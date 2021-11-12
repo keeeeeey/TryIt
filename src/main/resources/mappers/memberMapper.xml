@@ -12,16 +12,12 @@
 		<result column="user_name" property="user_name"></result>
 		<result column="user_nickname" property="user_nickname"></result>
 		<result column="user_address" property="user_address"></result>
+		<result column="user_detail_address" property="user_detail_address"></result>
 		<result column="user_zipcode" property="user_zipcode"></result>
 		<result column="user_phonenum" property="user_phonenum"></result>
 		<result column="user_join_date" property="user_join_date"></result>
 		<result column="user_yn" property="user_yn"></result>
-		<collection property="roleList" resultMap = "authMap"></collection>
-	</resultMap>
-	
-	<resultMap id="authMap" type="com.tryIt.domain.KKY_AuthVO">
-		<result property ="user_id" column="user_id"/>
-		<result property ="role" column="role"></result>
+		<result column="role" property="role"></result>
 	</resultMap>
     
     <select id="loginMember" resultType="com.tryIt.domain.KKY_MemberVO">
@@ -29,8 +25,30 @@
     </select>   
     
     <insert id="createMember">
-    	<![CDATA[insert into userinfo(user_id, user_pw, user_email, user_name, user_nickname, user_phonenum)
-    			 values (#{user_id}, #{user_pw}, #{user_email}, #{user_name}, #{user_nickname}, #{user_phonenum})]]>
+    	<![CDATA[
+	    	insert into userinfo(user_id, user_pw, user_email, user_name, user_nickname, user_phonenum, user_zipcode, user_address, user_detail_address)
+			values (#{user_id}, #{user_pw}, #{user_email}, #{user_name}, #{user_nickname}, #{user_phonenum}, #{user_zipcode}, #{user_address}, #{user_detail_address})
+		]]>
     </insert>
+    
+    <update id="updateMember">
+    	<![CDATA[
+    		update userinfo set user_email = #{user_email}, 
+    							user_nickname = #{user_nickname}, 
+    							user_pw = #{user_pw}, 
+    							user_zipcode = #{user_zipcode}, 
+    							user_address = #{user_address},
+    							user_detail_address = #{user_detail_address},
+    							user_phonenum = #{user_phonenum} where user_id = #{user_id}
+    	]]>
+    </update>
+    
+    <select id="overLappedID" resultType="String">
+    	<![CDATA[select if(count(*) = 1, "true", "false") from userinfo where user_id = #{user_id}]]>
+    </select>
+    
+    <select id="overLappedNickName" resultType="String">
+    	<![CDATA[select if(count(*) = 1, "true", "false") from userinfo where user_nickname = #{user_nickname}]]>
+    </select>
     
 </mapper>
