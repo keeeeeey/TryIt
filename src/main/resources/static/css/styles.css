@@ -2564,8 +2564,7 @@ ul.countdown.count-style-one li {
   padding-bottom: 30px;
   margin-bottom: 50px;
   border-bottom: 1px solid #eee; }
-  .blogs .comments-area .comment-box:nth-child(odd) {
-    margin-left: 80px; }
+
   .blogs .comments-area .comment-box:last-child {
     margin-bottom: 30px; }
 .blogs .comment-box .author-thumb {

@@ -14,14 +14,28 @@
         <result column="product_img" property="product_img"></result>
         <result column="product_category" property="product_category"></result>
         <result column="product_score" property="product_score"></result>
+        <result column="product_review_num" property="product_review_num"></result>
+        <result column="product_model" property="product_model"></result>
     </resultMap>
 
     <select id="getProduct" resultMap="productMap">
         SELECT * FROM product where id = #{product_id}
     </select>
 
-    <select id="getAllProducts" resultMap = "productMap">
-        SELECT * FROM product
+    <select id="getAllProductsWithPaging" resultMap = "productMap">
+        <![CDATA[
+            select id, product_name, product_info, product_price, product_weight, product_company, product_reg_date, product_img, product_category, product_score, product_model
+                 from (
+                        SELECT @ROWNUM := @ROWNUM + 1 AS rn,p.*
+                        from product p
+                        WHERE (@ROWNUM:=0) = 0 AND @ROWNUM < #{pageNum} * #{amount}
+                )AS T
+            where rn > (#{pageNum} - 1) * #{amount}
+            ]]>
+    </select>
+
+    <select id="getAllProducts" resultMap="productMap">
+        select * from product
     </select>
 
     <delete id="deleteProduct" parameterType="Long">
@@ -35,4 +49,21 @@
     <select id="getRelateProducts" resultMap = "productMap">
         SELECT * FROM product WHERE product_category = #{category}
     </select>
+
+    <select id = "countProductNum" resultType="int">
+        SELECT count(*) from product
+    </select>
+
+    <select id="getRecentProducts" resultMap = "productMap">
+        SELECT * FROM product ORDER BY product_reg_date desc limit 10
+    </select>
+
+    <select id="getBestProducts" resultMap = "productMap">
+        SELECT * FROM product ORDER BY product_price desc limit 10
+    </select>
+
+    <select id="getHighRatedProducts" resultMap = "productMap">
+        SELECT * FROM product WHERE product_review_num >= 10 ORDER BY product_score desc limit 10
+    </select>
+
 </mapper>

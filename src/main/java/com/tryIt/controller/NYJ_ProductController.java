@@ -1,5 +1,7 @@
 package com.tryIt.controller;
 
+import com.tryIt.domain.NYJ_Criteria;
+import com.tryIt.domain.NYJ_PageDTO;
 import com.tryIt.domain.NYJ_ProductVO;
 import com.tryIt.service.NYJ_ProductService;
 import lombok.AllArgsConstructor;
@@ -36,17 +38,24 @@ public class NYJ_ProductController {
     }
 
     @GetMapping("/productlist")
-    public String toProductList(Model model){
-        model.addAttribute("productlist",nyj_productService.findAllProducts());
+    public String toProductList(Model model,@RequestParam(defaultValue = "1") int page){
+        int totalListCnt = nyj_productService.countProductNum();
+
+        NYJ_Criteria cri = new NYJ_Criteria(page,10);
+        //criteria, pagedto => criteria amount 를 custom해서 사용!!
+        model.addAttribute("productlist",nyj_productService.getProductsWithPaging(cri));
+        model.addAttribute("pageMaker",new NYJ_PageDTO(cri,totalListCnt));
         return "shop-product-list";
     }
 
-    @GetMapping("/productSearch")
-    public String toProductSearch(@RequestParam("keyword") String keyword,Model model){
+    @GetMapping("/product/search")
+    public String toProductSearch(@RequestParam(value = "keyword") String keyword,Model model){
         model.addAttribute("productlist",nyj_productService.getSearchProducts(keyword));
         return "shop-product-list";
     }
 
-
-
+    @GetMapping("/productComment")
+    public String toProductComment(){
+        return "product-comment";
+    }
 }

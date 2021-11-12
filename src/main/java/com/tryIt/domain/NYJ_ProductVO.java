@@ -17,5 +17,7 @@ public class NYJ_ProductVO {
     private String product_img;
     private String product_category;
     private int product_score;
+    private int product_review_num;
+    private String product_model;
 
 }
