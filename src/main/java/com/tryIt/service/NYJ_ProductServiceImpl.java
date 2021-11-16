@@ -1,5 +1,7 @@
 package com.tryIt.service;
 
+
+import com.tryIt.domain.NYJ_Criteria;
 import com.tryIt.domain.NYJ_ProductVO;
 import com.tryIt.mapper.NYJ_ProductMapper;
 import lombok.AllArgsConstructor;
@@ -47,5 +49,30 @@ public class NYJ_ProductServiceImpl implements NYJ_ProductService{
     @Override
     public List<NYJ_ProductVO> getSearchProducts(String keyword) {
         return productMapper.getSearchProducts(keyword);
+    }
+
+    @Override
+    public List<NYJ_ProductVO> getProductsWithPaging(NYJ_Criteria cri) {
+        return productMapper.getAllProductsWithPaging(cri);
+    }
+
+    @Override
+    public List<NYJ_ProductVO> getBestProducts() {
+        return productMapper.getBestProducts();
+    }
+
+    @Override
+    public List<NYJ_ProductVO> getHighRatedProducts() {
+        return productMapper.getHighRatedProducts();
+    }
+
+    @Override
+    public List<NYJ_ProductVO> getRecentProducts() {
+        return productMapper.getRecentProducts();
+    }
+
+    @Override
+    public int countProductNum() {
+        return productMapper.countProductNum();
     }
 }
