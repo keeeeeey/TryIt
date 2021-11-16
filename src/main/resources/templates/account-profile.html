@@ -1,5 +1,4 @@
-	<th:block th:include="include/top2"></th:block>
-	<th:block th:include="include/header2"></th:block>
+<th:block th:include="newheader"></th:block>
         <!-- category mp-menu -->
         <div id="mp-menu" class="mp-menu">
             <div class="mp-level">
@@ -153,10 +152,11 @@
 
                             <div class="list-group">
                                 <a class="list-group-items" href="account-orders.html"><i class="ti-bag padding-10px-right"></i>Orders<span class="badge badge-pill">6</span></a>
-                                <a class="list-group-items active" href="account-profile.html"><i class="ti-user padding-10px-right"></i>Profile</a>
+                                <a class="list-group-items active" th:href="@{/mypage}"><i class="ti-user padding-10px-right"></i>Profile</a>
                                 <a class="list-group-items" href="account-address.html"><i class="ti-location-pin padding-10px-right"></i>Addresses</a>
                                 <a class="list-group-items" href="account-wishlist.html"><i class="ti-heart padding-10px-right"></i>Wishlist<span class="badge badge-pill">3</span></a>
                                 <a class="list-group-items" href="account-tickets.html"><i class="ti-tag padding-10px-right"></i>My Tickets<span class="badge badge-pill">4</span></a>
+                                <a class="list-group-items" th:href="@{/member/drop.do}"><i class="ti-user padding-10px-right"></i>Drop</a>
                             </div>
 
                         </div>

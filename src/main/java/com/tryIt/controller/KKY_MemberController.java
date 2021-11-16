@@ -24,6 +24,16 @@ public class KKY_MemberController {
 	@Autowired
 	private KKY_MemberService memberService;
 	
+	@GetMapping("/conditions.do")
+	public String conditions() {
+		return "privacy-policy";
+	}
+	
+	@GetMapping("/drop.do")
+	public String drop() {
+		return "account-drop";
+	}
+	
 	@PostMapping("/register.do")
 	public String register(KKY_MemberVO memberVO) {		
 		memberService.createMember(memberVO);
