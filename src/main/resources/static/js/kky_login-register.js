@@ -1,3 +1,4 @@
+//login-register
 let isValidId = false;
 let isValidEmail = false;
 let isValidName = false;
@@ -7,6 +8,10 @@ let isValidPwCheck = false;
 let isValidZipcode = true;
 let isValidDetailAddress = true;
 let isValidPhonenum = true;
+
+//mypage
+//let isValidMypageEmail = true;
+//let isValidMypageNickName = true;
 
 function fn_register() {
 	var register = document.register;
@@ -211,6 +216,53 @@ function fn_validatePW() {
 function fn_checkPW() {
 	var _pw = $("#user_pw").val();
 	var _re_pw = $("#user_re_pw").val();
+	if (_re_pw == '') {
+		$("#messagePwCheck").text("비밀번호확인은 필수입니다.");
+		$("#messagePwCheck").css("color", "#ff0000");
+		isValidPwCheck = false;
+		return
+	}
+	if (_pw == _re_pw) {
+		$("#messagePwCheck").text("비밀번호가 일치합니다.");
+		$("#messagePwCheck").css("color", "#81c147");
+		isValidPwCheck = true;
+	} else {
+		$("#messagePwCheck").text("비밀번호가 일치하지 않습니다.");
+		$("#messagePwCheck").css("color", "#ff0000");
+		isValidPwCheck = false;
+	}
+}
+
+function fn_mypageValidatePW() {
+	var passwordRegExp = /^[a-zA-z0-9]{4,12}$/;
+	var _pw = $("#mypage_user_pw").val();
+	var _original_pw = $("#hidden_pw").val();
+	if (_pw == '') {
+		$('#messagePw').text("비밀번호 입력은 필수입니다.");
+		$("#messagePw").css("color", "#ff0000");
+		isValidPw = false;
+		return;
+	}
+	if (_pw == _original_pw) {
+		$('#messagePw').text("기존 비밀번호는 사용할 수 없습니다.");
+		$("#messagePw").css("color", "#ff0000");
+		isValidPw = false;
+		return;
+	}
+	if (!passwordRegExp.test(_pw)) {
+		$('#messagePw').text("올바르지 않는 입력방식입니다.");
+		$("#messagePw").css("color", "#ff0000");
+		isValidPw = false;
+	} else {
+		$('#messagePw').text("사용가능한 비밀번호 입니다.");
+		$("#messagePw").css("color", "#81c147");
+		isValidPw = true;
+	}
+}
+
+function fn_mypageCheckPW() {
+	var _pw = $("#mypage_user_pw").val();
+	var _re_pw = $("#mypage_user_re_pw").val();
 	if (_re_pw == '') {
 		$("#messagePwCheck").text("비밀번호확인은 필수입니다.");
 		$("#messagePwCheck").css("color", "#ff0000");

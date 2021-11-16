@@ -228,7 +228,8 @@
 
                                         <div class="form-group" style="margin: 0">
                                             <label>Password</label>
-                                            <input type="password" class="form-control" id="user_pw" name="user_pw" placeholder="Your password here" onblur="fn_validatePW(); fn_checkPW();">
+                                            <input type="password" class="form-control" id="mypage_user_pw" name="user_pw" placeholder="Your password here" onblur="fn_mypageValidatePW(); fn_mypageCheckPW();">
+                                            <input type="hidden" id="hidden_pw" th:value="${session.memberVO.user_pw}">
                                         </div>
                                         <div id="messagePw" style="height: 20px"></div>
 
@@ -238,7 +239,7 @@
 
                                         <div class="form-group" style="margin: 0">
                                             <label>Re-Password</label>
-                                            <input type="password" class="form-control" id="user_re_pw"name="user_re_pw" placeholder="Your re-password here" onblur="fn_checkPW()">
+                                            <input type="password" class="form-control" id="mypage_user_re_pw"name="user_re_pw" placeholder="Your re-password here" onblur="fn_mypageCheckPW()">
                                         </div>
                                         <div id="messagePwCheck" style="height: 20px"></div>
 
@@ -286,7 +287,7 @@
 	                                        <label>Your Detail-Address</label>
 	                                        <input type="text" class="form-control" id="user_detail_address" name="user_detail_address" onblur="fn_checkDetailAddress()" th:value="${session.memberVO.user_detail_address}">
 	                                    </div>
-	                                    <div id="messageDetailAddress" style="height: 20px"></div>
+	                                    <div id="messageDetailAddress" style="height: 20px; color: #ff0000;"></div>
                                      
                                     </div>
 
@@ -296,7 +297,7 @@
                                             <label>Contact Number</label>
                                             <input type="text" class="form-control" id="user_phonenum" name="user_phonenum" onchange="fn_validatePhonenum()" th:value="${session.memberVO.user_phonenum}">
                                         </div>
-                                        <div id="messagePhonenum" style="height: 20px"></div>
+                                        <div id="messagePhonenum" style="height: 20px; color: #ff0000;"></div>
 
                                     </div>
 
