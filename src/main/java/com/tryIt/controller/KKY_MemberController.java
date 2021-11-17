@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.tryIt.domain.KKY_MemberVO;
 import com.tryIt.service.KKY_MemberService;
@@ -29,9 +28,28 @@ public class KKY_MemberController {
 		return "privacy-policy";
 	}
 	
-	@GetMapping("/drop.do")
-	public String drop() {
+	@GetMapping("/deleteForm.do")
+	public String deleteForm() {
 		return "account-drop";
+	}
+	
+	@GetMapping("/password-recovery")
+	public String passwordRecovery() {
+		return "account-password-recovery";
+	}
+	
+	@PostMapping("/delete.do")
+	public void delete(String user_id, String user_pw, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+		PrintWriter writer = response.getWriter();
+		KKY_MemberVO memberVO = (KKY_MemberVO)session.getAttribute("memberVO");
+		if (memberVO.getUser_pw().equals(user_pw)) {
+			memberService.deleteMember(user_id, user_pw);
+			session.invalidate();
+			writer.print("deleteSuccess");
+		} else {
+			writer.print("deleteFail");
+		}
+		
 	}
 	
 	@PostMapping("/register.do")

@@ -243,7 +243,7 @@
                                         <a th:if="${session.memberVO == null}" th:href="@{/login-register}">Login / Register</a>
                                         <a th:if="${session.memberVO != null}" th:href="@{/member/logout.do}">Logout</a>
                                     </li>
-                                    <li><a href="account-password-recovery.html">Password Recovery</a></li>
+                                    <li th:if="${session.memberVO == null}"><a th:href="@{/member/password-recovery}">Password Recovery</a></li>
                                     <li><a href="account-orders.html">Orders List</a></li>
                                     <li><a href="account-wishlist.html">Wishlist</a></li>
                                     <li th:if="${session.memberVO != null}"><a th:href="@{/mypage}">Profile Page</a></li>

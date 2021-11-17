@@ -20,4 +20,7 @@ public interface KKY_MemberService {
 	
 	//overlappedNickName
 	public String overLappedNickName(@Param("user_nickname") String user_id);
+	
+	//deleteMember
+	public void deleteMember(@Param("user_id") String user_id, @Param("user_pw") String user_pw);
 }

@@ -10,8 +10,8 @@ let isValidDetailAddress = true;
 let isValidPhonenum = true;
 
 //mypage
-//let isValidMypageEmail = true;
-//let isValidMypageNickName = true;
+let isValidMypageEmail = true;
+let isValidMypageNickName = true;
 
 function fn_register() {
 	var register = document.register;
@@ -50,7 +50,13 @@ function fn_register() {
 
 function fn_update() {
 	var update = document.update;
-	if (isValidPw == false) {
+	if (isValidMypageEmail == false) {
+		alert("이메일을 잘못 입력하셨습니다.");
+		return;
+	} else if (isValidMypageNickName == false) {
+		alert("닉네임을 잘못 입력하셨습니다.");
+		return;
+	} else if (isValidPw == false) {
 		alert("비밀번호를 잘못 입력하셨습니다.");
 		return;
 	} else if (isValidPwCheck == false) {
@@ -97,6 +103,28 @@ function fn_login() {
 				$('#loginFail').text("아이디 또는 비밀번호가 잘못 입력 되었습니다.");
 			} else if (data == 'loginsuccess') {
 				window.location = "/";
+			}
+		}
+	})
+}
+
+function fn_deleteAccount() {
+	var _id = $("#delete_user_id").val();
+	var _pw = $("#delete_user_pw").val();
+	if (_pw == "") {
+		$("#messageDelete").text("비밀번호를 입력하지 않았습니다.");
+	}
+	$.ajax({
+		type: "post",
+		asynk: true,
+		url: "/member/delete.do",
+		dataType: "text",
+		data: {user_id: _id, user_pw: _pw},
+		success: function (data, textStatus) {
+			if (data == 'deleteSuccess') {
+				window.location = "/";
+			} else if (data == 'deleteFail') {
+				$('#messageDelete').text('비밀번호가 틀립니다.');
 			}
 		}
 	})
@@ -154,6 +182,23 @@ function fn_validateEmail() {
 	}
 }
 
+function fn_mypageValidateEmail() {
+	var _email = $("#mypage_user_email").val();
+	var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+	if (_email == '') {
+		$('#messageMypageEmail').text("이메일 입력은 필수입니다.");
+		isValidMypageEmail = false;
+		return;
+	}
+	if (!emailRegExp.test(_email)) {
+		$('#messageMypageEmail').text("올바르지 않는 입력방식입니다.");
+		isValidMypageEmail = false;
+	} else {
+		$('#messageMypageEmail').text("");
+		isValidMypageEmail = true;
+	}
+}
+
 function fn_checkName() {
 	var _name = $("#user_name").val();
 	if (_name == '') {
@@ -188,6 +233,41 @@ function fn_validateNickName() {
 				$('#messageNickName').text("이미 사용중인 닉네임 입니다.");
 				$("#messageNickName").css("color", "#ff0000");
 				isValidNickName = false;
+			}
+		}
+	})
+}
+
+function fn_mypageValidateNickName() {
+	var _nickname = $("#mypage_user_nickname").val();
+	var _hiddenNickName = $("#hidden_nickname").val();
+	if (_nickname == '') {
+		$('#messageMypageNickName').text("닉네임 입력은 필수입니다.");
+		$("#messageMypageNickName").css("color", "#ff0000");
+		isValidMypageNickName = false;
+		return;
+	}
+	if (_nickname == _hiddenNickName) {
+		$('#messageMypageNickName').text("현재 사용중인 닉네임 입니다.");
+		$("#messageMypageNickName").css("color", "#81c147");
+		isValidMypageNickName = true;
+		return;
+	}
+	$.ajax({
+		type: "post",
+		asynk: true,
+		url: "/member/overlappedNickName.do",
+		dataType: "text",
+		data: {user_nickname: _nickname},
+		success: function (data, textStatus) {
+			if (data == 'usable') {
+				$('#messageMypageNickName').text("사용할 수 있는 닉네임 입니다.");
+				$("#messageMypageNickName").css("color", "#81c147");
+				isValidMypageNickName = true;
+			} else {
+				$('#messageMypageNickName').text("이미 사용중인 닉네임 입니다.");
+				$("#messageMypageNickName").css("color", "#ff0000");
+				isValidMypageNickName = false;
 			}
 		}
 	})

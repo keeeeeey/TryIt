@@ -22,7 +22,7 @@
     
     <select id="loginMember" resultType="com.tryIt.domain.KKY_MemberVO">
 		<![CDATA[select user_id, 
-						aes_decrypt(unhex(user_pw), 'key'), 
+						aes_decrypt(unhex(user_pw), 'key') as user_pw,
 						user_email, 
 						user_name, 
 						user_nickname, 
@@ -30,7 +30,7 @@
 						user_zipcode, 
 						user_address, 
 						user_detail_address from userinfo where user_id = #{user_id} and user_pw = hex(aes_encrypt(#{user_pw}, 'key'))]]>
-    </select>   
+    </select>
     
     <insert id="createMember">
     	<![CDATA[
@@ -43,7 +43,7 @@
     	<![CDATA[
     		update userinfo set user_email = #{user_email}, 
     							user_nickname = #{user_nickname}, 
-    							user_pw = md5(#{user_pw}), 
+    							user_pw = hex(aes_encrypt(#{user_pw}, 'key')), 
     							user_zipcode = #{user_zipcode}, 
     							user_address = #{user_address},
     							user_detail_address = #{user_detail_address},
@@ -58,5 +58,9 @@
     <select id="overLappedNickName" resultType="String">
     	<![CDATA[select if(count(*) = 1, "true", "false") from userinfo where user_nickname = #{user_nickname}]]>
     </select>
+    
+    <delete id="deleteMember">
+    	<![CDATA[delete from userinfo where user_id = #{user_id} and user_pw = hex(aes_encrypt(#{user_pw}, 'key'))]]>
+    </delete>
     
 </mapper>

@@ -40,4 +40,9 @@ public class KKY_MemberServiceImpl implements KKY_MemberService {
 		String result = mapper.overLappedNickName(user_nickname);
 		return result;
 	}
+	
+	@Override
+	public void deleteMember(String user_id, String user_pw) {
+		mapper.deleteMember(user_id, user_pw);
+	}
 }
