@@ -130,6 +130,34 @@ function fn_deleteAccount() {
 	})
 }
 
+function fn_sendEmail() {
+	var _id = $("#recovery_id").val();
+	var _email = $("#recovery_email").val();
+	$.ajax({
+		type: "POST",
+		asynk: true,
+		url: "/member/findPw",
+		dataType: "text",
+		data: {
+			user_id: _id,
+			user_email: _email
+		},
+		success: function (data, textStatus) {
+			if (data == 'null_id') {
+				$("#messageSendId").text("존재하지 않는 아이디입니다.");
+			} else if (data == 'null_email') {
+				$("#messageSendEmail").text("등록되지 않은 이메일입니다.");
+				$("#messageSendId").text("");
+			} else if (data == 'successSendEmail') {
+				$("#messageSendId").text("");
+				$("#messageSendEmail").text("");
+				alert("이메일로 임시 비밀번호를 발송하였습니다.");
+				document.location.href = "/login-register";
+			}
+		}
+	})
+}
+
 function fn_validateID() {
 	var idRegExp = /^[a-zA-z0-9]{4,12}$/;
 	var _id = $("#user_id").val();

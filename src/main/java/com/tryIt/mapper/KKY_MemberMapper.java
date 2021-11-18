@@ -17,4 +17,9 @@ public interface KKY_MemberMapper {
 	public String overLappedNickName(@Param("user_nickname") String user_nickname);
 	
 	public void deleteMember(@Param("user_id") String user_id, @Param("user_pw") String user_pw);
+	
+	public void updatePw(@Param("user_id") String user_id, @Param("pw") String user_pw);
+	
+	public KKY_MemberVO readMember(@Param("user_id") String user_id);
+	
 }

@@ -1,5 +1,11 @@
 package com.tryIt.service;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,4 +51,71 @@ public class KKY_MemberServiceImpl implements KKY_MemberService {
 	public void deleteMember(String user_id, String user_pw) {
 		mapper.deleteMember(user_id, user_pw);
 	}
+	
+	@Override
+	public KKY_MemberVO readMember(String user_id) {
+		KKY_MemberVO memberVO = mapper.readMember(user_id);
+		return memberVO;
+	}
+	
+	@Override
+	public void sendEmail(KKY_MemberVO memberVO, String div) {
+		// Mail Server 설정
+		String charSet = "utf-8";
+		String hostSMTP = "smtp.gmail.com";
+		String hostSMTPid = "sseioul@gmail.com";
+		String hostSMTPpwd = "kp23156385#";
+
+		// 보내는 사람 EMail, 제목, 내용
+		String fromEmail = "sseioul@gmail.com";
+		String fromName = "tryIt";
+		String subject = "";
+		String msg = "";
+
+		if(div.equals("findpw")) {
+			subject = "try'it 임시 비밀번호 입니다.";
+			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+			msg += "<h3 style='color: blue;'>";
+			msg += memberVO.getUser_id() + "님의 임시 비밀번호 입니다. 비밀번호를 변경하여 사용하세요.</h3>";
+			msg += "<p>임시 비밀번호 : ";
+			msg += memberVO.getUser_pw() + "</p></div>";
+		}
+
+		// 받는 사람 E-Mail 주소
+		String mail = memberVO.getUser_email();
+		try {
+			HtmlEmail email = new HtmlEmail();
+			email.setDebug(true);
+			email.setCharset(charSet);
+			email.setSSLOnConnect(true);
+			email.setHostName(hostSMTP);
+			email.setSmtpPort(465);
+
+			email.setAuthentication(hostSMTPid, hostSMTPpwd);
+			email.setStartTLSEnabled(true);
+			email.addTo(mail, charSet);
+			email.setFrom(fromEmail, fromName, charSet);
+			email.setSubject(subject);
+			email.setHtmlMsg(msg);
+			email.send();
+		} catch (Exception e) {
+			System.out.println("메일발송 실패 : " + e);
+		}
+	}
+
+	//비밀번호찾기
+	@Override
+	public void findPw(String user_id, String user_email) throws IOException {
+			// 임시 비밀번호 생성
+			String pw = "";
+			for (int i = 0; i < 12; i++) {
+				pw += (char) ((Math.random() * 26) + 97);
+			}
+			// 비밀번호 변경
+			mapper.updatePw(user_id, pw);
+			KKY_MemberVO memberVO = mapper.readMember(user_id);
+			// 비밀번호 변경 메일 발송
+			sendEmail(memberVO, "findpw");
+	}
+	
 }

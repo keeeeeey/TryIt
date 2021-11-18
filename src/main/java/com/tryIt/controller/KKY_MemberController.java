@@ -38,6 +38,25 @@ public class KKY_MemberController {
 		return "account-password-recovery";
 	}
 	
+	@PostMapping("/findPw")
+	public void findPw(String user_id, String user_email, HttpServletResponse response) throws IOException {
+		KKY_MemberVO ck = memberService.readMember(user_id);
+		PrintWriter writer = response.getWriter();
+		// 가입된 아이디가 없으면
+		if (memberService.overLappedID(user_id).equals("false")) {
+			writer.print("null_id");
+		}
+		// 가입된 이메일이 아니면
+		else if (!user_email.equals(ck.getUser_email())) {
+			writer.print("null_email");
+		} 
+		// 정보가 일치하면
+		else {
+			memberService.findPw(user_id, user_email);
+			writer.print("successSendEmail");
+		}
+	}
+	
 	@PostMapping("/delete.do")
 	public void delete(String user_id, String user_pw, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
 		PrintWriter writer = response.getWriter();
