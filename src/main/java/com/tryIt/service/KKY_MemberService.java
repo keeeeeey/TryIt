@@ -4,6 +4,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.tryIt.domain.KKY_MemberVO;
 
+import java.io.IOException;
+
 public interface KKY_MemberService {
 
 	//signup
@@ -37,6 +39,4 @@ public interface KKY_MemberService {
 	//findUserById
 	public KKY_MemberVO findByUserId(Long member_id);
 
-	//findUserById
-	public KKY_MemberVO findByUserId(Long member_id);
 }

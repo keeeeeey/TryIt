@@ -1,5 +1,6 @@
 package com.tryIt.service;
 
+import lombok.AllArgsConstructor;
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,11 +8,13 @@ import org.springframework.stereotype.Service;
 import com.tryIt.domain.KKY_MemberVO;
 import com.tryIt.mapper.KKY_MemberMapper;
 
+import java.io.IOException;
+
 @Service
+@AllArgsConstructor
 public class KKY_MemberServiceImpl implements KKY_MemberService {
 
-	@Autowired
-	private KKY_MemberMapper mapper;
+	private final KKY_MemberMapper mapper;
 	
 	@Override
 	public void createMember(KKY_MemberVO memberVO) {

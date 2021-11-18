@@ -22,7 +22,7 @@
     
     <select id="loginMember" resultType="com.tryIt.domain.KKY_MemberVO">
 		<![CDATA[select id,user_id,
-						aes_decrypt(unhex(user_pw), 'key'), 
+						aes_decrypt(unhex(user_pw), 'key') as user_pw,
 						user_email, 
 						user_name, 
 						user_nickname, 
@@ -80,9 +80,6 @@
 	</select>
 
 
-	<select id="findByUserId" resultType = "com.tryIt.domain.KKY_MemberVO">
-		select * from userinfo where id = #{member_id}
-	</select>
 
     <delete id="deleteMember">
     	<![CDATA[delete from userinfo where user_id = #{user_id} and user_pw = hex(aes_encrypt(#{user_pw}, 'key'))]]>
