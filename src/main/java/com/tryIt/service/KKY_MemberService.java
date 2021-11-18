@@ -1,12 +1,10 @@
 package com.tryIt.service;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.ibatis.annotations.Param;
 
 import com.tryIt.domain.KKY_MemberVO;
+
+import java.io.IOException;
 
 public interface KKY_MemberService {
 
@@ -24,17 +22,21 @@ public interface KKY_MemberService {
 	
 	//overlappedNickName
 	public String overLappedNickName(@Param("user_nickname") String user_id);
-	
+
 	//deleteMember
 	public void deleteMember(@Param("user_id") String user_id, @Param("user_pw") String user_pw);
-	
+
 	//readMember
 	public KKY_MemberVO readMember(@Param("user_id") String user_id);
-	
+
 	//sendEmail
 	public void sendEmail(KKY_MemberVO memberVO, String div);
-	
+
 	//findPw
 	public void findPw(@Param("user_id") String user_id, @Param("user_email") String user_email) throws IOException;
-	
+
+
+	//findUserById
+	public KKY_MemberVO findByUserId(Long member_id);
+
 }

@@ -21,7 +21,7 @@
 	</resultMap>
     
     <select id="loginMember" resultType="com.tryIt.domain.KKY_MemberVO">
-		<![CDATA[select user_id, 
+		<![CDATA[select id,user_id,
 						aes_decrypt(unhex(user_pw), 'key') as user_pw,
 						user_email, 
 						user_name, 
@@ -30,7 +30,7 @@
 						user_zipcode, 
 						user_address, 
 						user_detail_address from userinfo where user_id = #{user_id} and user_pw = hex(aes_encrypt(#{user_pw}, 'key'))]]>
-    </select>
+    </select>   
     
     <insert id="createMember">
     	<![CDATA[
@@ -54,19 +54,19 @@
     <update id="updatePw">
     	<![CDATA[update userinfo set user_pw = hex(aes_encrypt(#{pw}, 'key')) where user_id = #{user_id}]]>
     </update>
-    
+
     <select id="readMember" resultType="com.tryIt.domain.KKY_MemberVO">
-    	<![CDATA[select user_id, 
+    	<![CDATA[select user_id,
 						aes_decrypt(unhex(user_pw), 'key') as user_pw,
-						user_email, 
-						user_name, 
-						user_nickname, 
-						user_phonenum, 
-						user_zipcode, 
-						user_address, 
+						user_email,
+						user_name,
+						user_nickname,
+						user_phonenum,
+						user_zipcode,
+						user_address,
 						user_detail_address from userinfo where user_id = #{user_id}]]>
     </select>
-    
+
     <select id="overLappedID" resultType="String">
     	<![CDATA[select if(count(*) = 1, "true", "false") from userinfo where user_id = #{user_id}]]>
     </select>
@@ -74,9 +74,15 @@
     <select id="overLappedNickName" resultType="String">
     	<![CDATA[select if(count(*) = 1, "true", "false") from userinfo where user_nickname = #{user_nickname}]]>
     </select>
-    
+
+	<select id="findByUserId" resultType = "com.tryIt.domain.KKY_MemberVO">
+		select * from userinfo where id = #{member_id}
+	</select>
+
+
+
     <delete id="deleteMember">
     	<![CDATA[delete from userinfo where user_id = #{user_id} and user_pw = hex(aes_encrypt(#{user_pw}, 'key'))]]>
     </delete>
-    
+
 </mapper>

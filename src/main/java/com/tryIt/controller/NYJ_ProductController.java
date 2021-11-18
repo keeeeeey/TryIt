@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -33,6 +35,7 @@ public class NYJ_ProductController {
                 break;
             }
         }
+        model.addAttribute("product_id",product_id);
         model.addAttribute("productlist",relateProducts);
         return "shop-product-detail";
     }
@@ -48,14 +51,32 @@ public class NYJ_ProductController {
         return "shop-product-list";
     }
 
-    @GetMapping("/product/search")
-    public String toProductSearch(@RequestParam(value = "keyword") String keyword,Model model){
-        model.addAttribute("productlist",nyj_productService.getSearchProducts(keyword));
+    @GetMapping("/categoryProduct")
+    public String toCategoryProduct(){
+        return null;
+    }
+
+    @GetMapping("/productsearch")
+    public String toProductSearch(@RequestParam(defaultValue = "1") int page,@RequestParam(name = "keyword") String keyword,@RequestParam(name = "category") String category, Model model){
+        List<NYJ_ProductVO> productVOList = new ArrayList<NYJ_ProductVO>();
+        if(category.equals("all")){
+            productVOList = nyj_productService.getSearchProducts(keyword);
+        }else{
+            productVOList = nyj_productService.getSearchProductsCategory(keyword, category);
+        }
+        NYJ_Criteria cri = new NYJ_Criteria(page,10);
+        if(productVOList.size()==0){
+            model.addAttribute("emptyList","검색 조건에 해당하는 상품이 없습니다.");
+            model.addAttribute("recommend","이런 상품은 어때요?");
+            List<NYJ_ProductVO> ten_best_products = nyj_productService.getBestProducts();
+            List<NYJ_ProductVO> three_best_products = ten_best_products.subList(0,3);
+            model.addAttribute("productlist",three_best_products);
+        }else {
+            model.addAttribute("productlist", productVOList);
+        }
+        model.addAttribute("pageMaker", new NYJ_PageDTO(cri,10));
         return "shop-product-list";
     }
 
-    @GetMapping("/productComment")
-    public String toProductComment(){
-        return "product-comment";
-    }
+
 }
