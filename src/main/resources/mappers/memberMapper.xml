@@ -22,8 +22,8 @@
     
     <select id="loginMember" resultType="com.tryIt.domain.KKY_MemberVO">
 		<![CDATA[select id,user_id,
-						aes_decrypt(unhex(user_pw), 'key') as user_pw,
-						user_email,
+						aes_decrypt(unhex(user_pw), 'key'), 
+						user_email, 
 						user_name, 
 						user_nickname, 
 						user_phonenum, 
@@ -74,6 +74,11 @@
     <select id="overLappedNickName" resultType="String">
     	<![CDATA[select if(count(*) = 1, "true", "false") from userinfo where user_nickname = #{user_nickname}]]>
     </select>
+
+	<select id="findByUserId" resultType = "com.tryIt.domain.KKY_MemberVO">
+		select * from userinfo where id = #{member_id}
+	</select>
+
 
 	<select id="findByUserId" resultType = "com.tryIt.domain.KKY_MemberVO">
 		select * from userinfo where id = #{member_id}

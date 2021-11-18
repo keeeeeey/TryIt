@@ -1,5 +1,6 @@
 package com.tryIt.service;
 
+import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -117,4 +118,6 @@ public class KKY_MemberServiceImpl implements KKY_MemberService {
 	public KKY_MemberVO findByUserId(Long member_id) {
 		return mapper.findByUserId(member_id);
 	}
+
+
 }

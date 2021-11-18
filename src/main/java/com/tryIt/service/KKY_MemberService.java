@@ -1,9 +1,5 @@
 package com.tryIt.service;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.ibatis.annotations.Param;
 
 import com.tryIt.domain.KKY_MemberVO;
@@ -37,6 +33,9 @@ public interface KKY_MemberService {
 	//findPw
 	public void findPw(@Param("user_id") String user_id, @Param("user_email") String user_email) throws IOException;
 
+
+	//findUserById
+	public KKY_MemberVO findByUserId(Long member_id);
 
 	//findUserById
 	public KKY_MemberVO findByUserId(Long member_id);
