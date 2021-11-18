@@ -1,11 +1,5 @@
 package com.tryIt.service;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,18 +40,18 @@ public class KKY_MemberServiceImpl implements KKY_MemberService {
 		String result = mapper.overLappedNickName(user_nickname);
 		return result;
 	}
-	
+
 	@Override
 	public void deleteMember(String user_id, String user_pw) {
 		mapper.deleteMember(user_id, user_pw);
 	}
-	
+
 	@Override
 	public KKY_MemberVO readMember(String user_id) {
 		KKY_MemberVO memberVO = mapper.readMember(user_id);
 		return memberVO;
 	}
-	
+
 	@Override
 	public void sendEmail(KKY_MemberVO memberVO, String div) {
 		// Mail Server 설정
@@ -117,5 +111,10 @@ public class KKY_MemberServiceImpl implements KKY_MemberService {
 			// 비밀번호 변경 메일 발송
 			sendEmail(memberVO, "findpw");
 	}
-	
+
+
+	@Override
+	public KKY_MemberVO findByUserId(Long member_id) {
+		return mapper.findByUserId(member_id);
+	}
 }

@@ -75,4 +75,9 @@ public class NYJ_ProductServiceImpl implements NYJ_ProductService{
     public int countProductNum() {
         return productMapper.countProductNum();
     }
+
+    @Override
+    public List<NYJ_ProductVO> getSearchProductsCategory(String keyword, String category) {
+        return productMapper.getSearchProductsCategory(keyword,category);
+    }
 }
