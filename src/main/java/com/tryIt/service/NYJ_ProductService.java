@@ -18,4 +18,5 @@ public interface NYJ_ProductService {
     List<NYJ_ProductVO> getHighRatedProducts();
     List<NYJ_ProductVO> getRecentProducts();
     int countProductNum();
+    List<NYJ_ProductVO> getSearchProductsCategory(String keyword,String category);
 }

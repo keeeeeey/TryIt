@@ -15,5 +15,6 @@ public interface KKY_MemberMapper {
 	public String overLappedID(@Param("user_id") String user_id);
 	
 	public String overLappedNickName(@Param("user_nickname") String user_nickname);
-	
+
+	public KKY_MemberVO findByUserId(Long member_id);
 }

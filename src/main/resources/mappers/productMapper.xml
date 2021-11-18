@@ -43,7 +43,7 @@
     </delete>
 
     <select id="getSearchProducts" resultMap="productMap">
-        SELECT * FROM product WHERE product_name like CONCAT('%',#{keyword},'%') OR product_info like CONCAT('%',#{keyword},'%')
+        SELECT * FROM product WHERE product_name like CONCAT('%',#{keyword},'%') OR product_info like CONCAT('%',#{keyword},'%') AND product_price >= 0
     </select>
 
     <select id="getRelateProducts" resultMap = "productMap">
@@ -64,6 +64,10 @@
 
     <select id="getHighRatedProducts" resultMap = "productMap">
         SELECT * FROM product WHERE product_review_num >= 10 ORDER BY product_score desc limit 10
+    </select>
+
+    <select id="getSearchProductsCategory" resultMap="productMap">
+        SELECT * from product WHERE product_name like CONCAT('%',#{keyword},'%') OR product_info like CONCAT('%',#{keyword},'%') AND product_category = #{category}
     </select>
 
 </mapper>

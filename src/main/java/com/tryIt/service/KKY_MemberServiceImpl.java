@@ -40,4 +40,9 @@ public class KKY_MemberServiceImpl implements KKY_MemberService {
 		String result = mapper.overLappedNickName(user_nickname);
 		return result;
 	}
+
+	@Override
+	public KKY_MemberVO findByUserId(Long member_id) {
+		return mapper.findByUserId(member_id);
+	}
 }

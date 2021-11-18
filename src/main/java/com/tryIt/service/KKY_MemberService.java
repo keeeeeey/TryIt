@@ -20,4 +20,7 @@ public interface KKY_MemberService {
 	
 	//overlappedNickName
 	public String overLappedNickName(@Param("user_nickname") String user_id);
+
+	//findUserById
+	public KKY_MemberVO findByUserId(Long member_id);
 }
