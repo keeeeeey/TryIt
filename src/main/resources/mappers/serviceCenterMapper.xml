@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tryIt.mapper.KTE_ServiceCenterMapper">
+
+		 <resultMap id="noticeMap" type="com.tryIt.domain.KTE_NoticeVO">
+		        <result column="notice_id" property="notice_id"></result>
+				<result column="notice_title" property="notice_title"></result>
+				<result column="notice_content" property="notice_content"></result>
+				<result column="notice_writer" property="notice_writer"></result>
+				<result column="notice_viewCnt" property="notice_viewCnt"></result>
+				<result column="notice_date" property="notice_date"></result>
+		  </resultMap>
+
+	<insert id="insertNotice">
+    	insert into notice(notice_title,notice_content,notice_date) values (#{notice_title}, #{notice_content}, #{notice_date})
+    </insert>
+    
+    <update id="updateNotice">
+    	update notice set notice_title=#{notice_title},notice_content=#{notice_content} where notice_id=#{notice_id}
+    </update>
+
+	<select id="selectNotice" resultMap = "noticeMap">
+    	select * from notice
+    </select>
+    
+    <select id="detailNotice" resultMap = "noticeMap">
+    	select * from notice where notice_id = #{notice_id}
+    </select>
+    
+    <update id="plusCnt"  parameterType="int">
+    	update notice set notice_viewCnt = notice_viewCnt + 1 where notice_id = #{notice_id}
+    </update>
+   
+    <select id ="countNoticeNum" resultType="int">
+    	select count(*) from notice
+    </select>
+    
+    <select id="deleteNotice">
+    	delete from notice where notice_id = #{notice_id}
+    </select>
+    
+    
+    <select id="getNoticeWithPaging" resultMap = "noticeMap">
+        <![CDATA[
+            select notice_id, notice_title, notice_content, notice_writer, notice_viewCnt, notice_date
+                 from (
+                        SELECT @ROWNUM := @ROWNUM + 1 AS rn,n.*
+                        from notice n
+                        WHERE (@ROWNUM:=0) = 0 AND @ROWNUM < #{pageNum} * #{amount}
+                        order by notice_id desc
+                )AS T
+            where rn > (#{pageNum} - 1) * #{amount}
+            
+            ]]>
+    </select>
+    
+    <resultMap id="faqMap" type="com.tryIt.domain.KTE_FaqVO">
+		        <result column="faq_id" property="faq_id"></result>
+				<result column="faq_title" property="faq_title"></result>
+				<result column="faq_content" property="faq_content"></result>
+				<result column="faq_category" property="faq_category"></result>
+	</resultMap>
+	
+	<select id="selectFaq" resultMap = "faqMap">
+    	select * from faq where faq_category = #{faq_category}
+    </select>
+	
+
+<!--     <resultMap id="qnaMap" type="com.tryIt.domain.KTE_QnAVO">
+        <result column="qna_id" property="qna_id"></result>
+		<result column="qna_title" property="qna_title"></result>
+		<result column="product_id" property="product_id"></result>
+		<result column="user_id" property="user_id"></result>
+		<result column="qna_date" property="qna_date"></result>
+		<result column="qna_category" property="qna_category"></result>
+		<result column="qna_reply_yn" property="qna_reply_yn"></result>
+		<result column="qna_reply" property="qna_reply"></result>
+		<result column="qna_secret" property="qna_secret"></result>
+    </resultMap> -->
+
+</mapper>

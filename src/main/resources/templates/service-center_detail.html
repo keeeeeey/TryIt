@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<th:block th:include="/include/resources.html"></th:block>
+    <meta http-equiv = "Content-Type" content="text/html;charset=UTF-8"><!--한글 설정-->
+<title>Insert title here</title>
+<script>
+	function deleteNotice(frm){
+		frm.setAttribute("action","/service-center/delete");
+		frm.setAttribute("method","post");
+		frm.submit();
+	}
+	
+	function modifyNotice(frm){
+		frm.setAttribute("action","/service-center/modify");
+		frm.setAttribute("method","post");
+		frm.submit();
+	}
+
+
+</script>
+</head>
+<body>
+<div class="row justify-content-center">
+
+                        <div class="common-block">
+
+                            <div class="inner-title">
+                                <h4 class="no-margin-bottom">Notice</h4>
+                            </div>
+                            <form th:object="${notice}">
+                            <table class="table table-bordered no-margin-bottom">
+							    <tbody>
+							        <tr>
+							            <td>제목</td>
+							            <td colspan="3" th:text="*{notice_title}"></td>
+						
+							        </tr>
+							        <tr>
+							            <td>작성자</td>
+							            <td colspan="3" th:text="*{notice_writer}"></td>
+							        </tr>
+							        <tr>
+							            <td>작성일</td>
+							            <td th:text="*{notice_date}"></td>
+							            <td>조회수</td>
+							            <td th:text="*{notice_viewCnt}"></td>
+							        </tr>
+							        <tr>
+							        	<td style="width:500px;height:300px" colspan="4" th:utext="*{notice_content}">내용</td>
+							        </tr>
+							    </tbody>
+							</table>
+							<input type = "hidden" th:value = "*{notice_id}" name="notice_id">
+							<input type = "hidden" th:value = "*{notice_title}" name="notice_title">
+							<input type = "hidden" th:value = "*{notice_content}" name="notice_content">
+							<br> 
+							<input class="butn-style2" type="button" value="뒤로가기" style="float: right;" onclick="location.href='http://localhost:8089/service-center'"/>
+							<input class="butn-style2" type="button" value="삭제" style="float: left;" onclick="deleteNotice(this.form)"/>
+							<input class="butn-style2" type="button" value="수정" style="float: left; margin-left:5px;" onclick="modifyNotice(this.form)"/>
+                        
+						</form>
+						</div>
+
+                    
+                
+
+             
+</div>
+</body>
+</html>
