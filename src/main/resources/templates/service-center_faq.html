@@ -1,0 +1,196 @@
+<th:block th:include="newheader"></th:block>
+<meta http-equiv = "Content-Type" content="text/html;charset=UTF-8">
+
+  <!-- start service-center section -->
+        <section>
+            <div class="container">
+                <div class="row justify-content-center">
+
+                    <!-- start left panel -->
+                    <div class="col-lg-4 col-sm-9 sm-margin-40px-bottom">
+
+                        <div class="account-pannel">
+
+                            <div class="list-group">
+                                <a class="list-group-items" href="service-center"><i class="ti-bag padding-10px-right"></i>공지사항</a>
+                                <a class="list-group-items active" href="service-center_faq"><i class="ti-user padding-10px-right"></i>FAQ</a>
+                                <a class="list-group-items" href="service-center_qna"><i class="ti-location-pin padding-10px-right"></i>QnA</a>
+                            
+                       
+                                    
+                                </div>
+                            
+
+                        </div>
+
+                    </div>
+                    <!-- end left panel -->
+
+                    <!-- start right panel -->
+                    <div class="col-lg-8">
+
+                        <!-- <div class="common-block"> -->
+
+                            <div class="inner-title">
+                                <h4 class="no-margin-bottom">FAQ</h4>
+                            </div>
+                            
+                            <!-- 추가 -->
+                            <div class="horizontaltab tab-style-two">
+                                <ul class="resp-tabs-list hor_1 text-left">
+                                    <li>배송관련</li>
+                                    <li>상품관련</li>
+                                    <li>교환/환불</li>
+                                    <li>기타문의</li>
+                                </ul>
+                                 <div class="resp-tabs-container hor_1">
+                                    <div>
+                                      <table class="table table">
+                                       <thead>
+                                       	 <tr>
+                                       	 	<th style="text-align:center;">질문</th>
+                                       	 </tr>
+                                       </thead>
+                                       <tbody>
+                                       	<tr th:each="row:${faqList_1}">
+                                       		<td>
+                                       		<span style="font-weight:bold;">Q.</span> <span th:text="${row.faq_title}" style="font-weight:bold;"></span><br><br>
+                                       		A. <span th:text="${row.faq_content}"></span>
+                                       		</td>
+                                       	</tr>
+                                       </tbody>
+                                      </table> 
+                                    </div>
+                                    <div>
+                                      <table class="table table-hover">
+                                       <thead>
+                                       	 <tr>
+                                       	 	<th style="text-align:center;">질문</th>
+                                       	 </tr>
+                                       </thead>
+                                       <tbody>
+                                       	<tr th:each="row:${faqList_2}">
+                                       		<td>
+                                       		<span style="font-weight:bold;">Q.</span> <span th:text="${row.faq_title}" style="font-weight:bold;"></span><br><br>
+                                       		A. <span th:text="${row.faq_content}"></span>
+                                       		</td>
+                                       	</tr>
+                                       </tbody>
+                                      </table> 
+                                    </div>
+                                    <div>
+                                     <table class="table table-hover">
+                                       <thead>
+                                       	 <tr>
+                                       	 	<th style="text-align:center;">질문</th>
+                                       	 </tr>
+                                       </thead>
+                                       <tbody>
+                                       	<tr th:each="row:${faqList_3}">
+                                       		<td>
+                                       		<span style="font-weight:bold;">Q.</span> <span th:text="${row.faq_title}" style="font-weight:bold;"></span><br><br>
+                                       		A. <span th:text="${row.faq_content}"></span>
+                                       		</td>
+                                       	</tr>
+                                       </tbody>
+                                      </table> 
+                                    </div>
+                                    <div>
+                                      <table class="table table-hover">
+                                       <thead>
+                                       	 <tr>
+                                       	 	<th style="text-align:center;">질문</th>
+                                       	 </tr>
+                                       </thead>
+                                       <tbody>
+                                       	<tr th:each="row:${faqList_4}">
+                                       		<td>
+                                       		<span style="font-weight:bold;">Q.</span> <span th:text="${row.faq_title}" style="font-weight:bold;"></span><br><br>
+                                       		A. <span th:text="${row.faq_content}"></span>
+                                       		</td>
+                                       	</tr>
+                                       </tbody>
+                                      </table> 
+                                    </div>
+                                  </div>
+                            </div>
+                            <!--추가  -->
+
+                        
+                        <!-- </div> -->
+
+                    </div>
+                    <!-- end right panel -->
+                </div>
+            </div>
+        </section>
+        <!-- end service-center section -->
+   <!-- end main-wrapper section -->
+
+<th:block th:include="include/footer"></th:block>
+
+
+
+    <!-- start scroll to top -->
+    <a href="#!" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
+    <!-- end scroll to top -->
+
+    <!-- all js include start -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate.min.js"></script>
+
+    <!-- popper js -->
+    <script src="js/popper.min.js"></script>
+
+   <!--  bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- modernizr js -->
+    <script src="js/modernizr.js"></script>
+
+    <!-- navigation -->
+    <script src="js/nav-menu.js"></script>
+
+    <!-- category navigation -->
+    <script src="js/classie.js"></script>
+    <script src="js/mlpushmenu.js"></script>
+
+    <!-- tab -->
+    <script src="js/easy.responsive.tabs.js"></script>
+
+    <!-- owl carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+
+    <!-- jquery.counterup.min -->
+    <script src="js/jquery.counterup.min.js"></script>
+
+    <!-- stellar js -->
+    <script src="js/jquery.stellar.min.js"></script>
+
+    <!-- waypoints js -->
+    <script src="js/waypoints.min.js"></script>
+
+    <!-- ranger js -->
+    <script src="js/ion.rangeSlider.min.js"></script>
+
+    <!-- countdown js -->
+    <script src="js/countdown.js"></script>
+
+    <!-- jquery.magnific-popup js -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
+
+    <!--  clipboard js -->
+    <script src="js/clipboard.min.js"></script>
+
+    <!--  prism js -->
+    <script src="js/prism.js"></script>
+
+    <!-- custom scripts -->
+    <script src="js/main.js"></script>
+
+    <!-- all js include end -->
+
+</html>
+
