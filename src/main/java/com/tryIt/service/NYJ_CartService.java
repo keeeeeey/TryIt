@@ -11,4 +11,6 @@ public interface NYJ_CartService {
     void deleteCart(Long cart_id);
     List<NYJ_CartListVO> getCartList(Long member_id);
     void deleteALl(Long member_id);
+    int updateNum(@Param("cart_id") Long cart_id,@Param("product_change_num") int product_change_num);
+    Long findById(@Param("product_id") Long product_id, @Param("member_id") Long member_id);
 }

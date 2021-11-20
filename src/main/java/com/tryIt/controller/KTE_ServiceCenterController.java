@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+import com.google.gson.JsonObject;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.JsonObject;
-import com.tryIt.domain.KTE_FaqVO;
 import com.tryIt.domain.KTE_NoticeVO;
 import com.tryIt.domain.NYJ_Criteria;
 import com.tryIt.domain.NYJ_PageDTO;

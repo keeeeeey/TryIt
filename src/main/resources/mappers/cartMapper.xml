@@ -22,6 +22,16 @@
         delete from cart where user_id in (#{member_id});
     </delete>
 
+    <update id="updateNum">
+        update cart set product_num + #{product_change_num} where id = #{cart_id}
+    </update>
+
+    <select id="findById" resultType="long">
+        select id from cart where product_id = #{product_id} and member_id = #{member_id}
+    </select>
+
+
+
 <!--
 private Long id;
     private Long user_id;
@@ -29,6 +39,8 @@ private Long id;
     private Long product_num;
     private Long product_price;
     private int total_price;
+     int updateNum(Long cart_id);
+    Long findById(@Param("product_id") Long product_id, @Param("member_id") Long member_id);
 -->
     <!--
     void insertCart(@Param("product_id") Long product_id, @Param("member_id") Long member_id,int product_num);
