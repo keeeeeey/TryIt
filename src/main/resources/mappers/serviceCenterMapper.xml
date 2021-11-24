@@ -14,7 +14,7 @@
 		  </resultMap>
 
 	<insert id="insertNotice">
-    	insert into notice(notice_title,notice_content,notice_date) values (#{notice_title}, #{notice_content}, #{notice_date})
+    	insert into notice(notice_title,notice_content) values (#{notice_title}, #{notice_content})
     </insert>
     
     <update id="updateNotice">
@@ -68,7 +68,7 @@
     </select>
 	
 
-<!--     <resultMap id="qnaMap" type="com.tryIt.domain.KTE_QnAVO">
+    <resultMap id="qnaMap" type="com.tryIt.domain.KTE_QnAVO">
         <result column="qna_id" property="qna_id"></result>
 		<result column="qna_title" property="qna_title"></result>
 		<result column="product_id" property="product_id"></result>
@@ -78,6 +78,74 @@
 		<result column="qna_reply_yn" property="qna_reply_yn"></result>
 		<result column="qna_reply" property="qna_reply"></result>
 		<result column="qna_secret" property="qna_secret"></result>
-    </resultMap> -->
+    </resultMap>
+    
+    <insert id="insertQnA">
+    	insert into qanda(qna_title,qna_content,user_id,qna_category,qna_secret,qna_writer) values (#{qna_title},#{qna_content},#{user_id},#{qna_category},#{qna_secret},#{qna_writer})
+    </insert>
+    
+    <select id="selectAllQnA" resultMap = "qnaMap">
+    	select * from qanda
+    </select>
+    
+     <select id="selectQnA" resultMap = "qnaMap">
+    	select * from qanda where qna_category = #{qna_category}
+    </select>
 
-</mapper>
+	<select id ="countQnANum" resultType="int">
+    	select count(*) from qanda
+    </select>
+    
+    <select id ="countQnACategoryNum" resultType="int">
+    	select count(*) from qanda where qna_category = #{qna_category}
+    </select>
+    
+    <select id="getQnAWithPaging" resultMap = "qnaMap">
+        <![CDATA[
+            select *
+                 from (
+                        SELECT @ROWNUM := @ROWNUM + 1 AS rn,q.*
+                        from qanda q
+                        WHERE (@ROWNUM:=0) = 0 AND @ROWNUM < #{pageNum} * #{amount}
+                        order by qna_id desc
+                )AS T
+            where rn > (#{pageNum} - 1) * #{amount}
+            
+            ]]>
+    </select>
+    
+    <select id="getQnACategoryWithPaging" resultMap = "qnaMap">
+        <![CDATA[
+            select *
+                 from (
+                        SELECT @ROWNUM := @ROWNUM + 1 AS rn,q.*
+                        from qanda q
+                        WHERE (@ROWNUM:=0) = 0 AND @ROWNUM < #{pageNum} * #{amount} and qna_category = #{qna_category}
+                        order by qna_id desc 
+                )AS T
+            where rn > (#{pageNum} - 1) * #{amount} and qna_category = #{qna_category}
+            
+            ]]>
+    </select>
+    
+    <select id="detailQnA" resultMap = "qnaMap">
+    	select * from qanda where qna_id = #{qna_id}
+    </select>
+    
+    <update id="insertReply">
+    	update qanda set qna_reply=#{qna_reply}, qna_reply_yn='Y' where qna_id=#{qna_id}
+    </update>
+    
+    <select id="deleteQnA">
+    	delete from qanda where qna_id = #{qna_id}
+    </select>
+    
+    <update id="updateQnA">
+    	update qanda set qna_title=#{qna_title},qna_content=#{qna_content},qna_category=#{qna_category},qna_secret=#{qna_secret} where qna_id=#{qna_id}
+    </update>
+    
+    <update id="deleteReply">
+    	update qanda set qna_reply=NULL, qna_reply_yn='N' where qna_id=#{qna_id}
+    </update>
+    
+</mapper>	

@@ -14,4 +14,5 @@ public class KTE_NoticeVO {
 	private String notice_writer;
 	private int notice_viewCnt;
 	private String notice_date;
+	private int notice_num;
 }

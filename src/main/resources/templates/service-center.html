@@ -65,7 +65,7 @@
 									</thead>
 									<tbody>
 										<tr th:if="${not #lists.isEmpty( noticeList )}" th:each="row : ${noticeList}">
-											<td th:text="${row.notice_id}"></td>
+											<td th:text="${row.notice_num}"></td>
 											<td class="text-left">
 												<a th:href="@{/service-center/view( idx=${row.notice_id} )}" th:text="${row.notice_title}"></a>
 											</td>
@@ -80,7 +80,7 @@
 								</table>
 					
 								<div class="btn_wrap text-right">
-									<a th:href="@{/service-center/write}" class="butn-style2">Write</a>
+									<a th:if="${role.equals('admin')}" th:href="@{/service-center/write}" class="butn-style2">Write</a>
 								</div>
 								<!-- start pagination -->
 									<div class="pagination text-small text-uppercase text-extra-dark-gray margin-50px-top sm-margin-35px-top">

@@ -1,7 +1,23 @@
 <th:block th:include="newheader"></th:block>
 <meta http-equiv = "Content-Type" content="text/html;charset=UTF-8">
 
-  <!-- start service-center section -->
+<style>
+input[name="accordion"] {display:none;}
+input[name="accordion"] + label 
+{	display:block;
+	padding:20px;
+ 	border:1px solid #dcdcdc; 
+	color:black;
+ 	font-weight:900;
+	background:#EFEFEF;
+	cursor:pointer;
+	position:relative;
+}
+input[name="accordion"] + label + div { max-height:0;transition: all .35s;overflow:hidden;background:white;font-size:13px;}
+input[name="accordion"] + label + div p {display:inline-block;padding:20px;}
+input[name="accordion"]:checked + label + div {max-height:150px;}
+</style>
+<!-- start service-center section -->
         <section>
             <div class="container">
                 <div class="row justify-content-center">
@@ -38,84 +54,56 @@
                             <!-- 추가 -->
                             <div class="horizontaltab tab-style-two">
                                 <ul class="resp-tabs-list hor_1 text-left">
-                                    <li>배송관련</li>
-                                    <li>상품관련</li>
-                                    <li>교환/환불</li>
+                                    <li>배송문의</li>
+                                    <li>교환/반품</li>
+                                    <li>주문결제</li>
                                     <li>기타문의</li>
                                 </ul>
                                  <div class="resp-tabs-container hor_1">
                                     <div>
-                                      <table class="table table">
-                                       <thead>
-                                       	 <tr>
-                                       	 	<th style="text-align:center;">질문</th>
-                                       	 </tr>
-                                       </thead>
-                                       <tbody>
-                                       	<tr th:each="row:${faqList_1}">
-                                       		<td>
-                                       		<span style="font-weight:bold;">Q.</span> <span th:text="${row.faq_title}" style="font-weight:bold;"></span><br><br>
-                                       		A. <span th:text="${row.faq_content}"></span>
-                                       		</td>
-                                       	</tr>
-                                       </tbody>
-                                      </table> 
+	                                      <div id="accordion" th:each="row:${faqList_1}">
+										  	<input type="radio" name ="accordion" th:id="${row.faq_id}">
+										  	<label th:for="${row.faq_id}"><span th:text="${row.faq_title}"></span></label>
+										  	<div><p th:text="${row.faq_content}"></p></div>
+										 </div>   
+							 
                                     </div>
                                     <div>
-                                      <table class="table table-hover">
-                                       <thead>
-                                       	 <tr>
-                                       	 	<th style="text-align:center;">질문</th>
-                                       	 </tr>
-                                       </thead>
-                                       <tbody>
-                                       	<tr th:each="row:${faqList_2}">
-                                       		<td>
-                                       		<span style="font-weight:bold;">Q.</span> <span th:text="${row.faq_title}" style="font-weight:bold;"></span><br><br>
-                                       		A. <span th:text="${row.faq_content}"></span>
-                                       		</td>
-                                       	</tr>
-                                       </tbody>
-                                      </table> 
+                                      
+                                      	<div id="accordion" th:each="row:${faqList_2}">
+										  	<input type="radio" name ="accordion" th:id="${row.faq_id}">
+										  	<label th:for="${row.faq_id}"><span th:text="${row.faq_title}"></span></label>
+										  	<div><p th:text="${row.faq_content}"></p></div>
+										 </div>   
+							 
+                                      
                                     </div>
                                     <div>
-                                     <table class="table table-hover">
-                                       <thead>
-                                       	 <tr>
-                                       	 	<th style="text-align:center;">질문</th>
-                                       	 </tr>
-                                       </thead>
-                                       <tbody>
-                                       	<tr th:each="row:${faqList_3}">
-                                       		<td>
-                                       		<span style="font-weight:bold;">Q.</span> <span th:text="${row.faq_title}" style="font-weight:bold;"></span><br><br>
-                                       		A. <span th:text="${row.faq_content}"></span>
-                                       		</td>
-                                       	</tr>
-                                       </tbody>
-                                      </table> 
+                                    
+                                    
+	                                     <div id="accordion" th:each="row:${faqList_3}">
+										  	<input type="radio" name ="accordion" th:id="${row.faq_id}">
+										  	<label th:for="${row.faq_id}"><span th:text="${row.faq_title}"></span></label>
+										  	<div><p th:text="${row.faq_content}"></p></div>
+										 </div>   
+							 
+							 
                                     </div>
                                     <div>
-                                      <table class="table table-hover">
-                                       <thead>
-                                       	 <tr>
-                                       	 	<th style="text-align:center;">질문</th>
-                                       	 </tr>
-                                       </thead>
-                                       <tbody>
-                                       	<tr th:each="row:${faqList_4}">
-                                       		<td>
-                                       		<span style="font-weight:bold;">Q.</span> <span th:text="${row.faq_title}" style="font-weight:bold;"></span><br><br>
-                                       		A. <span th:text="${row.faq_content}"></span>
-                                       		</td>
-                                       	</tr>
-                                       </tbody>
-                                      </table> 
+                                        
+							                         
+									<div id="accordion" th:each="row:${faqList_4}">
+									  	<input type="radio" name ="accordion" th:id="${row.faq_id}">
+									  	<label th:for="${row.faq_id}"><span th:text="${row.faq_title}"></span></label>
+									  	<div><p th:text="${row.faq_content}"></p></div>
+									 </div>                       
+							                         
+					
                                     </div>
                                   </div>
                             </div>
                             <!--추가  -->
-
+							
                         
                         <!-- </div> -->
 

@@ -10,8 +10,10 @@
 
 <script>
 function goWrite(frm) {
-	var title = frm.notice_title.value;
-	var content = frm.notice_content.value;
+	var title = frm.qna_title.value;
+	var content = frm.qna_content.value;
+	var secret = frm.qna_secret.value;
+	var category = frm.qna_category.value;
 	
 	if (title.trim() == ''){
 		alert("제목을 입력해주세요");
@@ -28,28 +30,6 @@ function goWrite(frm) {
 }
 
 
-/* $(document).ready(function() {
-	
-	
-	   $('#summernote').summernote({
- 	    	placeholder: 'content',
-	        minHeight: 370,
-	        maxHeight: null,
-	        focus: true, 
-	        lang : 'ko-KR'
-	  }); 
-	}); */
-</script>
-
-<!-- <script>
-$(document).ready(function() {
-	
-	
-	
-});
-
-</script> -->
-<script>
 $(document).ready(function() {
 		$('#summernote').summernote({
 			height: 300,                 // 에디터 높이
@@ -115,9 +95,9 @@ $(document).ready(function() {
                         <div class="account-pannel">
 
                             <div class="list-group">
-                                <a class="list-group-items active" href="account-orders.html"><i class="ti-bag padding-10px-right"></i>공지사항</a>
+                                <a class="list-group-items" href="account-orders.html"><i class="ti-bag padding-10px-right"></i>공지사항</a>
                                 <a class="list-group-items" href="../service-center_faq"><i class="ti-user padding-10px-right"></i>FAQ</a>
-                                <a class="list-group-items" href="../service-center_qna"><i class="ti-location-pin padding-10px-right"></i>QnA</a>
+                                <a class="list-group-items active" href="../service-center_qna"><i class="ti-location-pin padding-10px-right"></i>QnA</a>
                             
                        
                                     
@@ -135,10 +115,10 @@ $(document).ready(function() {
                         <div class="common-block">
 
                             <div class="inner-title">
-                                <h4 class="no-margin-bottom">Notice</h4>
+                                <h4 class="no-margin-bottom">QnA</h4>
                             </div>
 
-                           <form method="post" action="/write">
+                           <form method="post" action="/qna_modify" th:object="${qna}">
 										
 
                                 <div class="row">
@@ -146,8 +126,21 @@ $(document).ready(function() {
                                     <div class="col-sm-12 mb-2">
 
                                         <div class="form-group">
-                                            <label>Title </label>
-                                            <input type="text" class="form-control" name="notice_title" placeholder="Title here">
+                                            <select name = "qna_category" th:value="${qna.qna_category}">
+                                            	<option th:selected="${qna.qna_category}=='배송문의'">배송문의</option>
+                                            	<option th:selected="${qna.qna_category}=='상품문의'">상품문의</option>
+                                            	<option th:selected="${qna.qna_category}=='교환/환불문의'">교환/환불문의</option>
+                                            	<option th:selected="${qna.qna_category}=='기타문의'">기타문의</option>
+                                            </select>
+                                            <br><br>
+                                            <input type="text" class="form-control" name="qna_title" placeholder="Title here" th:value="${qna.qna_title}">
+                                        	<br>
+                                        	<span style ="margin-left:5px;margin-right:10px;">비밀글 설정</span>
+                                        	<input type="radio" name="qna_secret" value="Y" th:checked="${qna.qna_secret.equals('Y')}">
+                                        	<label for="Y" style="margin-right:10px;">비밀글</label>
+                                        	<input type="radio" name="qna_secret" value="N" th:checked="${qna.qna_secret.equals('N')}">
+                                        	<label for="Y">공개글</label>
+                                        	
                                         </div>
 
                                     </div> 
@@ -155,12 +148,12 @@ $(document).ready(function() {
                                 </div>
 
  							
- 									<textarea id="summernote" name="notice_content"></textarea>
+ 									<textarea id="summernote" name="qna_content" th:text="${qna.qna_content}"></textarea>
 								<br>
-								<input class="butn-style2" type="button" value="취소" style="float: right; margin-left:5px;" onclick="location.href='http://localhost:8089/service-center'"/>
-								<input class="butn-style2" type="button" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>
+								<input class="butn-style2" type="button" value="취소" style="float: right; margin-left:5px;" onclick="location.href='http://localhost:8089/service-center_qna'"/>
+								<input class="butn-style2" type="button" value="수정" style="float: right;" onclick="goWrite(this.form)"/>
 								<br>
-							
+								<input type ="hidden" th:value = "${qna.qna_id}" name = "qna_id">
 							</form>
 
 
@@ -171,7 +164,7 @@ $(document).ready(function() {
                     </div>
                 </div>
          </section>
-         <th:block th:include="include/footer"></th:block>
+                  <th:block th:include="include/footer"></th:block>
          
 </body>
 </html>
