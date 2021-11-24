@@ -66,6 +66,7 @@ public class NYJ_ReviewController {
         HttpSession httpSession = request.getSession();
         KKY_MemberVO memberVO = (KKY_MemberVO) httpSession.getAttribute("memberVO");
         redirectAttributes.addFlashAttribute("okList", "AA BB CC");
+
         String referer = request.getHeader("Referer");
         NYJ_ReviewVO reviewVO = reviewService.findByReviewId(review_id);
         try {

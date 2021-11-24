@@ -332,7 +332,7 @@
                                     <div class="product-buttons">
                                         <ul>
                                             <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
-                                            <li><a href="#!" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
+                                            <li><a th:onclick="'insertCart('+${product.getId()}+')'" id="insertcart" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
                                             <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
                                         </ul>
                                     </div>
@@ -449,12 +449,13 @@
     <!-- custom scripts -->
     <script src="js/main.js"></script>
 
+    <script src="js/insertCart.js"></script>
+
     <!-- all js include end -->
 <form id = "actionForm" action="/productlist" method="get">
     <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
     <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 </form>
-
-</body>
+        </body>
 
 </html>

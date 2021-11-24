@@ -23,11 +23,15 @@
     </delete>
 
     <update id="updateNum">
-        update cart set product_num + #{product_change_num} where id = #{cart_id}
+        update cart set product_num = (#{product_change_num}+product_num) where id = #{cart_id}
     </update>
 
     <select id="findById" resultType="long">
-        select id from cart where product_id = #{product_id} and member_id = #{member_id}
+        select id from cart where product_id = #{product_id} and user_id = #{member_id}
+    </select>
+
+    <select id="getTotalPrice" resultType="int">
+        select sum(p.product_price * c.product_num) from product p, cart c where c.user_id = #{member_id} and p.id = c.product_id
     </select>
 
 

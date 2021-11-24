@@ -165,6 +165,8 @@
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
 
+		<!-- elastic search -->
+
 	</dependencies>
 
 	<build>

@@ -72,7 +72,7 @@ public class KKY_MemberController {
 	}
 	
 	@PostMapping("/register.do")
-	public String register(KKY_MemberVO memberVO) {		
+	public String register(KKY_MemberVO memberVO) {
 		memberService.createMember(memberVO);
 		return "redirect:/login-register";
 	}
@@ -87,6 +87,7 @@ public class KKY_MemberController {
 //			if (memberVO.getUser_pw().equals(user_pw)) {
 //				session.removeAttribute("loginFail");
 				session.setAttribute("memberVO", memberVO);
+
 //				mav.setViewName("redirect:/");
 				writer.print("loginsuccess");
 //			}

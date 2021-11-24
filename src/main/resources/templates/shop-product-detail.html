@@ -270,14 +270,12 @@
                                 </div>
 
                             </div>
-
                             <div class="row margin-20px-bottom">
                                 <div class="col-lg-12">
-                                    <button class="butn-style2 margin-15px-right xs-margin-10px-bottom"><span><i class="fas fa-shopping-cart margin-5px-right"></i> Add to Cart</span></button>
+                                    <button class="butn-style2 margin-15px-right xs-margin-10px-bottom" th:onclick="'insertCart('+${product.getId()}+')'"><span><i class="fas fa-shopping-cart margin-5px-right"></i> Add to Cart</span></button>
                                     <button class="butn-style2 dark"><span><i class="fas fa-heart margin-5px-right"></i> Add to wishlist</span></button>
                                 </div>
                             </div>
-
                             <div class="row">
 
                                 <div class="col-lg-7">
@@ -493,7 +491,7 @@
                         <div class="product-buttons">
                             <ul>
                                 <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
-                                <li><a href="#!" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
+                                <li><a th:onclick="'insertCart('+${product.getId()}+')'" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
                                 <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
                             </ul>
                         </div>
@@ -642,7 +640,14 @@
     <!-- start scroll to top -->
     <a href="#!" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
     <!-- end scroll to top -->
-
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var message = /*[[${msg}]]*/ 'default';
+        if(message != null)
+            alert(message);
+        /*]]>*/
+    </script>
+    <script src="js/insertCart.js"></script>
 </body>
 
 </html>
