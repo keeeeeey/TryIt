@@ -47,4 +47,9 @@ public class MainController {
     public String toMyPage() {
     	return "account-profile";
     }
+    
+    @GetMapping("/kakaoMypage")
+    public String toKakaoMyPage() {
+    	return "account-kakao-profile";
+    }
 }

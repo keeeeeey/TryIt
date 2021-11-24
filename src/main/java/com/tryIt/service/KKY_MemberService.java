@@ -29,13 +29,21 @@ public interface KKY_MemberService {
 	//readMember
 	public KKY_MemberVO readMember(@Param("user_id") String user_id);
 
+	//readMember2
+	public KKY_MemberVO readMember2(@Param("user_name") String user_name, @Param("user_email") String user_email);
+	
 	//sendEmail
 	public void sendEmail(KKY_MemberVO memberVO, String div);
 
+	//sendEmail2
+	public void sendEmail2(KKY_MemberVO memberVO, String div);
+	
 	//findPw
 	public void findPw(@Param("user_id") String user_id, @Param("user_email") String user_email) throws IOException;
 
-
+	//findId
+	public void findId(@Param("user_name") String user_name, @Param("user_email") String user_email) throws IOException;
+	
 	//findUserById
 	public KKY_MemberVO findByUserId(Long member_id);
 

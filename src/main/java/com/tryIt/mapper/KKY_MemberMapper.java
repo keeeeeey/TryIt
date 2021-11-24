@@ -24,4 +24,5 @@ public interface KKY_MemberMapper {
 
 	public KKY_MemberVO readMember(@Param("user_id") String user_id);
 
+	public KKY_MemberVO readMember2(@Param("user_name") String user_name, @Param("user_email") String user_email);
 }

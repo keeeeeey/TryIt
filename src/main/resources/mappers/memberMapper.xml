@@ -67,6 +67,10 @@
 						user_detail_address from userinfo where user_id = #{user_id}]]>
     </select>
 
+	<select id="readMember2" resultType="com.tryIt.domain.KKY_MemberVO">
+		<![CDATA[select * from userinfo where user_name = #{user_name} and user_email = #{user_email}]]>
+	</select>
+
     <select id="overLappedID" resultType="String">
     	<![CDATA[select if(count(*) = 1, "true", "false") from userinfo where user_id = #{user_id}]]>
     </select>

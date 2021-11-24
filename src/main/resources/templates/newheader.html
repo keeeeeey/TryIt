@@ -16,16 +16,16 @@
     <title>Smartshop - Multipurpose eCommerce Template</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="img/logos/favicon.png">
-    <link rel="apple-touch-icon" href="img/logos/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/logos/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/logos/apple-touch-icon-114x114.png">
+    <link rel="shortcut icon" href="/img/logos/favicon.png">
+    <link rel="apple-touch-icon" href="/img/logos/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/logos/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/logos/apple-touch-icon-114x114.png">
 
     <!-- plugins -->
-    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="/css/plugins.css">
 
     <!-- custom css -->
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
 
 	<!-- javascript -->
 	<script src="/js/kky_login-register.js" type="text/javascript"></script>
@@ -154,11 +154,14 @@
                                     <span class="badge bg-theme">3</span>
                                 </a>
                             </li>
-                            <li th:if="${session.memberVO == null}">
+                            <li th:if="${session.memberVO == null && session.kakaoLogin == null}">
                                 <a th:href="@{/login-register}"><i class="ti-user"></i></a>
                             </li>
-                            <li th:if="${session.memberVO != null}">
+                            <li th:if="${session.memberVO != null && session.kakaoLogin == null}">
                                 <a th:href="@{/mypage}"><i class="ti-user"></i></a>
+                            </li>
+                            <li th:if="${session.memberVO == null && session.kakaoLogin != null}">
+                                <a th:href="@{/kakaoMypage}"><i class="ti-user"></i></a>
                             </li>
                             <li class="dropdown sm-margin-20px-right">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -232,13 +235,17 @@
                             <li><a href="#!">Account</a>
                                 <ul>
                                     <li>
-                                        <a th:if="${session.memberVO == null}" th:href="@{/login-register}">Login / Register</a>
-                                        <a th:if="${session.memberVO != null}" th:href="@{/member/logout.do}">Logout</a>
+                                        <a th:if="${session.memberVO == null && session.kakaoLogin == null}" th:href="@{/login-register}">Login / Register</a>
+                                        <a th:if="${session.memberVO != null && session.kakaoLogin == null}" th:href="@{/member/logout.do}">Logout</a>
+                                        <a th:if="${session.memberVO == null && session.kakaoLogin != null}" th:href="@{https://kauth.kakao.com/oauth/logout?client_id=112abdb9f61736f1100d276efac341d4&logout_redirect_uri=http://localhost:8089/auth/kakao/logout}">kakaoLogout</a>
                                     </li>
-                                    <li th:if="${session.memberVO == null}"><a th:href="@{/member/password-recovery}">Password Recovery</a></li>
+                                    <li th:if="${session.memberVO == null && session.kakaoLogin == null}"><a th:href="@{/member/account-recovery}">Account Recovery</a></li>
                                     <li><a href="account-orders.html">Orders List</a></li>
                                     <li><a href="account-wishlist.html">Wishlist</a></li>
-                                    <li th:if="${session.memberVO != null}"><a th:href="@{/mypage}">Profile Page</a></li>
+                                    <li>
+                                    	<a th:if="${session.memberVO != null && session.kakaoLogin == null}" th:href="@{/mypage}">Profile Page</a>
+                                    	<a th:if="${session.memberVO == null && session.kakaoLogin != null}" th:href="@{/kakaoMypage}">Profile Page</a>
+                                   	</li>
                                     <li><a href="account-address.html">Contact / Shipping Address</a></li>
                                     <li><a href="account-tickets.html">My Tickets</a></li>
                                     <li><a href="account-single-ticket.html">Single Ticket</a></li>
