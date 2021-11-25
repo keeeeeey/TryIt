@@ -224,7 +224,7 @@
                         <div class="xzoom-container">
                             <img class="xzoom5 margin-30px-bottom" id="xzoom-magnific" th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" xoriginal="img/products/single-product/original/01_product.jpg}" alt="..." />
                             <div class="xzoom-thumbs no-margin">
-                                <button class="butn-style2 margin-2px-right xs-margin-2px-bottom" style="width:220px; height:50px;"><span><i class="fas fa-glasses margin-5px-right"></i> AR 안경 착용해보기</span></button>
+                                <button th:onclick="'location.href=\''+ @{../ar?}+@{${product.getProduct_model()}} + '\''" class="butn-style2 margin-2px-right xs-margin-2px-bottom" style="width:220px; height:50px;"><span><i class="fas fa-glasses margin-5px-right"></i> AR 안경 착용해보기</span></button>
                             </div>
                         </div>
                         <!-- product left end -->

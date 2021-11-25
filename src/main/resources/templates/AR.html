@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>AR</title>
+<meta charset='utf-8' />
+
+<!-- 창 사이즈 최적화 -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+<!-- script 넣기 -->
+<script src='js/JeelizVTOWidget.js'></script>
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
+	rel="stylesheet">
+
+<!--  css 넣기 -->
+<link rel='stylesheet' href='css/JeelizVTOWidget.css' />
+<style>
+.hi-slide {
+	position: relative;
+	width: 750px;
+	height: 100px;
+	margin: 10px auto 0;
+	margin-bottom: -25px;
+}
+
+.hi-slide .hi-next, .hi-slide .hi-prev {
+	position: absolute;
+	top: 50%;
+	width: 40px;
+	height: 40px;
+	margin-top: -40px;
+	border-radius: 50px;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+	background-color: #fff;
+	color: black;
+	transition: all 0.6s;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.hi-slide .hi-next:hover, .hi-slide .hi-prev:hover {
+	opacity: 1;
+	background-color: #fff;
+}
+
+.hi-slide .hi-prev {
+	left: -60px;
+}
+
+.hi-slide .hi-prev::before {
+	content: '<';
+}
+
+.hi-slide .hi-next {
+	right: -60px;
+}
+
+.hi-slide .hi-next::before {
+	content: '>';
+}
+
+.hi-slide>ul {
+	list-style: none;
+	position: relative;
+	width: 750px;
+	height: 292px;
+	margin: 0;
+	padding: 0;
+}
+
+.hi-slide>ul>li {
+	overflow: hidden;
+	position: absolute;
+	z-index: 0;
+	left: 377px;
+	top: 146px;
+	width: 0;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	background-color: white;
+	cursor: pointer;
+}
+
+.hi-slide>ul>li>img {
+	width: 100%;
+	height: 100%;
+	background-position: center;
+	object-fit: contain;
+}
+</style>
+<script>
+	let _isResized = false;
+	function test_resizeCanvas() {
+		// halves the height:
+		let halfHeightPx = Math.round(window.innerHeight / 2).toString() + 'px';
+
+		const domWidget = document.getElementById('JeelizVTOWidget');
+		domWidget.style.maxHeight = (_isResized) ? 'none' : halfHeightPx;
+
+		_isResized = !_isResized;
+	}
+
+	// entry point:
+	function main() {
+		var queryString = location.search.substring(1);
+		JEELIZVTOWIDGET.start({
+			sku : queryString,
+			searchImageMask : "img/ar/target1.png",
+			searchImageColor : 0xeeeeee,
+			callbackReady : function() {
+				console.log('INFO: JEELIZVTOWIDGET is ready :)');
+			},
+			onError : function(errorLabel) { // 에러 잡기 시작
+				alert('An error happened. errorLabel =' + errorLabel)
+				switch (errorLabel) {
+				case 'WEBCAM_UNAVAILABLE':
+					break;
+
+				case 'NOFILE':
+					break;
+
+				case 'WRONGFILEFORMAT':
+					break;
+
+				case 'INVALID_SKU':
+					break;
+
+				case 'FALLBACK_UNAVAILABLE':
+					break;
+
+				case 'PLACEHOLDER_NULL_WIDTH':
+				case 'PLACEHOLDER_NULL_HEIGHT':
+					break;
+
+				case 'FATAL':
+				default:
+					break;
+				} // 에러 잡기 종료
+			} // end onError()
+		}) // end JEELIZVTOWIDGET.start call
+	} // end main()
+
+	function load_modelBySKU() {
+		const sku = prompt('Please enter a glasses model SKU:',
+				'rayban_wayfarer_havane_marron');
+		if (sku) {
+			JEELIZVTOWIDGET.load(sku);
+		}
+	}
+</script>
+</head>
+<body onload="main()">
+
+	<div class='content' style="overflow: scroll;">
+		<div class="slide hi-slide">
+			<div class="hi-prev"></div>
+			<div class="hi-next"></div>
+			<ul>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Carrera_1.jpg'}}"
+					alt="Img 1"
+					onclick="JEELIZVTOWIDGET.load('carrera_118S_black')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Rayban_25.jpg'}}"
+					alt="Img 2"
+					onclick="JEELIZVTOWIDGET.load('rayban_cockpit_noir_orange_gradient_flash')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Carrera_2.jpg'}}"
+					alt="Img 3"
+					onclick="JEELIZVTOWIDGET.load('carrera_119S_havana_blue')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Carrera_3.jpg'}}"
+					alt="Img 4"
+					onclick="JEELIZVTOWIDGET.load('carrera_6008_havane_green')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Catalyst_1.jpg'}}"
+					alt="Img 5"
+					onclick="JEELIZVTOWIDGET.load('catalyst_black_orange')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Rayban_2_2.jpg'}}"
+					alt="Img 6"
+					onclick="JEELIZVTOWIDGET.load('rayban_wayfarer_havane_vert')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Rayban_13.jpg'}}"
+					alt="Img 7"
+					onclick="JEELIZVTOWIDGET.load('rayban_clubmaster_noir_bleuGris')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Rayban_3.jpg'}}"
+					alt="Img 8"
+					onclick="JEELIZVTOWIDGET.load('rayban_wayfarer_denimOrange_orangeDegrade')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Rayban_12.jpg'}}"
+					alt="Img 9"
+					onclick="JEELIZVTOWIDGET.load('rayban_predator_noir_gris_mirroir')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Rayban_5.jpg'}}"
+					alt="Img 10"
+					onclick="JEELIZVTOWIDGET.load('rayban_aviator_gun_vert')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Rayban_6.jpg'}}"
+					alt="Img 11"
+					onclick="JEELIZVTOWIDGET.load('rayban_erika_marronArgent_marronVioletDegrade')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Rayban_7.jpg'}}"
+					alt="Img 12"
+					onclick="JEELIZVTOWIDGET.load('rayban_clubround_noir_cuivre_flash')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Rayban_8.jpg'}}"
+					alt="Img 13"
+					onclick="JEELIZVTOWIDGET.load('rayban_justin_noir_rougeMirroir')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Rayban_9.jpg'}}"
+					alt="Img 14"
+					onclick="JEELIZVTOWIDGET.load('rayban_clubround_noir_vertClassique_g15')" /></li>
+				<li><img
+					th:src="@{${'/img/products/single-product/preview/Rayban_10.jpg'}}"
+					alt="Img 15"
+					onclick="JEELIZVTOWIDGET.load('rayban_justin_noir_bleuMirroir')" /></li>
+			</ul>
+		</div>
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="js/jquery.hislide.js"></script>
+		<script>
+			$('.slide').hiSlide();
+		</script>
+		<!-- Please keep the same element IDs so that JEELIZVTOWIDGET can extract them from the DOM -->
+
+		<!-- BEGIN JEELIZVTOWIDGET -->
+		<!-- 
+        div with id='JeelizVTOWidget' is the placeholder
+        you need to size and position it according to where the VTO widget should be
+        if you resize it, the widget will be automatically resized
+      -->
+		<div id='JeelizVTOWidget'>
+			<!-- MAIN CANVAS: -->
+			<!-- 
+         canvas with id='JeelizVTOWidgetCanvas' is the canvas where the VTO widget will be rendered
+         it should have CSS attribute position: absolute so that it can be resized without
+         changing the total size of the placeholder
+        -->
+			<canvas id='JeelizVTOWidgetCanvas'></canvas>
+
+			<div class='JeelizVTOWidgetControls JeelizVTOWidgetControlsTop'>
+				<!-- ADJUST BUTTON: -->
+				<button id='JeelizVTOWidgetAdjust'>
+					<div class="buttonIcon">
+						<i class="fas fa-arrows-alt"></i>
+					</div>
+					안경위치조정
+				</button>
+
+				<!-- RESIZE WIDGET BUTTON: -->
+				<button id='buttonResizeCanvas' onclick='test_resizeCanvas();'>
+					<div class="buttonIcon">
+						<i class="fas fa-sync-alt"></i>
+					</div>
+					화면회전
+				</button>
+			</div>
+
+			<!-- CHANGE MODEL BUTTONS: 
+        <div class='JeelizVTOWidgetControls' id='JeelizVTOWidgetChangeModelContainer'>
+          <button onclick="JEELIZVTOWIDGET.load('rayban_aviator_or_vertFlash')">Model 1</button>
+          <button onclick="JEELIZVTOWIDGET.load('rayban_round_cuivre_pinkBrownDegrade')">Model 2</button>
+          <button onclick="JEELIZVTOWIDGET.load_modelStandalone('glasses3D/glasses1.json')">Model 3</button>
+          <button onclick="load_modelBySKU()">by SKU</button>
+        </div>-->
+
+			<!-- BEGIN ADJUST NOTICE -->
+			<div id='JeelizVTOWidgetAdjustNotice'>
+				안경의 위치를 조정하세요
+				<button class='JeelizVTOWidgetBottomButton'
+					id='JeelizVTOWidgetAdjustExit'>저장</button>
+			</div>
+			<!-- END AJUST NOTICE -->
+
+			<!-- BEGIN LOADING WIDGET (not model) -->
+			<div id='JeelizVTOWidgetLoading'>
+				<div class='JeelizVTOWidgetLoadingText'>로딩중...</div>
+			</div>
+			<!-- END LOADING -->
+
+		</div>
+
+	</div>
+</body>
+</html>
