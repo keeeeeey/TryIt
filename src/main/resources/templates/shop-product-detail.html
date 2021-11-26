@@ -2,7 +2,7 @@
 <html lang="UTF-8">
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="newheader"></th:block>
-<th:block th:include="/include/resources.html"></th:block>
+<!--<th:block th:include="/include/resources.html"></th:block>-->
 <head>
     <!-- metas -->
     <meta charset="utf-8">
@@ -13,6 +13,85 @@
     <meta name="description" content="Smartshop - Multipurpose eCommerce Template" />
     <!-- title  -->
     <title>Smartshop - Multipurpose eCommerce Template</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" th:src="@{/img/logos/favicon.png}">
+
+    <link rel="apple-touch-icon" th:src="@{/img/logos/apple-touch-icon-57x57.png}">
+    <link rel="apple-touch-icon" sizes="72x72" th:src="@{/img/logos/apple-touch-icon-72x72.png}">
+    <link rel="apple-touch-icon" sizes="114x114" th:src="@{/img/logos/apple-touch-icon-114x114.png}">
+
+    <!-- plugins -->
+    <link rel="stylesheet" th:href="@{/css/plugins.css}">
+
+    <!-- custom css -->
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+
+
+    <!-- all js include start -->
+    <!-- jQuery -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery-migrate.min.js}"></script>
+
+    <!-- popper js -->
+    <script th:src="@{/js/popper.min.js}"></script>
+
+    <!-- bootstrap -->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <!-- modernizr js -->
+    <script th:src="@{/js/modernizr.js}"></script>
+
+    <!-- navigation -->
+    <script th:src="@{/js/nav-menu.js}"></script>
+
+    <!-- category navigation -->
+    <script th:src="@{/js/classie.js}"></script>
+    <script th:src="@{/js/mlpushmenu.js}"></script>
+
+    <!-- tab -->
+    <script th:src="@{/js/easy.responsive.tabs.js}"></script>
+
+    <!-- owl carousel -->
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+
+    <!-- jquery.counterup.min -->
+    <script th:src="@{/js/jquery.counterup.min.js}"></script>
+
+    <!-- stellar js -->
+    <script th:src="@{/js/jquery.stellar.min.js}"></script>
+
+    <!-- waypoints js -->
+    <script th:src="@{/js/waypoints.min.js}"></script>
+
+    <!-- ranger js -->
+    <script th:src="@{/js/ion.rangeSlider.min.js}"></script>
+
+    <!-- countdown js -->
+    <script th:src="@{/js/countdown.js}"></script>
+
+    <!-- jquery.magnific-popup js -->
+    <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+
+    <!--  clipboard js -->
+    <script th:src="@{/js/clipboard.min.js}"></script>
+
+    <!--  prism js -->
+    <script th:src="@{/js/prism.js}"></script>
+
+    <!-- zoom js -->
+    <script th:src="@{/js/xzoom.js}"></script>
+
+    <!-- hammer js -->
+    <script th:src="@{/js/jquery.hammer.min.js}"></script>
+
+    <!-- setup js -->
+    <script th:src="@{/js/setup.js}"></script>
+
+    <!-- custom scripts -->
+    <script th:src="@{/js/main.js}"></script>
+
+    <!-- all js include end -->
 </head>
 
 <body>
@@ -145,7 +224,7 @@
                         <div class="xzoom-container">
                             <img class="xzoom5 margin-30px-bottom" id="xzoom-magnific" th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" xoriginal="img/products/single-product/original/01_product.jpg}" alt="..." />
                             <div class="xzoom-thumbs no-margin">
-                                <button class="butn-style2 margin-2px-right xs-margin-2px-bottom" style="width:220px; height:50px;"><span><i class="fas fa-glasses margin-5px-right"></i> AR 안경 착용해보기</span></button>
+                                <button th:onclick="'location.href=\''+ @{../ar?}+@{${product.getProduct_model()}} + '\''" class="butn-style2 margin-2px-right xs-margin-2px-bottom" style="width:220px; height:50px;"><span><i class="fas fa-glasses margin-5px-right"></i> AR 안경 착용해보기</span></button>
                             </div>
                         </div>
                         <!-- product left end -->
@@ -191,14 +270,12 @@
                                 </div>
 
                             </div>
-
                             <div class="row margin-20px-bottom">
                                 <div class="col-lg-12">
-                                    <button class="butn-style2 margin-15px-right xs-margin-10px-bottom"><span><i class="fas fa-shopping-cart margin-5px-right"></i> Add to Cart</span></button>
+                                    <button class="butn-style2 margin-15px-right xs-margin-10px-bottom" th:onclick="'insertCart('+${product.getId()}+')'"><span><i class="fas fa-shopping-cart margin-5px-right"></i> Add to Cart</span></button>
                                     <button class="butn-style2 dark"><span><i class="fas fa-heart margin-5px-right"></i> Add to wishlist</span></button>
                                 </div>
                             </div>
-
                             <div class="row">
 
                                 <div class="col-lg-7">
@@ -414,7 +491,7 @@
                         <div class="product-buttons">
                             <ul>
                                 <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
-                                <li><a href="#!" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
+                                <li><a th:onclick="'insertCart('+${product.getId()}+')'" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
                                 <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
                             </ul>
                         </div>
@@ -563,7 +640,14 @@
     <!-- start scroll to top -->
     <a href="#!" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
     <!-- end scroll to top -->
-
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var message = /*[[${msg}]]*/ 'default';
+        if(message != null)
+            alert(message);
+        /*]]>*/
+    </script>
+    <script src="js/insertCart.js"></script>
 </body>
 
 </html>

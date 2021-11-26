@@ -97,7 +97,7 @@ public class KKY_MemberController {
 	}
 	
 	@PostMapping("/register.do")
-	public String register(KKY_MemberVO memberVO) {		
+	public String register(KKY_MemberVO memberVO) {
 		memberService.createMember(memberVO);
 		return "redirect:/login-register";
 	}

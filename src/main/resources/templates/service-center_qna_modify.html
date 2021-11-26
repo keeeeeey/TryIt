@@ -1,0 +1,174 @@
+<th:block th:include="newheader"></th:block>
+<th:block th:include="/include/resources.html"></th:block>
+    <meta http-equiv = "Content-Type" content="text/html;charset=UTF-8">
+<!-- include summernote css/js-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+<!-- include summernote-ko-KR -->
+<script src="/js/summernote-ko-KR.js"></script>
+<title>글쓰기</title>
+
+<script>
+function goWrite(frm) {
+	var title = frm.qna_title.value;
+	var content = frm.qna_content.value;
+	var secret = frm.qna_secret.value;
+	var category = frm.qna_category.value;
+	
+	if (title.trim() == ''){
+		alert("제목을 입력해주세요");
+		return false;
+	}.987
+	
+	if (content.trim() == ''){
+		alert("내용을 입력해주세요");
+		return false;
+	}
+	
+	
+	frm.submit();
+}
+
+
+$(document).ready(function() {
+		$('#summernote').summernote({
+			height: 300,                 // 에디터 높이
+			minHeight: null,             // 최소 높이
+			maxHeight: null,             // 최대 높이
+			focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+			lang: "ko-KR",					// 한글 설정
+			placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+			callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+				onImageUpload : function(files) {
+					uploadSummernoteImageFile(files[0],this);
+				},
+				onPaste: function (e) {
+					var clipboardData = e.originalEvent.clipboardData;
+					if (clipboardData && clipboardData.items && clipboardData.items.length) {
+						var item = clipboardData.items[0];
+						if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+							e.preventDefault();
+						}
+					}
+				}
+			}
+		});
+    
+    
+
+		/**
+		* 이미지 파일 업로드
+		*/
+		function uploadSummernoteImageFile(file, editor) {
+			data = new FormData();
+			data.append("file", file);
+			$.ajax({
+				data : data,
+				type : "POST",
+				url : "/uploadSummernoteImageFile",
+				contentType : false,
+				processData : false,
+				success : function(data) {
+					
+		        	//항상 업로드된 파일의 url이 있어야 한다.
+					$(editor).summernote('insertImage', data.url);
+				}
+			});
+		}
+});
+
+</script>
+
+
+
+</head>
+<body>
+
+              <!-- start service-center section -->
+        <section>
+            <div class="container">
+                <div class="row justify-content-center">
+
+                    <!-- start left panel -->
+                    <div class="col-lg-4 col-sm-9 sm-margin-40px-bottom">
+
+                        <div class="account-pannel">
+
+                            <div class="list-group">
+                                <a class="list-group-items" href="account-orders.html"><i class="ti-bag padding-10px-right"></i>공지사항</a>
+                                <a class="list-group-items" href="../service-center_faq"><i class="ti-user padding-10px-right"></i>FAQ</a>
+                                <a class="list-group-items active" href="../service-center_qna"><i class="ti-location-pin padding-10px-right"></i>QnA</a>
+                            
+                       
+                                    
+                                </div>
+                            
+
+                        </div>
+
+                    </div>
+                    <!-- end left panel -->
+                    <!-- start right panel -->
+                    <div class="col-lg-8">
+
+
+                        <div class="common-block">
+
+                            <div class="inner-title">
+                                <h4 class="no-margin-bottom">QnA</h4>
+                            </div>
+
+                           <form method="post" action="/qna_modify" th:object="${qna}">
+										
+
+                                <div class="row">
+
+                                    <div class="col-sm-12 mb-2">
+
+                                        <div class="form-group">
+                                            <select name = "qna_category" th:value="${qna.qna_category}">
+                                            	<option th:selected="${qna.qna_category}=='배송문의'">배송문의</option>
+                                            	<option th:selected="${qna.qna_category}=='상품문의'">상품문의</option>
+                                            	<option th:selected="${qna.qna_category}=='교환/환불문의'">교환/환불문의</option>
+                                            	<option th:selected="${qna.qna_category}=='기타문의'">기타문의</option>
+                                            </select>
+                                            <br><br>
+                                            <input type="text" class="form-control" name="qna_title" placeholder="Title here" th:value="${qna.qna_title}">
+                                        	<br>
+                                        	<span style ="margin-left:5px;margin-right:10px;">비밀글 설정</span>
+                                        	<input type="radio" name="qna_secret" value="Y" th:checked="${qna.qna_secret.equals('Y')}">
+                                        	<label for="Y" style="margin-right:10px;">비밀글</label>
+                                        	<input type="radio" name="qna_secret" value="N" th:checked="${qna.qna_secret.equals('N')}">
+                                        	<label for="Y">공개글</label>
+                                        	
+                                        </div>
+
+                                    </div> 
+
+                                </div>
+
+ 							
+ 									<textarea id="summernote" name="qna_content" th:text="${qna.qna_content}"></textarea>
+								<br>
+								<input class="butn-style2" type="button" value="취소" style="float: right; margin-left:5px;" onclick="location.href='http://localhost:8089/service-center_qna'"/>
+								<input class="butn-style2" type="button" value="수정" style="float: right;" onclick="goWrite(this.form)"/>
+								<br>
+								<input type ="hidden" th:value = "${qna.qna_id}" name = "qna_id">
+							</form>
+
+
+
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+         </section>
+                  <th:block th:include="include/footer"></th:block>
+         
+</body>
+</html>
+
+
+
+

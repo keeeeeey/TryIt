@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+
 
 <head>
+
+
 
     <!-- metas -->
     <meta charset="utf-8">
@@ -29,7 +31,7 @@
 
 	<!-- javascript -->
 	<script src="/js/kky_login-register.js" type="text/javascript"></script>
-
+    <script src="js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -168,29 +170,12 @@
                                     <i class="ti-bag"></i>
                                     <span class="badge bg-theme">3</span>
                                 </a>
-                                <ul class="dropdown-menu cart-list">
-                                    <li>
-                                        <a href="#!" class="photo"><img src="img/products/cart-thumbs/cart-thumb-01.jpg" class="cart-thumb" alt="..." /></a>
-                                        <h6><a href="#!">Men's Football Boots </a></h6>
-                                        <p>2x - <span class="price">$30.00</span></p>
-                                    </li>
-                                    <li>
-                                        <a href="#!" class="photo"><img src="img/products/cart-thumbs/cart-thumb-02.jpg" class="cart-thumb" alt="..." /></a>
-                                        <h6><a href="#!">Sun Protection Cap</a></h6>
-                                        <p>1x - <span class="price">$10.20</span></p>
-                                    </li>
-                                    <li>
-                                        <a href="#!" class="photo"><img src="img/products/cart-thumbs/cart-thumb-03.jpg" class="cart-thumb" alt="..." /></a>
-                                        <h6><a href="#!">Heel Character Shoes</a></h6>
-                                        <p>2x - <span class="price">$39.00</span></p>
-                                    </li>
+                                <ul class="dropdown-menu cart-list" id="cartList">
                                     <li class="total bg-theme">
-                                        <span class="foat-left"><strong>Total</strong>: $79.20</span>
-                                        <a href="shop-cart.html" class="butn-style2 small white float-right w-auto"><span>View Cart</span></a>
+                                        <a href="/cart" class="butn-style2 small white float-right w-auto"><span>View Cart</span></a>
                                     </li>
                                 </ul>
                             </li>
-
                         </ul>
                     </div>
                 </div>
@@ -200,14 +185,10 @@
         </div>
 
         <div class="navbar-default bg-light-gray">
-
             <div class="container">
-
                 <div class="menu_area alt-font">
                     <nav class="navbar navbar-expand-lg header-light-nav no-padding">
-
                         <div class="navbar-toggler">Menu</div>
-
                         <!-- menu area -->
                         <ul class="navbar-nav" id="nav" style="display: none;">
 
@@ -372,7 +353,6 @@
                             </li>
                         </ul>
                         <!-- end menu area -->
-
                         <a href="#" class="butn-style2 wide ml-auto sm-display-none display-inline-block"><span>Shop Now</span><i class="fas fa-arrow-right margin-10px-left"></i></a>
 
                     </nav>
@@ -381,6 +361,5 @@
             </div>
 
         </div>
-
     </header>
 </div>

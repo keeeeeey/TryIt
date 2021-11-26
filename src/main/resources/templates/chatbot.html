@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Try-it Chatbot</title>
+    <link href="/css/chatbot.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
+    <script src="/js/chatbot.js" charset="UTF-8"></script>
+</head>
+<body>
+<div id="main-content" class="container">
+    
+    <div id="end-button">
+    <button id="disconnect" class = "end_button" type="submit" disabled="disabled" onclick="location.href='http://localhost:8089/';">
+    나가기</button></div>
+             
+    
+     <div id = "communicate"></div>
+     
+    <div class="col-md-6">
+            <form class="form-inline">
+            <br><br>
+                <div class="form-group">
+                    <input type="text" id="msg" class="form-control"  placeholder="내용을 입력하세요....">
+                	                <button id="send" class="butn-style2" disabled type="submit">보내기</button>
+                	
+                </div>
+            </form>
+        </div>
+</div>
+</body>
+</html>

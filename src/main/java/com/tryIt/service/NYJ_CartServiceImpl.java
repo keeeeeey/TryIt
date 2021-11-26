@@ -16,8 +16,8 @@ public class NYJ_CartServiceImpl implements NYJ_CartService{
     private final NYJ_CartMapper mapper;
 
     @Override
-    public void insertCart(Long product_id, Long member_id, int product_num) {
-        mapper.insertCart(product_id,member_id,product_num);
+    public void insertCart( Long member_id, Long product_id,int product_num) {
+        mapper.insertCart(member_id,product_id,product_num);
     }
 
     @Override
@@ -31,8 +31,22 @@ public class NYJ_CartServiceImpl implements NYJ_CartService{
     }
 
     @Override
-    public void deleteALl(Long member_id) {
-        mapper.deleteALl(member_id);
+    public void deleteAll(Long member_id) {
+        mapper.deleteAll(member_id);
+    }
 
+    @Override
+    public int updateNum(Long cart_id,int product_change_num) {
+        return mapper.updateNum(cart_id,product_change_num);
+    }
+
+    @Override
+    public Long findById(Long product_id, Long member_id) {
+        return mapper.findById(product_id,member_id);
+    }
+
+    @Override
+    public int getTotalPrice(Long member_id) {
+        return mapper.getTotalPrice(member_id);
     }
 }

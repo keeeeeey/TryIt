@@ -277,7 +277,7 @@
                         <div>
                             <div class="product-grid-slide owl-carousel owl-theme">
                                 <div class="product-grid" th:each="product:${best10}">
-                                    <div class="product-img">
+                                    <div class="product-img" style="height:210px; object-fit: contain; display:flex; align-items: center; ">
                                         <a th:href="'/products/'+${product.getId()}"><img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="..."></a>
                                     </div>
                                     <div class="product-description">
@@ -286,10 +286,10 @@
                                                         <span class="offer-price" th:text="${product.getProduct_price()}+'원'">$29.00</span>
                                                     </h4>
                                     </div>
-                                    <div class="product-buttons">
+                                    <div class="product-buttons" >
                                         <ul>
                                             <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
-                                            <li><a href="#!" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
+                                            <li><a th:onclick="'insertCart('+${product.getId()}+')'" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
                                             <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
                                         </ul>
                                     </div>
@@ -311,7 +311,7 @@
                                     <div class="product-buttons">
                                         <ul>
                                             <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
-                                            <li><a href="#!" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
+                                            <li><a th:onclick="'insertCart('+${product.getId()}+')'" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
                                             <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
                                         </ul>
                                     </div>
@@ -333,7 +333,7 @@
                                 <div class="product-buttons">
                                     <ul>
                                         <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
-                                        <li><a href="#!" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
+                                        <li><a th:onclick="'insertCart('+${product.getId()}+')'" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
                                         <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
                                     </ul>
                                 </div>
@@ -477,7 +477,13 @@
 
     </div>
     <!-- end main-wrapper section -->
-
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var message = /*[[${msg}]]*/ 'default';
+            if(message != null)
+                alert(message);
+            /*]]>*/
+        </script>
     <!-- start scroll to top -->
     <a href="#!" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
     <!-- end scroll to top -->
@@ -550,7 +556,7 @@
 
     <!-- custom scripts -->
     <script src="js/main.js"></script>
-
+    <script src="js/insertCart.js"></script>
     <!-- all js include end -->
 
 </body>
