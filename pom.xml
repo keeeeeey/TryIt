@@ -49,6 +49,21 @@
 			<version>1.5</version>
 		</dependency>
 		
+		<!-- WebListnener annotation-->
+		<dependency>
+		  <groupId>javax.servlet</groupId>
+		  <artifactId>javax.servlet-api</artifactId>
+		  <version>4.0.1</version>
+		  <scope>provided</scope>
+		</dependency>
+		
+		<!-- jsch 터널링을 위해 필요합니다. -->
+		<dependency>
+		  <groupId>com.jcraft</groupId>
+		  <artifactId>jsch</artifactId>
+		  <version>0.1.53</version>
+		</dependency>
+		
 		<dependency>
 		    <groupId>org.apache.httpcomponents</groupId>
 		    <artifactId>httpclient</artifactId>

@@ -29,7 +29,8 @@
 						user_phonenum, 
 						user_zipcode, 
 						user_address, 
-						user_detail_address from userinfo where user_id = #{user_id} and user_pw = hex(aes_encrypt(#{user_pw}, 'key'))]]>
+						user_detail_address,
+						role from userinfo where user_id = #{user_id} and user_pw = hex(aes_encrypt(#{user_pw}, 'key'))]]>
     </select>   
     
     <insert id="createMember">

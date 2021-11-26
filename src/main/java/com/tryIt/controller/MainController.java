@@ -52,4 +52,9 @@ public class MainController {
     public String toKakaoMyPage() {
     	return "account-kakao-profile";
     }
+    
+    @GetMapping("/adminpage")
+    public String AdminPage() {
+    	return "account-admin-profile";
+    }
 }

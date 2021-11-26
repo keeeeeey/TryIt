@@ -36,7 +36,6 @@ public class KKY_KakaoController {
         params.add("client_id", "112abdb9f61736f1100d276efac341d4");
         params.add("redirect_uri", "http://localhost:8089/auth/kakao/callback");
         params.add("code", code);
-        params.add("client_secret", "7M07ca2DY4kqQTGW5aTKrwRZ8CHHnuu5");
 
         // HttpHeader 오브젝트 생성
         HttpHeaders headersForAccessToken = new HttpHeaders();
@@ -47,22 +46,17 @@ public class KKY_KakaoController {
 
         //POST방식으로 key-value 데이터를 요청(카카오쪽으로)
         RestTemplate rt = new RestTemplate(); //http 요청을 간단하게 해줄 수 있는 클래스
-
+        
         // 실제로 요청하기
         // Http 요청하기 - POST 방식으로 - 그리고 response 변수의 응답을 받음.
-        ResponseEntity<String> accessTokenResponse = rt.exchange(
+        ResponseEntity<KKY_KakaoOauthToken> accessTokenResponse = rt.exchange(
             "https://kauth.kakao.com/oauth/token",
             HttpMethod.POST,
             kakaoTokenRequest,
-            String.class
+            KKY_KakaoOauthToken.class
         );
 
-        KKY_KakaoOauthToken oauthToken = null;
-        try {
-            oauthToken = objectMapper.readValue(accessTokenResponse.getBody(), KKY_KakaoOauthToken.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        KKY_KakaoOauthToken oauthToken = accessTokenResponse.getBody();
 
         // 토큰 전달 받기 완료
 
@@ -91,18 +85,15 @@ public class KKY_KakaoController {
         return profile;
     }
     
-//    public void kakaoLogout(KKY_KakaoOauthToken oauthToken, String code) throws IOException {
+//    public void kakaoLogout(KKY_KakaoOauthToken oauthToken) throws IOException {
 //    	String reqURL = "https://kapi.kakao.com/v1/user/logout";
 //	    try {
 //	        URL url = new URL(reqURL);
 //	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //	        conn.setRequestMethod("POST");
 //	        conn.setRequestProperty("Authorization", "Bearer " + oauthToken.getAccess_token());
-//	        conn.setRequestProperty("grant_type", "authorization_code");
 //	        conn.setRequestProperty("client_id", "112abdb9f61736f1100d276efac341d4");
 //	        conn.setRequestProperty("logout_redirect_uri", "http://localhost:8089/auth/kakao/logout");
-//	        conn.setRequestProperty("code", code);
-//	        conn.setRequestProperty("client_secret", "7M07ca2DY4kqQTGW5aTKrwRZ8CHHnuu5");
 //	        
 //	        int responseCode = conn.getResponseCode();
 //	        System.out.println("responseCode : " + responseCode);
@@ -122,12 +113,12 @@ public class KKY_KakaoController {
 //	    }
 //    }
     
-    public void kakaoLogout(KKY_KakaoOauthToken oauthToken, String code) {
+    public void kakaoLogout(KKY_KakaoOauthToken oauthToken) {
 
     	 // 3, 4 : 인증 코드를 받은 후, 위의 파라미터들을 모두 포함해 Access 토큰 요청을 보내고 응답을 받는 코드
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("client_id", "112abdb9f61736f1100d276efac341d4");
-        params.add("logout_redirect_uri", "http://localhost:8089/auth/kakao/callback");
+        params.add("logout_redirect_uri", "http://localhost:8089/auth/kakao/logout");
     	
         //POST방식으로 key-value 데이터를 요청(카카오쪽으로)
         RestTemplate rt = new RestTemplate(); //http 요청을 간단하게 해줄 수 있는 클래스
@@ -151,8 +142,8 @@ public class KKY_KakaoController {
     }
 	
     @GetMapping("/auth/kakao/logout")
-    public String logout(HttpSession session, KKY_KakaoOauthToken oauthToken, String code) throws IOException {
-    	kakaoLogout(oauthToken, code);
+    public String logout(HttpSession session, KKY_KakaoOauthToken oauthToken) throws IOException {
+    	kakaoLogout(oauthToken);
     	session.removeAttribute("kakaoLogin");
     	return "/login-register";
     }
@@ -162,6 +153,10 @@ public class KKY_KakaoController {
     	KakaoProfile profile = getProfileInfo(code);
     	session.setAttribute("kakaoLogin", profile);
     	System.out.println(oauthToken.getAccess_token());
+    	System.out.println(oauthToken.getToken_type());
+    	System.out.println(oauthToken.getRefresh_token());
+    	System.out.println(oauthToken.getExpires_in());
+    	System.out.println(oauthToken.getScope());
     	return "redirect:/";
     }
 

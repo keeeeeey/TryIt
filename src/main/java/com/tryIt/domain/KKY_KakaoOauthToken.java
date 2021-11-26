@@ -1,8 +1,12 @@
 package com.tryIt.domain;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
+@Data
 @Getter
+@Setter
 public class KKY_KakaoOauthToken {
 	private String access_token;
     private String token_type;
