@@ -47,18 +47,18 @@ public class MainController {
     public String toMyPage() {
     	return "account-profile";
     }
-<<<<<<< Updated upstream
+
 
     @GetMapping("/test/1")
     public String toTest(){
         return "test";
     }
-=======
+
     
     @GetMapping("/ar")
     public String toArPage() {
     	return "AR";
     }
     
->>>>>>> Stashed changes
+
 }
