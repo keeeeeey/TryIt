@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tryIt.mapper.JSW_OrderMapper">
+
 	<insert id="insertOrder">
         insert into order(orde_user_id,order_date,order_address,order_postalcode,order_receiver,order_message,order_success,order_seq) values(#{member_id},#{product_id},)
     </insert>

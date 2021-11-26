@@ -1,6 +1,6 @@
 package com.tryIt.domain;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import lombok.Data;
 import lombok.Getter;
@@ -21,7 +21,7 @@ public class KKY_MemberVO {
 	private String user_detail_address;
 	private String user_zipcode;
 	private String user_phonenum;
-	private Timestamp user_join_date;
+	private Date user_join_date;
 	private int user_yn;
 	private String role;
 	

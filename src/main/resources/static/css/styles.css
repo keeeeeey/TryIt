@@ -47,6 +47,24 @@
     Common styles
 ====================================== */
 /* loader */
+#kakao_oauth {
+  display: inline-block;
+  font-size: 14px;
+  padding: 6px 18px;
+  border: 2px solid #fee500;
+  background: #fee500;
+  color: #000 !important;
+  letter-spacing: .5px;
+  line-height: 26px;
+  border-radius: 4px;
+  width: 483px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  text-align: center; 
+}
+
 #preloader {
   position: fixed;
   left: 0;

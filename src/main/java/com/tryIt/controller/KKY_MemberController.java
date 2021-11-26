@@ -33,9 +33,34 @@ public class KKY_MemberController {
 		return "account-drop";
 	}
 	
+	@GetMapping("/account-recovery")
+	public String accountRecovery() {
+		return "account-recovery";
+	}
+	
+	@GetMapping("/id-recovery")
+	public String idRecovery() {
+		return "account-id-recovery";
+	}
+	
 	@GetMapping("/password-recovery")
 	public String passwordRecovery() {
 		return "account-password-recovery";
+	}
+	
+	@PostMapping("/findId")
+	public void findId(String user_name, String user_email, HttpServletResponse response) throws IOException {
+		KKY_MemberVO memberVO = memberService.readMember2(user_name, user_email);
+		PrintWriter writer = response.getWriter();
+		// 회원정보가 없으면
+		if (memberVO == null) {
+			writer.print("null_memberVO");
+		} 
+		// 회원정보가 있으면
+		else {
+			memberService.findId(user_name, user_email);
+			writer.print("successSendEmail2");
+		}
 	}
 	
 	@PostMapping("/findPw")
@@ -63,7 +88,7 @@ public class KKY_MemberController {
 		KKY_MemberVO memberVO = (KKY_MemberVO)session.getAttribute("memberVO");
 		if (memberVO.getUser_pw().equals(user_pw)) {
 			memberService.deleteMember(user_id, user_pw);
-			session.invalidate();
+			session.removeAttribute("memberVO");
 			writer.print("deleteSuccess");
 		} else {
 			writer.print("deleteFail");
@@ -79,23 +104,13 @@ public class KKY_MemberController {
 	
 	@PostMapping("/login.do")
 	public void login(String user_id, String user_pw, HttpServletRequest request, HttpServletResponse response) throws IOException {
-//		ModelAndView mav = new ModelAndView();
 		KKY_MemberVO memberVO = memberService.loginMember(user_id, user_pw);
 		HttpSession session = request.getSession();
 		PrintWriter writer = response.getWriter();
 		if (memberVO != null) {
-//			if (memberVO.getUser_pw().equals(user_pw)) {
-//				session.removeAttribute("loginFail");
-				session.setAttribute("memberVO", memberVO);
-
-//				mav.setViewName("redirect:/");
-				writer.print("loginsuccess");
-//			}
+			session.setAttribute("memberVO", memberVO);
+			writer.print("loginsuccess");
 		} else {
-//			session.invalidate();
-//			request.setAttribute("loginFail", "존재하지 않는 아이디이거나 비밀번호가 일치하지 않습니다.");
-//			mav.setViewName("redirect:/login-register");
-//			response.sendRedirect("/login-register");
 			writer.print("loginFail");
 		}
 	
@@ -111,8 +126,7 @@ public class KKY_MemberController {
 		
 	@GetMapping("/logout.do")
 	public String logout(HttpSession session) {
-//		log.info("logout...");
-		session.invalidate();
+		session.removeAttribute("memberVO");
 		return "redirect:/";
 	}
 	

@@ -130,6 +130,29 @@ function fn_deleteAccount() {
 	})
 }
 
+function fn_sendIdEmail() {
+	var _name = $("#recovery_name").val();
+	var _email = $("#id_recovery_email").val();
+	$.ajax({
+		type: "POST",
+		asynk: true,
+		url: "/member/findId",
+		data: {
+			user_name: _name,
+			user_email: _email
+		},
+		success: function (data, textStatus) {
+			if (data == 'null_memberVO') {
+				$("#messageSendEmail2").text("가입하지 않은 회원입니다.");
+			} else if (data == 'successSendEmail2') {
+				$("#messageSendEmail2").text("");
+				alert("이메일로 아이디 정보를 발송하였습니다.");
+				document.location.href = "/login-register";
+			}
+		}
+	})
+}
+
 function fn_sendEmail() {
 	var _id = $("#recovery_id").val();
 	var _email = $("#recovery_email").val();

@@ -137,48 +137,33 @@
                         <div class="common-block">
 
                             <div class="inner-title">
-                                <h4 class="no-margin-bottom">Forgot your password?</h4>
-                                <p class="no-margin-bottom">Forgot your password empowers you.</p>
+                                <h4 class="no-margin-bottom">Forgot your Account?</h4>
+                                <p class="no-margin-bottom">Forgot your account empowers you.</p>
                             </div>
 
-                            <form name="findPw">
+                            <div class="row">
 
-                                <div class="row">
+                                <div class="col-sm-12 mb-2">
+                                    <a th:href="@{/member/id-recovery}" style="width: 482px; text-align: center;" class="butn-style2">아이디 찾기</a>
+                                </div>
 
-                                    <div class="col-sm-12 mb-2">
+                            </div>
+                            
+                            <div class="row">
 
-                                        <div class="form-group">
-                                            <label>Enter Your Id</label>
-                                            <input type="id" class="form-control" id="recovery_id" name="recovery_id" placeholder="Enter your id">
-                                        </div>
-										<div id="messageSendId" style="height: 20px; color: #ff0000"></div>
-                                    </div>
+                                <div class="col-sm-12 mb-2">
+                                	<a th:href="@{/member/password-recovery}" style="width: 482px; text-align: center;" class="butn-style2 margin-20px-top">비밀번호 찾기</a>
+                                </div>
 
+                            </div>
+
+                            <div class="row">
+                            
+                                <div class="col-sm-12">
+                                    <a th:href="@{/login-register}" class="m-link-muted">Back to Login</a>
                                 </div>
                                 
-                                <div class="row">
-
-                                    <div class="col-sm-12 mb-2">
-
-                                        <div class="form-group">
-                                            <label>Enter Your Email Address</label>
-                                            <input type="email" class="form-control" id="recovery_email" name="recovery_email" placeholder="Enter your email address">
-                                        </div>
-										<div id="messageSendEmail" style="height: 20px; color: #ff0000"></div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <a th:href="@{/login-register}" class="m-link-muted">Back to Login</a>
-                                    </div>
-
-                                </div>
-
-                                <button type="button" class="butn-style2 margin-20px-top" onclick="fn_sendEmail()">Send Email</button>
-
-                            </form>
+                            </div>
 
                         </div>
 

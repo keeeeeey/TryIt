@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.tryIt.mapper.KKY_AdminMapper">
+
+	<resultMap id="memberMap" type="com.tryIt.domain.KKY_MemberVO">
+		<result column="user_id" property="user_id"></result>
+		<result column="user_pw" property="user_pw"></result>
+		<result column="user_email" property="user_email"></result>
+		<result column="user_name" property="user_name"></result>
+		<result column="user_nickname" property="user_nickname"></result>
+		<result column="user_address" property="user_address"></result>
+		<result column="user_detail_address" property="user_detail_address"></result>
+		<result column="user_zipcode" property="user_zipcode"></result>
+		<result column="user_phonenum" property="user_phonenum"></result>
+		<result column="user_join_date" property="user_join_date"></result>
+		<result column="user_yn" property="user_yn"></result>
+		<result column="role" property="role"></result>
+	</resultMap>
+    
+    <select id="userlist" resultType="com.tryIt.domain.KKY_MemberVO">
+		<![CDATA[select * from userinfo where role = "user"]]>
+    </select>   
+    
+</mapper>
