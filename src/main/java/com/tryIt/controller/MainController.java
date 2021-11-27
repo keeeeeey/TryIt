@@ -61,11 +61,6 @@ public class MainController {
     	return "account-admin-profile";
     }
 
-    @GetMapping("/test/1")
-    public String toTest(){
-        return "test";
-    }
-    
     @GetMapping("/ar")
     public String toArPage() {
     	return "AR";

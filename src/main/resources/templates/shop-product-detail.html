@@ -32,7 +32,7 @@
     <!-- jQuery -->
     <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{/js/jquery-migrate.min.js}"></script>
-
+    <script th:src="@{/js/insertCart.js}"></script>
     <!-- popper js -->
     <script th:src="@{/js/popper.min.js}"></script>
 
@@ -273,7 +273,6 @@
                             <div class="row margin-20px-bottom">
                                 <div class="col-lg-12">
                                     <button class="butn-style2 margin-15px-right xs-margin-10px-bottom" th:onclick="'insertCart('+${product.getId()}+')'"><span><i class="fas fa-shopping-cart margin-5px-right"></i> Add to Cart</span></button>
-                                    <button class="butn-style2 dark"><span><i class="fas fa-heart margin-5px-right"></i> Add to wishlist</span></button>
                                 </div>
                             </div>
                             <div class="row">
@@ -640,14 +639,8 @@
     <!-- start scroll to top -->
     <a href="#!" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
     <!-- end scroll to top -->
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var message = /*[[${msg}]]*/ 'default';
-        if(message != null)
-            alert(message);
-        /*]]>*/
-    </script>
-    <script src="js/insertCart.js"></script>
+
+
 </body>
 
 </html>

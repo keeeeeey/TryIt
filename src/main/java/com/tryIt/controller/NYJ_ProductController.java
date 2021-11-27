@@ -4,9 +4,8 @@ import com.tryIt.domain.NYJ_Criteria;
 import com.tryIt.domain.NYJ_PageDTO;
 import com.tryIt.domain.NYJ_ProductVO;
 import com.tryIt.service.NYJ_ProductService;
-import lombok.AllArgsConstructor;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +45,11 @@ public class NYJ_ProductController {
 
         NYJ_Criteria cri = new NYJ_Criteria(page,10);
         //criteria, pagedto => criteria amount 를 custom해서 사용!!
-        model.addAttribute("productlist",nyj_productService.getProductsWithPaging(cri));
+        //buffer가 느리게 오도록 => response를 지연시켜야
+        //현재: buffer채워지기 전에 client로 온 것 같음
         model.addAttribute("pageMaker",new NYJ_PageDTO(cri,totalListCnt));
+        model.addAttribute("productlist",nyj_productService.getProductsWithPaging(cri));
+
         return "shop-product-list";
     }
 

@@ -5,9 +5,42 @@
 
 <mapper namespace="com.tryIt.mapper.JSW_OrderMapper">
 
+    <resultMap id="orderProductMap" type="com.tryIt.domain.NYJ_OrderProductVO">
+        <result column="order_id" property="order_id"></result>
+        <result column="product_id" property="product_id"></result>
+        <result column="product_num" property="product_num"></result>
+        <result column="product_deliver" property="product_deliver"></result>
+    </resultMap>
+
+    <resultMap id="orderMap" type="com.tryIt.domain.JSW_OrderVO">
+        <id column="id" property="id"></id>
+        <result column="order_user_id" property="order_user_id"></result>
+        <result column="order_date" property="order_date"></result>
+        <result column="order_address" property="order_address"></result>
+        <result column="order_detail_address" property="order_detail_address"></result>
+        <result column="order_postalcode" property="order_postalcode"></result>
+        <result column="order_receiver" property="order_receiver"></result>
+        <result column="order_message" property="order_message"></result>
+        <result column="order_success" property="order_success"></result>
+        <result column="order_seq" property="order_seq"></result>
+        <collection property="orderProductList" resultMap="orderProductMap"></collection>
+    </resultMap>
+
 	<insert id="insertOrder">
-        insert into order(orde_user_id,order_date,order_address,order_postalcode,order_receiver,order_message,order_success,order_seq) values(#{member_id},#{product_id},)
+        insert into member_order(order_user_id,order_address,order_detail_address,order_postalcode,order_receiver,order_message,order_seq) values(#{order_user_id},#{order_address},#{order_detail_address},#{order_postalcode},#{order_receiver},#{order_message},#{order_seq})
     </insert>
+
+    <select id="getOrderById" resultMap="orderMap">
+
+    </select>
+
+    <select id="getMemberOrder" resultMap="orderMap">
+
+    </select>
+
+    <select id="getByOrderSeq" resultMap = "orderMap">
+        select * from member_order where order_seq = #{order_seq}
+    </select>
 
 
 
