@@ -33,6 +33,11 @@ import com.tryIt.service.KTE_ServiceCenterService;
 	@Autowired
 	private KTE_ServiceCenterService serviceCenterService;
 	
+	@GetMapping("/admin-page")
+	public String admin_page() {
+		return "admin-page";
+	}
+	
 	
 	@PostMapping("write")
 	public String write(KTE_NoticeVO noticeVO) {
