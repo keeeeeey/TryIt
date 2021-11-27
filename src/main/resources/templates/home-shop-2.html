@@ -277,7 +277,7 @@
                         <div>
                             <div class="product-grid-slide owl-carousel owl-theme">
                                 <div class="product-grid" th:each="product:${best10}">
-                                    <div class="product-img" style="height:210px; object-fit: contain; display:flex; align-items: center; ">
+                                    <div class="product-img" style="height:220px; object-fit: contain; display:flex; align-items: center;">
                                         <a th:href="'/products/'+${product.getId()}"><img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="..."></a>
                                     </div>
                                     <div class="product-description">
@@ -299,7 +299,7 @@
                         <div>
                             <div class="product-grid-slide owl-carousel owl-theme">
                                 <div class="product-grid" th:each="product:${high10}">
-                                    <div class="product-img">
+                                    <div class="product-img" style="height:220px; object-fit: contain; display:flex; align-items: center;">
                                         <a th:href="'/products/'+${product.getId()}"><img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="..."></a>
                                     </div>
                                     <div class="product-description">
@@ -321,7 +321,7 @@
                         <div>
                             <div class="product-grid-slide owl-carousel owl-theme">
                             <div class="product-grid" th:each="product:${recent10}">
-                                <div class="product-img">
+                                <div class="product-img" style="height:220px; object-fit: contain; display:flex; align-items: center;">
                                     <a th:href="'/products/'+${product.getId()}"><img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="..."></a>
                                 </div>
                                 <div class="product-description">
@@ -380,7 +380,7 @@
                             </div>
                             <div class="product-items" th:each="product:${best3}">
                                 <div class="media">
-                                    <div class="thumb-img mr-4 pr-2">
+                                    <div class="thumb-img mr-4 pr-2" style="width:165px; height:150px; object-fit: contain; display:flex; justify-content: center; align-items: center;">
                                         <img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="...">
                                     </div>
                                     <div class="media-body">
@@ -408,7 +408,7 @@
 
                             <div class="product-items" th:each="product:${recent3}">
                                 <div class="media">
-                                    <div class="thumb-img mr-4 pr-2">
+                                    <div class="thumb-img mr-4 pr-2" style="width:165px; height:150px; object-fit: contain; display:flex; justify-content: center; align-items: center;">
                                         <img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="...">
                                     </div>
                                     <div class="media-body">
@@ -437,7 +437,7 @@
 
                             <div class="product-items" th:each="product:${high3}">
                                 <div class="media">
-                                    <div class="thumb-img mr-4 pr-2">
+                                    <div class="thumb-img mr-4 pr-2" style="width:165px; height:150px; object-fit: contain; display:flex; justify-content: center; align-items: center;">
                                         <img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="...">
                                     </div>
                                     <div class="media-body">

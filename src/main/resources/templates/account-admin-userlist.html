@@ -170,41 +170,63 @@
 
                         <div class="common-block">
 
-                            <div class="inner-title">
+                            <div class="inner-title" style="margin: 0;">
                                 <h4 class="no-margin-bottom">UserList</h4>
                             </div>
 
-                            <div class="table-responsive">
-                                <table class="table v-align-middle">
-                                    <thead>
-                                        <tr>
-                                            <th>Check</th>
-                                            <th>User_Id</th>
-                                            <th>User_Name</th>
-                                            <th>User_NickName</th>
-                                            <th>User_Email</th>
-                                            <th>User_Join_Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    
-                                        <tr th:each="userlist:${userlist}">
-                                            <td><a href="#!"><i class="fas fa-trash"></i></a></td>
-                                            <td th:text="${userlist.user_id}"></td>
-                                            <td th:text="${userlist.user_name}"></td>
-                                            <td th:text="${userlist.user_nickname}"></td>
-                                            <td th:text="${userlist.user_email}"></td>
-                                            <td th:text="${userlist.user_join_date}"></td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
+							<form name="findUser">
+								<div style="display: flex; justify-content: right; align-items: center;">
+									<input type="text" name="find_id" id="find_id" style="width: 200px; height: 35px; border-radius: 4px;" placeholder="아이디 찾기">
+									<button type="button" class="butn-style2 margin-20px-top" onClick="fn_findId()" style="height: 35px; margin: 10px 5px; padding: 0 15px; vertical-align: center;">찾기</button>			
+								</div>
+							</form>
 
-                            <a class="butn-style2 margin-15px-top" href="#!"><span>Delete</span></a>
+                            <form name="admin_userlist">
+	                            <div class="table-responsive">
+	                                <table class="table v-align-middle">
+	                                    <thead>
+	                                        <tr>
+	                                            <th style="display: flex; align-items: center;"><input type="checkbox" name="userlist_id" value="selectAll" onclick="selectAll(this)">Check</th>
+	                                            <th>User_Id</th>
+	                                            <th>User_Name</th>
+	                                            <th>User_NickName</th>
+	                                            <th>User_Email</th>
+	                                            <th>User_Join_Date</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                    
+	                                        <tr th:each="userlist:${userlist}">
+	                                            <td><input type="checkbox" name="userlist_id" class="userlist_id" th:value="${userlist.user_id}"></td>
+	                                            <td th:text="${userlist.user_id}"></td>
+	                                            <td th:text="${userlist.user_name}"></td>
+	                                            <td th:text="${userlist.user_nickname}"></td>
+	                                            <td th:text="${userlist.user_email}"></td>
+	                                            <td th:text="${userlist.user_join_date}"></td>
+	                                        </tr>
+	                                        
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                            <div th:if="${pageMaker != null}">
+									<div class="pagination text-small text-uppercase text-extra-dark-gray margin-50px-top sm-margin-35px-top">
+	                                    <ul>
+	                                        <th:block th:with="start = ${pageMaker.startPage}, end = ${pageMaker.endPage}">
+	                                            <li
+	                                                th:with="start = ${pageMaker.startPage}, end = ${pageMaker.endPage}"
+	                                                th:each="pageButton : ${#numbers.sequence(start, end)}" th:class="${pageButton == pageMaker.cri.pageNum} ? 'active'">
+	                                                <a th:href="@{/admin/userlist?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
+	                                            </li>
+	
+	                                        </th:block>
+	                                    </ul>
+	                                </div>
+                                </div>
+	                            <button type="button" class="butn-style2 margin-20px-top" onClick="fn_userDelete()">Delete</button>
+                            </form>
                         </div>
-                    <!-- end right panel -->
                 </div>
+                <!-- end right panel -->
             </div>
         </section>
         <!-- end account-orders section -->

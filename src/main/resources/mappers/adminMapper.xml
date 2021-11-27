@@ -22,6 +22,36 @@
     
     <select id="userlist" resultType="com.tryIt.domain.KKY_MemberVO">
 		<![CDATA[select * from userinfo where role = "user"]]>
-    </select>   
+    </select>
+    
+    <select id="userlistWithPaging" resultType="com.tryIt.domain.KKY_MemberVO">
+    	<![CDATA[
+	        select user_id, user_email, user_name, user_nickname, user_join_date
+	            from (
+	                    SELECT @ROWNUM := @ROWNUM + 1 AS rn,u.*
+	                    from userinfo u
+	                    WHERE (@ROWNUM:=0) = 0 AND @ROWNUM < #{pageNum} * #{amount}
+	            )AS T
+	        where rn > (#{pageNum} - 1) * #{amount} and role = "user"
+        ]]>
+    </select>
+    
+    <delete id="deleteUser">
+    	<![CDATA[delete from userinfo where user_id = #{deletelist}]]>
+    </delete>
+    
+    <select id="finduser" resultType="com.tryIt.domain.KKY_MemberVO">
+    	<![CDATA[
+	        select user_id, user_email, user_name, user_nickname, user_join_date from userinfo where role = "user" and user_id like concat('%',#{find_id},'%')
+        ]]>
+    </select> 
+    
+    <select id = "countUserlistNum" resultType="int">
+    	<![CDATA[SELECT count(*) from userinfo]]>
+    </select>
+    
+    <select id = "countFindUserNum" resultType="int">
+    	<![CDATA[SELECT count(*) from userinfo where user_id like concat('%',#{find_id},'%')]]>
+    </select>
     
 </mapper>

@@ -50,19 +50,9 @@ public class MainController {
     	return "account-profile";
     }
     
-    @GetMapping("/kakaoMypage")
-    public String toKakaoMyPage() {
-    	return "account-kakao-profile";
-    }
-    
     @GetMapping("/adminpage")
     public String AdminPage() {
     	return "account-admin-profile";
-    }
-
-    @GetMapping("/test/1")
-    public String toTest(){
-        return "test";
     }
     
     @GetMapping("/ar")
