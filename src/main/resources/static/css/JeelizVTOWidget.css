@@ -12,7 +12,7 @@ body {
   text-align: center;
   font-family: Helvetica Neu, Arial, sans-serif;
   margin: 0;
-  padding: 0;`
+  padding: 0;
   color: #444;
   box-sizing: border-box;
 }
@@ -95,6 +95,21 @@ button:hover {
    min-width: auto;
 }
 
+/*Ãß°¡*/
+
+.JeelizVTOWidgetControlsBottom{
+	bottom:16px;
+  	height: 40px;
+}
+
+.JeelizVTOWidgetControlsBottom > button {
+   width: 80%;
+   margin-left:65px;
+}
+
+/***********/
+
+
 #JeelizVTOWidgetChangeModelContainer {
   bottom: 16px;
   height: 40px;  
@@ -143,6 +158,9 @@ button:hover {
 }
 
 /* Hide everything, stuffs will be displayed by JeelizVTOWidget: */
+#recommend{
+ display: none;
+}
 #JeelizVTOWidgetAdjust {
   display: none;
 }

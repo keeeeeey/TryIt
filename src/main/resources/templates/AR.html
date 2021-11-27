@@ -96,8 +96,11 @@
 }
 </style>
 <script>
+
+
 	let _isResized = false;
 	function test_resizeCanvas() {
+		
 		// halves the height:
 		let halfHeightPx = Math.round(window.innerHeight / 2).toString() + 'px';
 
@@ -116,6 +119,10 @@
 			searchImageColor : 0xeeeeee,
 			callbackReady : function() {
 				console.log('INFO: JEELIZVTOWIDGET is ready :)');
+		
+				//추가
+				var recommend = document.getElementById("recommend");
+				recommend.style.display='block';
 			},
 			onError : function(errorLabel) { // 에러 잡기 시작
 				alert('An error happened. errorLabel =' + errorLabel)
@@ -263,8 +270,19 @@
 					</div>
 					화면회전
 				</button>
+				
+			</div>
+			
+			<!-- 버튼 추가 -->
+			<div class='JeelizVTOWidgetControls JeelizVTOWidgetControlsBottom'>
+				<button id ="recommend" onclick="location.href='http://localhost:8089/ageGender'">
+						상품추천
+				</button>
+				
 			</div>
 
+
+				
 			<!-- CHANGE MODEL BUTTONS: 
         <div class='JeelizVTOWidgetControls' id='JeelizVTOWidgetChangeModelContainer'>
           <button onclick="JEELIZVTOWIDGET.load('rayban_aviator_or_vertFlash')">Model 1</button>
