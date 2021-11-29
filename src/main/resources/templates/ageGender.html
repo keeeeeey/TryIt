@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script defer src="js/face-api.min.js"></script>
+  <script defer src="js/script.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* canvas {
+      position: absolute;
+    } */
+    /* 좌우반전 */
+    video{       
+		transform: rotateY(180deg);         
+		-webkit-transform:rotateY(180deg); /* Safari and Chrome */         
+		-moz-transform:rotateY(180deg); /* Firefox */
+	}
+	
+	#center_message{
+	  width : 100%;
+	  height : 100%;
+ 	  font-weight:bold;
+	  background-color:white;
+	  position: absolute; 
+ 	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	 
+	}
+  </style>
+</head>
+<body>
+
+
+<video id="video" width="720" height="560" autoplay muted></video>
+  <div id="center_message">
+  	추천상품 검색중...
+    <img src="http://localhost:8089/img/ar/Hourglass.gif">
+  </div>
+
+<form name = "frm">
+	<input type ="hidden" id = "age" name = "age">
+	<input type="hidden" id = "gender" name = "gender">
+</form>
+
+</body>
+</html>

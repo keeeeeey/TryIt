@@ -193,7 +193,7 @@
                             <tbody>
                                 <h3 th:text="${emptyList}"></h3>
                                 <tr th:each="cart:${cartList}">
-                                    <td class="product-thumbnail text-left">
+                                    <td class="product-thumbnail text-left" style="height: 100px; display: flex; justify-content: center; align-items: center;">
                                         <a th:href="'/products/'+${cart.getProduct_id()}"><img th:src="@{${'/img/products/single-product/preview/'+ cart.getProduct_img()}}" alt="..." ></a>
                                     </td>
                                     <td class="text-left">

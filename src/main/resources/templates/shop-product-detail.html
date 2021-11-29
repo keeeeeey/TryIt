@@ -32,7 +32,7 @@
     <!-- jQuery -->
     <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{/js/jquery-migrate.min.js}"></script>
-
+    <script th:src="@{/js/insertCart.js}"></script>
     <!-- popper js -->
     <script th:src="@{/js/popper.min.js}"></script>
 
@@ -222,7 +222,9 @@
 
                         <!-- product left start -->
                         <div class="xzoom-container">
-                            <img class="xzoom5 margin-30px-bottom" id="xzoom-magnific" th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" xoriginal="img/products/single-product/original/01_product.jpg}" alt="..." />
+                        	<div class="margin-30px-bottom" style="height: 500px; display: flex; justify-content: center; align-items: center; box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 50%);">
+                            	<img class="xzoom5" id="xzoom-magnific" th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" xoriginal="img/products/single-product/original/01_product.jpg}" alt="..." style="box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 50%);"/>
+                            </div>
                             <div class="xzoom-thumbs no-margin">
                                 <button th:onclick="'location.href=\''+ @{../ar?}+@{${product.getProduct_model()}} + '\''" class="butn-style2 margin-2px-right xs-margin-2px-bottom" style="width:220px; height:50px;"><span><i class="fas fa-glasses margin-5px-right"></i> AR 안경 착용해보기</span></button>
                             </div>
@@ -273,7 +275,6 @@
                             <div class="row margin-20px-bottom">
                                 <div class="col-lg-12">
                                     <button class="butn-style2 margin-15px-right xs-margin-10px-bottom" th:onclick="'insertCart('+${product.getId()}+')'"><span><i class="fas fa-shopping-cart margin-5px-right"></i> Add to Cart</span></button>
-                                    <button class="butn-style2 dark"><span><i class="fas fa-heart margin-5px-right"></i> Add to wishlist</span></button>
                                 </div>
                             </div>
                             <div class="row">
@@ -478,7 +479,7 @@
                 <div class="product-grid-slide owl-carousel owl-theme">
 
                     <div class="product-grid"  th:each="product:${productlist}">
-                        <div class="product-img">
+                        <div class="product-img" style="height:230px; object-fit: contain; display:flex; align-items: center;">
                             <a th:href="'/products/'+${product.getId()}">
                                 <img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="..."></a>
                         </div>
@@ -640,14 +641,8 @@
     <!-- start scroll to top -->
     <a href="#!" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
     <!-- end scroll to top -->
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var message = /*[[${msg}]]*/ 'default';
-        if(message != null)
-            alert(message);
-        /*]]>*/
-    </script>
-    <script src="js/insertCart.js"></script>
+
+
 </body>
 
 </html>

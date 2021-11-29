@@ -54,7 +54,7 @@ public class MainController {
     public String AdminPage() {
     	return "account-admin-profile";
     }
-    
+
     @GetMapping("/ar")
     public String toArPage() {
     	return "AR";
