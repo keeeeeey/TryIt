@@ -31,7 +31,6 @@
 
 <body>
 
-
     <!-- start main-wrapper section -->
     <div class="main-wrapper mp-pusher" id="mp-pusher">
 
@@ -154,9 +153,9 @@
 
         // 더하기/빼기
         if(type === 'plus') {
-        number = parseInt(number) + 1;
+        	number = parseInt(number) + 1;
         }else if(type === 'minus')  {
-        number = parseInt(number) - 1;
+        	number = parseInt(number) - 1;
         }
         // 결과 출력
             resultElement.innerText = number;
@@ -191,7 +190,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-<<<<<<< HEAD
                                 <h3 th:text="${emptyList}"></h3>
                                 <tr th:each="cart:${cartList}">
                                     <td class="product-thumbnail text-left" style="height: 100px; display: flex; justify-content: center; align-items: center;">
@@ -214,7 +212,6 @@
                                         <a th:href="'/deleteCart/'+${cart.getId()}"><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>
-=======
                             <h3 th:text="${emptyList}"></h3>
                             <tr th:each="cart:${cartList}">
                                 <td class="product-thumbnail text-left">
@@ -237,7 +234,6 @@
                                     <a th:href="'/deleteCart/'+${cart.getId()}"><i class="fas fa-times"></i></a>
                                 </td>
                             </tr>
->>>>>>> d902e3abb281290ba2a3dfa926106accd9247c4c
                             </tbody>
                         </table>
                     </div>
@@ -250,7 +246,6 @@
                     <!-- End Button Set -->
 
                     <!-- Start Total Block Set -->
-
 
                             <div class="col-lg-6 offset-lg-1 col-md-7 offset-md-0" style="margin-left:600px;">
                                 <table class="table cart-sub-total">
