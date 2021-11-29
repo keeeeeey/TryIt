@@ -254,7 +254,7 @@
 
                                         <div class="form-group">
                                             <label>Your ZipCode</label>
-                                            <input type="text" class="form-control" id="user_zipcode" name="user_zipcode" th:value="${session.memberVO.user_zipcode}" onchange="fn_checkZipcode()" readonly>
+                                            <input type="text" class="form-control" id="mypage_user_zipcode" name="user_zipcode" th:value="${session.memberVO.user_zipcode}" onchange="fn_mypageCheckZipcode()" readonly>
                                         </div>
                                         
                                     </div>
@@ -273,7 +273,7 @@
 									 
                                         <div class="form-group">
                                             <label>Your Address</label>
-                                            <input type="text" class="form-control" id="user_address" name="user_address" th:value="${session.memberVO.user_address}" readonly>
+                                            <input type="text" class="form-control" id="mypage_user_address" name="user_address" th:value="${session.memberVO.user_address}" readonly>
                                         </div>
                                      
                                      </div>   
@@ -286,9 +286,9 @@
 									 
 	                                    <div class="form-group" style="margin: 0">
 	                                        <label>Your Detail-Address</label>
-	                                        <input type="text" class="form-control" id="user_detail_address" name="user_detail_address" onblur="fn_checkDetailAddress()" th:value="${session.memberVO.user_detail_address}">
+	                                        <input type="text" class="form-control" id="mypage_user_detail_address" name="user_detail_address" onblur="fn_mypageCheckDetailAddress()" th:value="${session.memberVO.user_detail_address}">
 	                                    </div>
-	                                    <div id="messageDetailAddress" style="height: 20px; color: #ff0000;"></div>
+	                                    <div id="messageMypageDetailAddress" style="height: 20px; color: #ff0000;"></div>
                                      
                                     </div>
 
@@ -296,9 +296,9 @@
 
                                         <div class="form-group" style="margin: 0">
                                             <label>Contact Number</label>
-                                            <input type="text" class="form-control" id="user_phonenum" name="user_phonenum" onchange="fn_validatePhonenum()" th:value="${session.memberVO.user_phonenum}">
+                                            <input type="text" class="form-control" id="mypage_user_phonenum" name="user_phonenum" onchange="fn_mypageValidatePhonenum()" th:value="${session.memberVO.user_phonenum}">
                                         </div>
-                                        <div id="messagePhonenum" style="height: 20px; color: #ff0000;"></div>
+                                        <div id="messageMypagePhonenum" style="height: 20px; color: #ff0000;"></div>
 
                                     </div>
 

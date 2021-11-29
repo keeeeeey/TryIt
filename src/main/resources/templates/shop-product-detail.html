@@ -222,7 +222,9 @@
 
                         <!-- product left start -->
                         <div class="xzoom-container">
-                            <img class="xzoom5 margin-30px-bottom" id="xzoom-magnific" th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" xoriginal="img/products/single-product/original/01_product.jpg}" alt="..." />
+                        	<div class="margin-30px-bottom" style="height: 500px; display: flex; justify-content: center; align-items: center; box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 50%);">
+                            	<img class="xzoom5" id="xzoom-magnific" th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" xoriginal="img/products/single-product/original/01_product.jpg}" alt="..." style="box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 50%);"/>
+                            </div>
                             <div class="xzoom-thumbs no-margin">
                                 <button th:onclick="'location.href=\''+ @{../ar?}+@{${product.getProduct_model()}} + '\''" class="butn-style2 margin-2px-right xs-margin-2px-bottom" style="width:220px; height:50px;"><span><i class="fas fa-glasses margin-5px-right"></i> AR 안경 착용해보기</span></button>
                             </div>
@@ -477,7 +479,7 @@
                 <div class="product-grid-slide owl-carousel owl-theme">
 
                     <div class="product-grid"  th:each="product:${productlist}">
-                        <div class="product-img">
+                        <div class="product-img" style="height:230px; object-fit: contain; display:flex; align-items: center;">
                             <a th:href="'/products/'+${product.getId()}">
                                 <img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="..."></a>
                         </div>

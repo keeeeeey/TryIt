@@ -31,7 +31,6 @@
 
 <body>
 
-
     <!-- start main-wrapper section -->
     <div class="main-wrapper mp-pusher" id="mp-pusher">
 
@@ -154,9 +153,9 @@
 
         // 더하기/빼기
         if(type === 'plus') {
-        number = parseInt(number) + 1;
+        	number = parseInt(number) + 1;
         }else if(type === 'minus')  {
-        number = parseInt(number) - 1;
+        	number = parseInt(number) - 1;
         }
         // 결과 출력
             resultElement.innerText = number;
@@ -191,6 +190,28 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <h3 th:text="${emptyList}"></h3>
+                                <tr th:each="cart:${cartList}">
+                                    <td class="product-thumbnail text-left" style="height: 100px; display: flex; justify-content: center; align-items: center;">
+                                        <a th:href="'/products/'+${cart.getProduct_id()}"><img th:src="@{${'/img/products/single-product/preview/'+ cart.getProduct_img()}}" alt="..." ></a>
+                                    </td>
+                                    <td class="text-left">
+                                        <a th:href="'/products/'+${cart.getProduct_id()}" th:text="${cart.getProduct_name()}">Men's Football Boots</a>
+                                    </td>
+                                    <td class="text-left" th:text = "${cart.getProduct_price()}" th:id="'price'+${cart.getId()}">
+                                        $15.00
+                                    </td>
+                                    <td class="product-quantity" >
+                                        <input type="text" name="product_num" th:id="'qty'+${cart.getId()}" th:value ="${cart.getProduct_num()}" readonly/>
+                                        <span><i class="fas fa-arrow-alt-circle-up up" th:onclick="'upCart('+${cart.getId()}+')'"></i></span>
+                                        <span><i class="fas fa-arrow-alt-circle-down down" th:onclick="'downCart('+${cart.getId()}+')'"></i></span>
+                                    </td>
+                                    <td class="product-subtotal text-left" th:id="'total'+${cart.getId()}" th:text="${cart.getProduct_price()} * ${cart.getProduct_num()}">
+                                    </td>
+                                    <td class="product-remove text-center">
+                                        <a th:href="'/deleteCart/'+${cart.getId()}"><i class="fas fa-times"></i></a>
+                                    </td>
+                                </tr>
                             <h3 th:text="${emptyList}"></h3>
                             <tr th:each="cart:${cartList}">
                                 <td class="product-thumbnail text-left">
@@ -225,7 +246,6 @@
                     <!-- End Button Set -->
 
                     <!-- Start Total Block Set -->
-
 
                             <div class="col-lg-6 offset-lg-1 col-md-7 offset-md-0" style="margin-left:600px;">
                                 <table class="table cart-sub-total">

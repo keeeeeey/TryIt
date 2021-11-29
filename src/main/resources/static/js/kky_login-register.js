@@ -6,12 +6,15 @@ let isValidNickName = false;
 let isValidPw = false;
 let isValidPwCheck = false;
 let isValidZipcode = true;
-let isValidDetailAddress = true;
-let isValidPhonenum = true;
+let isValidDetailAddress = false;
+let isValidPhonenum = false;
 
 //mypage
 let isValidMypageEmail = true;
 let isValidMypageNickName = true;
+let isValidMypageZipcode = true;
+let isValidMypageDetailAddress = true;
+let isValidMypagePhonenum = true;
 
 function fn_register() {
 	var register = document.register;
@@ -62,13 +65,13 @@ function fn_update() {
 	} else if (isValidPwCheck == false) {
 		alert("비밀번호확인은 필수입니다.");
 		return;
-	} else if (isValidZipcode == false) {
+	} else if (isValidMypageZipcode == false) {
 		alert("주소를 입력해주세요.");
 		return;
-	} else if (isValidDetailAddress == false) {
+	} else if (isValidMypageDetailAddress == false) {
 		alert("상세주소를 입력해주세요.");
 		return;
-	} else if (isValidPhonenum == false) {
+	} else if (isValidMypagePhonenum == false) {
 		alert("핸드폰번호를 잘못 입력하셨습니다.");
 		return;
 	}
@@ -78,10 +81,6 @@ function fn_update() {
 }
 
 function fn_login() {
-	//var login = document.login;
-	//login.method = "post";
-	//login.action = "/member/login.do"
-	//login.submit();
 	var _id = $("#login_user_id").val();
 	var _pw = $("#login_user_pw").val();
 	if (_id == "") {
@@ -439,6 +438,13 @@ function fn_checkZipcode() {
 	}
 }
 
+function fn_mypageCheckZipcode() {
+	var _zipcode = $("#mypage_user_zipcode").val();
+	if (_zipcode == '') {
+		isValidMypageZipcode = false;
+	}
+}
+
 function fn_checkDetailAddress() {
 	var _detailAddress = $('#user_detail_address').val();
 	if (_detailAddress == '') {
@@ -447,6 +453,17 @@ function fn_checkDetailAddress() {
 	} else {
 		isValidDetailAddress = true;
 		$('#messageDetailAddress').text("");
+	}
+}
+
+function fn_mypageCheckDetailAddress() {
+	var _detailAddress = $('#mypage_user_detail_address').val();
+	if (_detailAddress == '') {
+		$('#messageMypageDetailAddress').text("상세주소 입력은 필수입니다.");
+		isValidMypageDetailAddress = false;
+	} else {
+		isValidMypageDetailAddress = true;
+		$('#messageMypageDetailAddress').text("");
 	}
 }
 
@@ -467,4 +484,22 @@ function fn_validatePhonenum() {
 		$('#messagePhonenum').text("");
 	}
 	
+}
+
+function fn_mypageValidatePhonenum() {
+	var _phonenum = $("#mypage_user_phonenum").val();
+	var phonenumRegExp = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
+	
+	if (_phonenum == '') {
+		$('#messageMypagePhonenum').text("핸드폰번호 입력은 필수입니다.");
+		isValidMypagePhonenum = false;
+		return;
+	}
+	if (!phonenumRegExp.test(_phonenum)) {
+		$('#messageMypagePhonenum').text("올바르지 않는 입력방식입니다.");
+		isValidMypagePhonenum = false;
+	} else {
+		isValidMypagePhonenum = true;
+		$('#messageMypagePhonenum').text("");
+	}
 }

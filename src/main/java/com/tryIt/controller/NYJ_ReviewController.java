@@ -43,7 +43,7 @@ public class NYJ_ReviewController {
 
     @PostMapping("/insertReview")
     public String insertReview(RedirectAttributes redirectAttributes, MultipartFile review_img, String review_content, int review_score, int product_id, HttpServletRequest request) throws IOException {
-        HttpSession httpSession = request.getSession();
+    	HttpSession httpSession = request.getSession();
         redirectAttributes.addFlashAttribute("okList", "AA BB CC");
         String referer = request.getHeader("Referer");
         String saveName = review_img.getOriginalFilename();
