@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tryIt.domain.NYJ_ProductVO;
 import com.tryIt.service.NYJ_ProductService;
@@ -27,10 +28,8 @@ public class KTE_AgeGenderController{
 	@PostMapping("/ageGenderFind")
 	public String ageGenderFindPost(String age, String gender, Model model) {
 		System.out.println("age = "+age+"gender = "+gender);
-		
 		long AGE = Math.round(Double.parseDouble(age));
 		List<NYJ_ProductVO> productList = new ArrayList<>();
-		
 		if(AGE<10)
 		{	//키즈 안경
 			productList = nyj_productService.getRelateProducts("키즈선글라스");
@@ -43,9 +42,9 @@ public class KTE_AgeGenderController{
 			//여성 안경
 			productList = nyj_productService.getRelateProducts("여성선글라스");
 		}
-		
-		model.addAttribute("productList",productList);
-		
+		model.addAttribute("productList_suggest",productList);
+		model.addAttribute("token_jsw",false);
 		return "AR";
 	}
+	
 }
