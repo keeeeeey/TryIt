@@ -249,12 +249,12 @@
                                 </div>
 
                                 <div class="display-inline-block">
-                                    <a class="text-theme-color" href="#!">Write a review</a>
+                                    <a class="text-theme-color" th:href="@{${'/productComment/'+product_id}}">Write a review</a>
                                 </div>
 
                             </div>
                             <div class="margin-20px-bottom">
-                                <span class="font-size24 font-weight-700 text-theme-color" th:text="${product.getProduct_price()}+'원'">$18.00</span>
+                                <span class="font-size24 font-weight-700 text-theme-color" th:text="${#numbers.formatInteger(product.getProduct_price(),3,'COMMA')}+'원'">$18.00</span>
                             </div>
 
                             <div class="row">
@@ -486,7 +486,7 @@
                         <div class="product-description">
                             <h3><a th:href="'/products/'+${product.getId()}" th:text="${product.getProduct_name()}">Smart Digital Watch</a></h3>
                             <h4 class="price" >
-                                                        <span class="offer-price"  th:text="${product.getProduct_price()}+'원'">$90.00</span>
+                                                        <span class="offer-price"  th:text="${#numbers.formatInteger(product.getProduct_price(),3,'COMMA')}+'원'">$90.00</span>
                                                     </h4>
                         </div>
                         <div class="product-buttons">

@@ -265,19 +265,18 @@
 
                             <table class="table classic">
                                 <tbody>
-                                    <tr>
-                                        <th>Cart Subtotal:</th>
-                                        <td class="text-gray-dark">$2,548.50</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>Estimated tax:</th>
-                                        <td class="text-gray-dark">0원</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Total:</th>
-                                        <td class="text-lg text-gray-dark">$2,584.72</td>
-                                    </tr>
+                                <tr>
+                                    <th>Cart Subtotal:</th>
+                                    <td class="text-gray-dark" th:text="${#numbers.formatInteger(cartTotal,3,'COMMA')}+'원'">$2,548.50</td>
+                                </tr>
+                                <tr>
+                                    <th>Estimated tax:</th>
+                                    <td class="text-gray-dark">0원</td>
+                                </tr>
+                                <tr>
+                                    <th>Total:</th>
+                                    <td class="text-lg text-gray-dark" th:text="${#numbers.formatInteger(cartTotal,3,'COMMA')}+'원'">$2,584.72</td>
+                                </tr>
                                 </tbody>
                             </table>
 

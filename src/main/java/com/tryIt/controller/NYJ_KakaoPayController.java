@@ -9,6 +9,7 @@ import com.tryIt.domain.KKY_MemberVO;
 import com.tryIt.domain.NYJ_OrderProductVO;
 import com.tryIt.domain.NYJ_ProductVO;
 import com.tryIt.service.JSW_OrderService;
+import com.tryIt.service.NYJ_CartService;
 import com.tryIt.service.NYJ_KakaoPayService;
 import com.tryIt.service.NYJ_ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,13 @@ public class NYJ_KakaoPayController {
     private NYJ_KakaoPayService kakaopay;
 
     @Setter(onMethod_ = @Autowired)
-    private JSW_OrderService orderservice;
+    private JSW_OrderService orderService;
 
     @Setter(onMethod_ = @Autowired)
     private NYJ_ProductService productservice;
+
+    @Setter(onMethod_ = @Autowired)
+    private NYJ_CartService cartservice;
 
     @GetMapping("/kakaoPay")
     public void kakaoPayGet() {
@@ -43,24 +47,33 @@ public class NYJ_KakaoPayController {
     public String kakaoPay( HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
         log.info("kakaoPay post............................................"+httpSession.getAttribute("order_seq").toString());
-        JSW_OrderVO orderVO = orderservice.getByOrderSeq(httpSession.getAttribute("order_seq").toString());
-        int total = 0;
-        for(NYJ_OrderProductVO orderProductVO:orderVO.getOrderProductList()){
+        JSW_OrderVO orderVO = orderService.getByOrderSeq((String) httpSession.getAttribute("order_seq"));
+
+        int price = 0;
+        int qty = 0;
+        for(NYJ_OrderProductVO orderProductVO:orderService.getOrderProducts(orderVO.getId())){
             NYJ_ProductVO productVO = productservice.findProduct(orderProductVO.getProduct_id());
-            total += (orderProductVO.getProduct_num() * (productVO.getProduct_price()));
+            price = price + (orderProductVO.getProduct_num() * (productVO.getProduct_price()));
+            qty = qty + orderProductVO.getProduct_num();
         }
-        orderVO.setTotal_price(total);
+
+        orderVO.setTotal_price(price);
+        orderVO.setQty(qty);
         return "redirect:" + kakaopay.kakaoPayReady(orderVO);
 
     }
 
 
     @GetMapping("/kakaoPaySuccess")
-    public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) {
+    public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model,HttpServletRequest request) {
         log.info("kakaoPaySuccess get............................................");
         log.info("kakaoPaySuccess pg_token : " + pg_token);
-        //update method
-        return "redirect:/";
+        HttpSession httpSession = request.getSession();
+        orderService.updateOrder("Y",(String) httpSession.getAttribute("order_seq"));
+        KKY_MemberVO memberVO = (KKY_MemberVO) httpSession.getAttribute("memberVO");
+        cartservice.deleteAll((long) memberVO.getId());
+
+        return "redirect:/order-complete";
     }
 
     @GetMapping("/kakaoPayCancel")

@@ -1,12 +1,11 @@
 package com.tryIt.controller;
 
-import com.tryIt.domain.JSW_OrderVO;
-import com.tryIt.domain.KKY_MemberVO;
-import com.tryIt.domain.NYJ_CartListVO;
+import com.tryIt.domain.*;
 import com.tryIt.service.NYJ_CartService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,6 +38,7 @@ public class JSW_OrderController {
 		if(cartService.getCartList((long)memberVO.getId()).size()==0){
 			model.addAttribute("msg","적어도 하나의 상품이 있어야 주문가능합니다");
 		}
+		model.addAttribute("cartTotal",cartService.getTotalPrice((long) memberVO.getId()));
 		model.addAttribute("memberVO",memberVO);
 		return "shop-checkout-address";
 	}
@@ -64,7 +64,16 @@ public class JSW_OrderController {
 	}
 
 	@GetMapping("/order-payment")
-	public String toPaymentPage(){
+	public String toPaymentPage(HttpServletRequest request,Model model){
+		HttpSession httpSession = request.getSession();
+		KKY_MemberVO memberVO = (KKY_MemberVO) httpSession.getAttribute("memberVO");
+		model.addAttribute("cartTotal",cartService.getTotalPrice((long) memberVO.getId()));
+		System.out.println((String) httpSession.getAttribute("order_seq"));
+		JSW_OrderVO orderVO = orderService.getByOrderSeq((String) httpSession.getAttribute("order_seq"));
+		Long order_id = orderVO.getId();
+		for(NYJ_CartListVO cartVO:cartService.getCartList((long) memberVO.getId())){
+			orderService.insertOrderProduct(new NYJ_OrderProductVO(order_id,cartVO.getProduct_id(),cartVO.getProduct_num(),0));
+		}
 		return "shop-checkout-payment";
 	}
 
@@ -94,4 +103,29 @@ public class JSW_OrderController {
 		return "checkout-complete";
 	}
 
+	@GetMapping("/order-tracking")
+	public String toOrderTracking(){
+		return "order-tracking";
+	}
+
+
+	@GetMapping("/account-orders")
+	public String toAccountOrders(HttpServletRequest request,Model model){
+		HttpSession httpSession = request.getSession();
+		KKY_MemberVO memberVO = (KKY_MemberVO) httpSession.getAttribute("memberVO");
+		if(memberVO == null){
+			return "redirect:/login-register";
+		}
+		model.addAttribute("orderList",orderService.getMemberOrder((long) memberVO.getId()));
+		return "/account-orders";
+	}
+
+	@GetMapping("/order/{order_id}")
+	public String toOrderDetail(@PathVariable("order_id") Long order_id,Model model){
+
+		model.addAttribute("orderinfo",orderService.getOrderById(order_id));
+		model.addAttribute("orderProductList",orderService.getOrderProductList(order_id));
+		return "order-tracking-detail";
+
+	}
 }

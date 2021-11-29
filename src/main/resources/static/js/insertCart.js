@@ -39,11 +39,13 @@
                     var changeTotal = "total"+cartId;
                     var changeprice = Number($('#' + changePriceId).text()) * num;
                     $('#' + changeTotal).text(changeprice);
-                    $('#orderTotal').text(data.ordertotal+"원");
+                    var orderTotal = (data.ordertotal).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+                    $('#orderTotal').text(orderTotal+"원");
                 }
             }
         });
     }
+
 
     function downCart(cartId){
         var changeId = "qty"+cartId;
@@ -70,7 +72,8 @@
                         var changeTotal = "total"+cartId;
                         var changeprice = Number($('#' + changePriceId).text()) * num;
                         $('#' + changeTotal).text(changeprice);
-                        $('#orderTotal').text(data.ordertotal+"원");
+                        var orderTotal = (data.ordertotal).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+                        $('#orderTotal').text(orderTotal+"원");
                     }
                 }
             });

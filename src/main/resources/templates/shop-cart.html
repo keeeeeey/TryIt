@@ -191,6 +191,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+<<<<<<< HEAD
                                 <h3 th:text="${emptyList}"></h3>
                                 <tr th:each="cart:${cartList}">
                                     <td class="product-thumbnail text-left" style="height: 100px; display: flex; justify-content: center; align-items: center;">
@@ -213,6 +214,30 @@
                                         <a th:href="'/deleteCart/'+${cart.getId()}"><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>
+=======
+                            <h3 th:text="${emptyList}"></h3>
+                            <tr th:each="cart:${cartList}">
+                                <td class="product-thumbnail text-left">
+                                    <a th:href="'/products/'+${cart.getProduct_id()}"><img th:src="@{${'/img/products/single-product/preview/'+ cart.getProduct_img()}}" alt="..." ></a>
+                                </td>
+                                <td class="text-left">
+                                    <a th:href="'/products/'+${cart.getProduct_id()}" th:text="${cart.getProduct_name()}">Men's Football Boots</a>
+                                </td>
+                                <td class="text-left" th:text = "${cart.getProduct_price()}" th:id="'price'+${cart.getId()}">
+                                    $15.00
+                                </td>
+                                <td class="product-quantity" >
+                                    <input type="text" name="product_num" th:id="'qty'+${cart.getId()}" th:value ="${cart.getProduct_num()}" readonly/>
+                                    <span><i class="fas fa-arrow-alt-circle-up up" th:onclick="'upCart('+${cart.getId()}+')'"></i></span>
+                                    <span><i class="fas fa-arrow-alt-circle-down down" th:onclick="'downCart('+${cart.getId()}+')'"></i></span>
+                                </td>
+                                <td class="product-subtotal text-left" th:id="'total'+${cart.getId()}" th:text="${cart.getProduct_price()} * ${cart.getProduct_num()}">
+                                </td>
+                                <td class="product-remove text-center">
+                                    <a th:href="'/deleteCart/'+${cart.getId()}"><i class="fas fa-times"></i></a>
+                                </td>
+                            </tr>
+>>>>>>> d902e3abb281290ba2a3dfa926106accd9247c4c
                             </tbody>
                         </table>
                     </div>
@@ -232,7 +257,7 @@
                                     <tbody>
                                        <tr class="total">
                                             <th class="text-uppercase text-right no-padding-right xs-no-padding" style="padding-top: 30px;">Order Total</th>
-                                            <td class="text-uppercase text-right no-padding-right xs-no-padding" style="padding-top: 30px;" id="orderTotal" th:text="${cartTotal}+'원'">$44.70</td>
+                                            <td class="text-uppercase text-right no-padding-right xs-no-padding" style="padding-top: 30px;" id="orderTotal" th:text="${#numbers.formatInteger(cartTotal,3,'COMMA')}+'원'">$44.70</td>
                                         </tr>
                                         <tr>
                                             <td class="no-padding-right xs-no-padding" colspan="2">
@@ -241,7 +266,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <a class="butn-style2 float-right" href="shop-checkout-address.html"><span>Proceed to Checkout</span></a>
+                                <a class="butn-style2 float-right" href="/order-address"><span>Proceed to Checkout</span></a>
                             </div>
                         </div>
                     </div>
