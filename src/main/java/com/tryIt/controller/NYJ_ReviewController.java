@@ -49,7 +49,8 @@ public class NYJ_ReviewController {
         String saveName = review_img.getOriginalFilename();
 
         String path = System.getProperty("user.dir");
-        String uploadPath = path+"\\src\\main\\resources\\static\\img\\review";
+        //String uploadPath = path+"\\src\\main\\resources\\static\\img\\review";
+        String uploadPath = "C:\\Users\\노예진\\IdeaProjects\\TryIt\\src\\main\\resources\\static\\img\\review";
         //System.out.println(path);
         File target = new File(uploadPath, saveName);
         FileCopyUtils.copy(review_img.getBytes(),target);
