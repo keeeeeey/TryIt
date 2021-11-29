@@ -42,7 +42,7 @@ public class NYJ_KakaoPayService {
         params.add("partner_order_id", orderVO.getOrder_seq());
         params.add("partner_user_id", orderVO.getOrder_user_id().toString());
         params.add("item_name", orderVO.getOrder_seq());
-        params.add("quantity", Integer.toString(orderVO.getOrderProductList().size()));
+        params.add("quantity", Integer.toString(orderVO.getQty()));
         params.add("total_amount", Integer.toString(orderVO.getTotal_price()));
         params.add("tax_free_amount", "0");
         params.add("approval_url", "http://localhost:8089/kakaoPaySuccess");

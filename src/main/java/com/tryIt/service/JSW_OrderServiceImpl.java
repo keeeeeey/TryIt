@@ -2,6 +2,7 @@ package com.tryIt.service;
 
 import java.util.List;
 
+import com.tryIt.domain.NYJ_OrderProductListVO;
 import com.tryIt.domain.NYJ_OrderProductVO;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,22 @@ public class JSW_OrderServiceImpl implements JSW_OrderService{
 	}
 
 	@Override
+	public List<NYJ_OrderProductVO> getOrderProducts(Long order_id) {
+		return purchaseMapper.getOrderProducts(order_id);
+	}
+
+	@Override
+	public List<NYJ_OrderProductListVO> getOrderProductList(Long order_id) {
+		return purchaseMapper.getOrderProductList(order_id);
+	}
+
+	@Override
 	public JSW_OrderVO getByOrderSeq(String order_seq) {
 		return purchaseMapper.getByOrderSeq(order_seq);
+	}
+
+	@Override
+	public void updateOrder(String order_success,String order_seq) {
+		purchaseMapper.updateOrder(order_success,order_seq);
 	}
 }

@@ -198,10 +198,10 @@
                                             </td>
                                             <td class="text-left">
                                                 <a th:href="'/products/'+${cart.getProduct_id()}" th:text="${cart.getProduct_name()}">Men's Football Boots</a>
-                                                <span class="text-uppercase display-block"  th:text ="${cart.getProduct_price()}+'원'">SKU: 290397</span>
+                                                <span class="text-uppercase display-block" th:text="${#numbers.formatInteger(cart.getProduct_price(),3,'COMMA')}+'원'">SKU: 290397</span>
                                             </td>
                                             <td class="product-subtotal text-left" th:text ="${cart.getProduct_num()}"></td>
-                                            <td class="product-remove text-center" th:text="${cart.getProduct_num()}*${cart.getProduct_price()}+'원'">
+                                            <td class="product-remove text-center" th:with="total=${cart.getProduct_price()*cart.getProduct_num()}"  th:text="${#numbers.formatInteger(total,3,'COMMA')}+'원'">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -229,22 +229,19 @@
 
                             <table class="table classic">
                                 <tbody>
-                                    <tr>
-                                        <th>Cart Subtotal:</th>
-                                        <td class="text-gray-dark">$2,548.50</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Shipping:</th>
-                                        <td class="text-gray-dark">$26.50</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Estimated tax:</th>
-                                        <td class="text-gray-dark">$9.72</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Total:</th>
-                                        <td class="text-lg text-gray-dark" th:text="${cartTotal}">$2,584.72</td>
-                                    </tr>
+                                <tr>
+                                    <th>Cart Subtotal:</th>
+                                    <td class="text-gray-dark" th:text="${#numbers.formatInteger(cartTotal,3,'COMMA')}+'원'">$2,548.50</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Estimated tax:</th>
+                                    <td class="text-gray-dark">0원</td>
+                                </tr>
+                                <tr>
+                                    <th>Total:</th>
+                                    <td class="text-lg text-gray-dark" th:text="${#numbers.formatInteger(cartTotal,3,'COMMA')}+'원'">$2,584.72</td>
+                                </tr>
                                 </tbody>
                             </table>
 

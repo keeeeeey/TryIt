@@ -283,7 +283,7 @@
                                     <div class="product-description">
                                         <h3><a th:href="'/products/'+${product.getId()}" th:text="${product.getProduct_name()}">Desktop Speakers</a></h3>
                                         <h4 class="price">
-                                                        <span class="offer-price" th:text="${product.getProduct_price()}+'원'">$29.00</span>
+                                                        <span class="offer-price" th:text="${#numbers.formatInteger(product.getProduct_price(),3,'COMMA')}+'원'">$29.00</span>
                                                     </h4>
                                     </div>
                                     <div class="product-buttons" >
@@ -386,7 +386,7 @@
                                     <div class="media-body">
                                         <a href="#!" class="margin-5px-bottom font-weight-600 text-extra-dark-gray" th:text="${product.getProduct_name()}">Pen Drive 8gb</a>
                                         <p class="no-margin">
-                                            <span class="display-inline-block text-theme-color font-weight-600" th:text="${product.getProduct_price()}">$09.00</span>
+                                            <span class="display-inline-block text-theme-color font-weight-600" th:text="${#numbers.formatInteger(product.getProduct_price(),3,'COMMA')}+'원'">$09.00</span>
                                         </p>
                                         <div class="font-size12">
                                             <i class="fas fa-star"></i>
@@ -414,7 +414,7 @@
                                     <div class="media-body">
                                         <a href="#!" class="margin-5px-bottom font-weight-600 text-extra-dark-gray" th:text="${product.getProduct_name()}">Pen Drive 8gb</a>
                                         <p class="no-margin">
-                                            <span class="display-inline-block text-theme-color font-weight-600" th:text="${product.getProduct_price()}">$09.00</span>
+                                            <span class="display-inline-block text-theme-color font-weight-600" th:text="${#numbers.formatInteger(product.getProduct_price(),3,'COMMA')}+'원'">$09.00</span>
                                         </p>
                                         <div class="font-size12">
                                             <i class="fas fa-star"></i>
@@ -443,7 +443,7 @@
                                     <div class="media-body">
                                         <a href="#!" class="margin-5px-bottom font-weight-600 text-extra-dark-gray" th:text="${product.getProduct_name()}">Pen Drive 8gb</a>
                                         <p class="no-margin">
-                                            <span class="display-inline-block text-theme-color font-weight-600" th:text="${product.getProduct_price()}">$09.00</span>
+                                            <span class="display-inline-block text-theme-color font-weight-600" th:text="${#numbers.formatInteger(product.getProduct_price(),3,'COMMA')}+'원'">$09.00</span>
                                         </p>
                                         <div class="font-size12">
                                             <i class="fas fa-star"></i>

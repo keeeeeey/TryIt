@@ -26,22 +26,56 @@
         <collection property="orderProductList" resultMap="orderProductMap"></collection>
     </resultMap>
 
+    <resultMap id="orderProductListMap" type="com.tryIt.domain.NYJ_OrderProductListVO">
+        <result column="id" property = "id"></result>
+        <result column="product_id" property = "product_id"></result>
+        <result column="product_num" property = "product_num"></result>
+        <result column="product_name" property = "product_name"></result>
+        <result column="product_price" property = "product_price"></result>
+        <result column="product_deliver" property = "product_deliver"></result>
+    </resultMap>
+
 	<insert id="insertOrder">
         insert into member_order(order_user_id,order_address,order_detail_address,order_postalcode,order_receiver,order_message,order_seq) values(#{order_user_id},#{order_address},#{order_detail_address},#{order_postalcode},#{order_receiver},#{order_message},#{order_seq})
     </insert>
 
-    <select id="getOrderById" resultMap="orderMap">
-
+    <select id="getOrderById" resultType="com.tryIt.domain.JSW_OrderVO">
+        select * from member_order where id = #{order_id}
     </select>
 
-    <select id="getMemberOrder" resultMap="orderMap">
-
+    <select id="getMemberOrder" resultType= "com.tryIt.domain.JSW_OrderVO">
+        select * from member_order where order_user_id = #{user_id} order by id desc
     </select>
 
-    <select id="getByOrderSeq" resultMap = "orderMap">
+    <select id="getByOrderSeq" resultType= "com.tryIt.domain.JSW_OrderVO">
         select * from member_order where order_seq = #{order_seq}
     </select>
 
+    <insert id="insertOrderProduct">
+        insert into order_product(order_id,product_id,product_num)values(#{order_id},#{product_id},#{product_num})
+    </insert>
 
+    <select id="getOrderProducts" resultMap="orderProductMap">
+        select * from order_product where order_id = #{order_id}
+    </select>
+
+    <update id="updateOrder">
+        update member_order set order_success = #{order_success} where order_seq = #{order_seq}
+    </update>
+
+    <select id="getOrderProductList" resultMap="orderProductListMap">
+        select o.product_id, o.product_num,p.product_name, p.product_img, p.product_price, o.product_deliver from order_product o, product p where o.order_id = #{order_id} and p.id = o.product_id
+    </select>
+
+    <!--
+    private Long id;
+    private Long product_id;
+    private int product_num;
+    private String product_name;
+    private String product_img;
+    private Long product_price;
+    private int total_price;
+    private String product_deliver;
+    -->
 
 </mapper>
