@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
+import com.tryIt.domain.JSW_OrderVO;
 import com.tryIt.domain.KKY_MemberVO;
 import com.tryIt.domain.KTE_NoticeVO;
 import com.tryIt.domain.KTE_QnAVO;
 import com.tryIt.domain.NYJ_Criteria;
 import com.tryIt.domain.NYJ_PageDTO;
+import com.tryIt.service.JSW_OrderService;
 import com.tryIt.service.KTE_ServiceCenterService;
 
 @Controller
@@ -32,12 +34,45 @@ import com.tryIt.service.KTE_ServiceCenterService;
 
 	@Autowired
 	private KTE_ServiceCenterService serviceCenterService;
+	@Autowired
+	private JSW_OrderService orderService;
 	
 	@GetMapping("/admin-page")
-	public String admin_page() {
+	public String admin_page(Model model, @RequestParam(defaultValue = "1") int page) {
+		
+		int totalListCnt= orderService.countOrderNum();
+	    NYJ_Criteria cri = new NYJ_Criteria(page,7);
+		List<JSW_OrderVO> orderList = orderService.getOrderWithPaging(cri);
+
+	    long num = totalListCnt-((page-1)*7);
+		
+		
+		for(JSW_OrderVO order : orderList) {
+			order.setOrder_date(order.getOrder_date().split(" ")[0]);
+			order.setId(num);
+			num--;
+		}
+		
+		model.addAttribute("orderList",orderList);
+	    model.addAttribute("pageMaker",new NYJ_PageDTO(cri,totalListCnt));
+	    
+	    
 		return "admin-page";
 	}
 	
+	@GetMapping("/admin-page/delete")
+	public String order_delete(int id) {
+		
+		orderService.deleteOrder(id);
+		return "admin-page";
+	}
+	
+	@GetMapping("/account_orders")
+	public String account_orders() {
+		
+		
+		return "account-orders";
+	}
 	
 	@PostMapping("write")
 	public String write(KTE_NoticeVO noticeVO) {
