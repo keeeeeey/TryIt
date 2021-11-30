@@ -5,6 +5,10 @@ import com.tryIt.domain.NYJ_PageDTO;
 import com.tryIt.domain.NYJ_ProductVO;
 import com.tryIt.service.NYJ_ProductService;
 
+import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
+import kr.co.shineware.nlp.komoran.core.Komoran;
+import kr.co.shineware.nlp.komoran.model.KomoranResult;
+import kr.co.shineware.nlp.komoran.model.Token;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 @Controller
@@ -85,7 +91,6 @@ public class NYJ_ProductController {
         model.addAttribute("productlist", nyj_productService.findAllProducts());
     	return "AR";
     }
-    
 
 
 }
