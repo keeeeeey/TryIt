@@ -1,6 +1,21 @@
 
 <th:block th:include="newheader"></th:block>
+<th:block th:include="/include/resources.html"></th:block>
+    <meta http-equiv = "Content-Type" content="text/html;charset=UTF-8"><!--한글 설정-->
+<script>
 
+function deleteOrder(id){
+	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+
+		location.href="http://localhost:8089/admin-page/delete?id="+id;
+
+	}else{   //취소
+
+	    return;
+
+	}
+}
+</script>
         <!-- start page title section -->
         <section class="page-title-section bg-img cover-background" data-background="img/bg/page-title.jpg">
             <div class="container">
@@ -70,31 +85,55 @@
                                     <tr>
                                         <th>Order id</th>
                                         <th>Date</th>
+                                        <th>Receiver</th>
+                                        <th>ProductName</th>
                                         <th>Status</th>
-                                        <th>Total</th>
-                                        <th>Actions</th>
+                                        <th>Success</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr th:each="row : ${orderList}">
-                                        <th th:text = "${row.order_id}">
+                                        <th th:text = "${row.id}">
                                         </th>
+                                        <td th:text = "${row.order_date}">
+                                        </td>
+                                        <td th:text = "${row.order_receiver}"></td>
                                         <td>
-                                            10 January 2020
+                                            
                                         </td>
                                         <td>
-                                            <span class="fas fa-circle text-primary small mr-1"></span> Pending
+                                            
                                         </td>
-                                        <td>$29</td>
                                         <td>
-                                            <a href="#!" class="text-theme-color">Pay</a>
+                                        <span  th:if="${row.order_success.equals('Y')}" class="fas fa-circle text-success small mr-1"></span>
+                                        <span  th:unless="${row.order_success.equals('Y')}" class="fas fa-circle text-danger small mr-1"></span>
+                                        <span th:text = "${row.order_success}"></span>
+                                        
                                         </td>
+                                        <td>
+                                        <a th:onclick="|javascript:deleteOrder('${row.id}')|"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                        
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                        <a class="butn-style2 margin-15px-top" href="#!"><span>Show All Orders</span></a>
-                        </div>
+                            
+                            <!-- start pagination -->
+									<div class="pagination text-small text-uppercase text-extra-dark-gray margin-50px-top sm-margin-35px-top">
+	                                    <ul>
+	                                        <th:block  th:with="start = ${pageMaker.startPage}, end = ${pageMaker.endPage}">
+	                                            <li
+	                                                th:with="start = ${pageMaker.startPage}, end = ${pageMaker.endPage}"
+	                                                th:each="pageButton : ${#numbers.sequence(start, end)}" th:class="${pageButton == pageMaker.cri.pageNum} ? 'active'">
+	                                                <a th:href="@{/admin-page?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
+	                                            </li>
+	                                        </th:block>
+	                                    </ul>
+	                                </div>
+	                             
+								<!-- end pagination -->
+                 
 
                     </div>
                     <!-- end right panel -->

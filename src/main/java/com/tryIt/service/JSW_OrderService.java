@@ -5,6 +5,7 @@ import java.util.List;
 import com.tryIt.domain.JSW_OrderVO;
 import com.tryIt.domain.NYJ_OrderProductListVO;
 import com.tryIt.domain.NYJ_OrderProductVO;
+import com.tryIt.domain.NYJ_Criteria;
 
 public interface JSW_OrderService {
 	void insertOrder(JSW_OrderVO orderVO);
@@ -16,4 +17,9 @@ public interface JSW_OrderService {
 	List<NYJ_OrderProductListVO> getOrderProductList(Long order_id);
 	JSW_OrderVO getByOrderSeq(String order_seq);
 	void updateOrder(String order_success, String order_seq);
+	public void insertOrder();
+	public void deleteOrder(int id);
+	public List<JSW_OrderVO> getOrderWithPaging(NYJ_Criteria cri);
+	public 	int countOrderNum();
+
 }

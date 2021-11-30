@@ -19,8 +19,12 @@ public class JSW_OrderVO {
 	private String order_success;
 	private String order_receiver;
 	private List<NYJ_OrderProductVO> orderProductList;
+	private String order_sender;
 
 	//parameter for kakaopay
 	private int total_price;
 	private int qty;
+
+	//추가
+	private String order_status;
 }
