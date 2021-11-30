@@ -62,15 +62,8 @@ public class JSW_OrderServiceImpl implements JSW_OrderService{
 	public void updateOrder(String order_success,String order_seq) {
 		purchaseMapper.updateOrder(order_success,order_seq);
 	}
-
 	@Override
-	public void insertOrder() {
-
-	}
-
-
-	@Override
-	public void deleteOrder(int id) {
+	public void deleteOrder(Long id) {
 		purchaseMapper.deleteOrder(id);
 	}
 
@@ -83,4 +76,16 @@ public class JSW_OrderServiceImpl implements JSW_OrderService{
 	public int countOrderNum() {
 		return purchaseMapper.countOrderNum();
 	}
+	
+	@Override
+	public void deleteOrderProduct(Long order_id) {
+		purchaseMapper.deleteOrderProduct(order_id);
+	}
+	
+	@Override
+	public void updateOrderProduct(Long order_id, Long product_id, String product_deliver_num) {
+		purchaseMapper.updateOrderProduct(order_id, product_id, product_deliver_num);
+	}
+
+
 }

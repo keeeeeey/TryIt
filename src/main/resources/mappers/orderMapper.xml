@@ -12,7 +12,9 @@
         <result column="product_deliver" property="product_deliver"></result>
     </resultMap>
 
-    <resultMap id="orderMap" type="com.tryIt.domain.JSW_OrderVO">
+    
+    
+     <resultMap id="orderMap" type="com.tryIt.domain.JSW_OrderVO">
         <id column="id" property="id"></id>
         <result column="order_user_id" property="order_user_id"></result>
         <result column="order_date" property="order_date"></result>
@@ -25,6 +27,7 @@
         <result column="order_seq" property="order_seq"></result>
         <collection property="orderProductList" resultMap="orderProductMap"></collection>
     </resultMap>
+    
 
     <resultMap id="orderProductListMap" type="com.tryIt.domain.NYJ_OrderProductListVO">
         <result column="id" property = "id"></result>
@@ -35,18 +38,6 @@
         <result column="product_deliver" property = "product_deliver"></result>
     </resultMap>
 
-
- 		<resultMap id="orderMap" type="com.tryIt.domain.JSW_OrderVO">
-		        <result column="id" property="id"></result>
-				<result column="order_date" property="order_date"></result>
-				<result column="order_address" property="order_address"></result>
-				<result column="order_postalcode" property="order_postalcode"></result>
-				<result column="order_message" property="order_message"></result>
-				<result column="order_seq" property="order_seq"></result>
-				<result column="order_success" property="order_success"></result>
-				<result column="order_receiver" property="order_receiver"></result>
-				<result column="order_sender" property="order_sender"></result>
-		  </resultMap>
 
 	<insert id="insertOrder">
         insert into member_order(order_user_id,order_address,order_detail_address,order_postalcode,order_receiver,order_message,order_seq) values(#{order_user_id},#{order_address},#{order_detail_address},#{order_postalcode},#{order_receiver},#{order_message},#{order_seq})
@@ -79,18 +70,10 @@
     <select id="getOrderProductList" resultMap="orderProductListMap">
         select o.product_id, o.product_num,p.product_name, p.product_img, p.product_price, o.product_deliver from order_product o, product p where o.order_id = #{order_id} and p.id = o.product_id
     </select>
+    
+    
 
-    <!--
-    private Long id;
-    private Long product_id;
-    private int product_num;
-    private String product_name;
-    private String product_img;
-    private Long product_price;
-    private int total_price;
-    private String product_deliver;
-    -->
-	<select id="getAllOrder" resultMap = "orderMap">
+	<select id="getAllOrder" resultType="com.tryIt.domain.JSW_OrderVO">
 		select * from member_order
 	</select>
 
@@ -101,9 +84,17 @@
 	<select id="countOrderNum" resultType = "int">
 		select count(*) from member_order
 	</select>
+	
+	<delete id="deleteOrderProduct">
+    	delete from order_product where order_id = #{order_id}
+    </delete>
 
 
-	<select id="getOrderWithPaging" resultMap = "orderMap">
+	<update id = "updateOrderProduct">
+		update order_product set product_deliver = #{product_deliver_num} where order_id = #{order_id} and product_id = #{product_id}
+	</update>
+
+	<select id="getOrderWithPaging" resultType="com.tryIt.domain.JSW_OrderVO">
         <![CDATA[
             select *
                  from (

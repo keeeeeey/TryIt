@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -25,9 +27,11 @@ import com.tryIt.domain.KKY_MemberVO;
 import com.tryIt.domain.KTE_NoticeVO;
 import com.tryIt.domain.KTE_QnAVO;
 import com.tryIt.domain.NYJ_Criteria;
+import com.tryIt.domain.NYJ_OrderProductVO;
 import com.tryIt.domain.NYJ_PageDTO;
 import com.tryIt.service.JSW_OrderService;
 import com.tryIt.service.KTE_ServiceCenterService;
+import com.tryIt.service.NYJ_ProductService;
 
 @Controller
  public class KTE_ServiceCenterController {
@@ -36,36 +40,123 @@ import com.tryIt.service.KTE_ServiceCenterService;
 	private KTE_ServiceCenterService serviceCenterService;
 	@Autowired
 	private JSW_OrderService orderService;
+	@Autowired
+	private NYJ_ProductService productService;
 	
-	@GetMapping("/admin-page")
-	public String admin_page(Model model, @RequestParam(defaultValue = "1") int page) {
+	@GetMapping("/admin/orderlist")
+	public String admin_orderlist(Model model, @RequestParam(defaultValue = "1") int page) {
 		
 		int totalListCnt= orderService.countOrderNum();
 	    NYJ_Criteria cri = new NYJ_Criteria(page,7);
 		List<JSW_OrderVO> orderList = orderService.getOrderWithPaging(cri);
 
-	    long num = totalListCnt-((page-1)*7);
+		/* long num = totalListCnt-((page-1)*7); */
 		
 		
 		for(JSW_OrderVO order : orderList) {
+			
 			order.setOrder_date(order.getOrder_date().split(" ")[0]);
-			order.setId(num);
-			num--;
+			/*
+			 * order.setNum(num); num--;
+			 */
 		}
 		
 		model.addAttribute("orderList",orderList);
 	    model.addAttribute("pageMaker",new NYJ_PageDTO(cri,totalListCnt));
 	    
 	    
-		return "admin-page";
+		return "admin-orderlist";
 	}
 	
-	@GetMapping("/admin-page/delete")
-	public String order_delete(int id) {
+	@GetMapping("/admin/orderlist/delete")
+	public String order_delete(Long id) {
 		
+		orderService.deleteOrderProduct(id);
 		orderService.deleteOrder(id);
-		return "admin-page";
+		return "redirect:/admin/orderlist";
 	}
+	
+	
+	
+	@GetMapping("/admin/orderlist/view")
+	public String admin_order_detail(Long id, Model model, String modify) {
+		
+		String[] deliver = {"주문접수","입금확인","출고처리중", "출고완료", "배송시작","배송완료","구매확정","결제오류","주문취소"};
+		
+		JSW_OrderVO order = orderService.getOrderById(id);
+		model.addAttribute("seq","#"+order.getOrder_seq());
+		
+		List<NYJ_OrderProductVO> order_productList = orderService.getOrderProducts(id);
+		
+		
+		for(NYJ_OrderProductVO orderProduct : order_productList) {
+			orderProduct.setProduct_deliver_message(deliver[orderProduct.getProduct_deliver()]);
+			orderProduct.setProduct_name(productService.findProduct(orderProduct.getProduct_id()).getProduct_name());
+		}
+		model.addAttribute("id",id);
+		model.addAttribute("order_productList",order_productList);
+
+		if(modify.equals("true")) 
+			model.addAttribute("modify",modify);
+		else
+			model.addAttribute("modify","false");
+		
+			
+		return "admin-order-detail";
+	}
+	
+	@PostMapping("modify_order")
+	public void modify_order(HttpServletRequest request, HttpServletResponse response) throws Exception{
+
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+
+		Long order_id = Long.parseLong(request.getParameter("order_id"));
+		Long product_id = Long.parseLong(request.getParameter("product_id"));
+		String product_deliver= request.getParameter("product_deliver");
+		
+		String product_deliver_num = "";
+		
+
+		switch(product_deliver) {
+		
+		case "주문접수":
+			product_deliver_num = "0";
+			break;
+		case "입금확인":
+			product_deliver_num = "1";
+			break;
+		case "출고처리중":
+			product_deliver_num = "2";
+			break;
+		case "출고완료":
+			product_deliver_num = "3";
+			break;
+		case "배송시작":
+			product_deliver_num = "4";
+			break;
+		case "배송완료":
+			product_deliver_num = "5";
+			break;
+		case "구매확정":
+			product_deliver_num = "6";
+			break;
+		case "결제오류":
+			product_deliver_num = "7";
+			break;
+		case "주문취소":
+			product_deliver_num = "8";
+			break;
+			
+		}
+		
+		orderService.updateOrderProduct(order_id, product_id, product_deliver_num);
+		}
+
+	
+	
+	
+	
 	
 	@GetMapping("/account_orders")
 	public String account_orders() {

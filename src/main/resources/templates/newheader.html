@@ -16,10 +16,10 @@
     <title>Try IT - Sunglasses Online Shopping Mall</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="/img/logos/favicon2.png">
-    <link rel="apple-touch-icon" href="/img/logos/try'it_logo-001-57x57.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/img/logos/try'it_logo-001-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/img/logos/try'it_logo-001-114x114.png">
+    <link rel="shortcut icon" href="http://localhost:8089/img/logos/favicon2.png">
+    <link rel="apple-touch-icon" href="http://localhost:8089/img/logos/try'it_logo-001-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://localhost:8089/img/logos/try'it_logo-001-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://localhost:8089/img/logos/try'it_logo-001-114x114.png">
 
     <!-- plugins -->
     <link rel="stylesheet" href="/css/plugins.css">
@@ -57,7 +57,7 @@
 
                     <div class="col-6 col-lg-3">
                         <!-- start logo -->
-                        <a href="/" class="navbar-brand logodefault"><img id="logo" src="img/logos/try'it_logo-001.png" alt="logo" style="width: 200px; max-height: 75px;"></a>
+                        <a href="/" class="navbar-brand logodefault"><img id="logo" src="http://localhost:8089/img/logos/try'it_logo-001.png" alt="logo" style="width: 200px; max-height: 75px;"></a>
                         <!-- End Logo -->
                     </div>
 
@@ -92,12 +92,13 @@
                                     <i class="ti-search"></i>
                                 </a>
                             </li>
-                            <li>
+                           <!--  <li>
                                 <a href="#!" class="display-inline-block">
                                     <i class="ti-heart"></i>
                                     <span class="badge bg-theme">3</span>
                                 </a>
-                            </li>
+                            </li> -->
+                             
                             <li th:if="${session.memberVO == null}">
                                 <a th:href="@{/login-register}"><i class="ti-user"></i></a>
                             </li>
@@ -115,9 +116,9 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
+                           <li>
                             <img src = "http://localhost:8089/img/chatbot/chatbot2.png" style = "width:35px; height:35px; margin-top :15px; margin-left:15px;" 
-                            onclick="window.open('chatbot', 'pop01', 'top=10, left=10, width=450, height=500, status=no, menubar=no, toolbar=no, resizable=no');">
+                            onclick="window.open('http://localhost:8089/chatbot', 'pop01', 'top=10, left=10, width=450, height=500, status=no, menubar=no, toolbar=no, resizable=no');">
                             </li>
                             
                         </ul>
