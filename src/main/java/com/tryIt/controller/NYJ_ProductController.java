@@ -79,6 +79,13 @@ public class NYJ_ProductController {
         model.addAttribute("pageMaker", new NYJ_PageDTO(cri,10));
         return "shop-product-list";
     }
+    
+    @GetMapping("/ar")
+    public String toArPage(Model model) {
+        model.addAttribute("productlist", nyj_productService.findAllProducts());
+    	return "AR";
+    }
+    
 
 
 }

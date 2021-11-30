@@ -17,21 +17,21 @@
         $.extend(true, setting, options);
         // 规定好每张图片处于的位置和状态
         var states = [
-			{ $zIndex: 1, width: 100, height: 60, top: 0, left: 415, $opacity: 0.2 },
-			{ $zIndex: 2, width: 100, height: 60, top: 0, left: 325, $opacity: 0.2 },
-            { $zIndex: 3, width: 100, height: 60, top: 0, left: 235, $opacity: 0.2 },
-            { $zIndex: 4, width: 100, height: 60, top: 0, left: 145, $opacity: 0.4 },
+			{ $zIndex: 1, width: 100, height: 30, top: 10, left: 415, $opacity: 0.2 },
+			{ $zIndex: 2, width: 100, height: 30, top: 10, left: 325, $opacity: 0.2 },
+            { $zIndex: 3, width: 100, height: 30, top: 10, left: 235, $opacity: 0.2 },
+            { $zIndex: 4, width: 100, height: 30, top: 10, left: 145, $opacity: 0.4 },
             { $zIndex: 5, width: 100, height: 60, top: 0, left: 55, $opacity: 0.7 },
             { $zIndex: 6, width: 100, height: 60, top: 0, left: 145, $opacity: 0.8 },
             { $zIndex: 7, width: 100, height: 60, top: 0, left: 235, $opacity: 0.9 },
-            { $zIndex: 8, width: 120, height: 72, top: 0, left: 315, $opacity: 1 },
+            { $zIndex: 8, width: 110, height: 66, top: 0, left: 315, $opacity: 1 },
             { $zIndex: 7, width: 100, height: 60, top: 0, left: 415, $opacity: 0.9 },
             { $zIndex: 6, width: 100, height: 60, top: 0, left: 505, $opacity: 0.8 },
             { $zIndex: 5, width: 100, height: 60, top: 0, left: 595, $opacity: 0.7 },
-            { $zIndex: 4, width: 100, height: 60, top: 0, left: 505, $opacity: 0.4 },
-            { $zIndex: 3, width: 100, height: 60, top: 0, left: 415, $opacity: 0.2 },
-            { $zIndex: 2, width: 100, height: 60, top: 0, left: 325, $opacity: 0.2 },
-            { $zIndex: 1, width: 100, height: 60, top: 0, left: 235, $opacity: 0.2 }
+            { $zIndex: 4, width: 100, height: 30, top: 10, left: 505, $opacity: 0.4 },
+            { $zIndex: 3, width: 100, height: 30, top: 10, left: 415, $opacity: 0.2 },
+            { $zIndex: 2, width: 100, height: 30, top: 10, left: 325, $opacity: 0.2 },
+            { $zIndex: 1, width: 100, height: 30, top: 10, left: 235, $opacity: 0.2 }
         ];
 
         var $lis = $ele.find('li');
