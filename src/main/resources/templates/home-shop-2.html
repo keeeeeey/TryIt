@@ -385,7 +385,7 @@
                                         <img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="...">
                                     </div>
                                     <div class="media-body">
-                                        <a href="#!" class="margin-5px-bottom font-weight-600 text-extra-dark-gray" th:text="${product.getProduct_name()}">Pen Drive 8gb</a>
+                                        <a th:href="'/products/'+${product.getId()}" class="margin-5px-bottom font-weight-600 text-extra-dark-gray" th:text="${product.getProduct_name()}">Pen Drive 8gb</a>
                                         <p class="no-margin">
                                             <span class="display-inline-block text-theme-color font-weight-600" th:text="${#numbers.formatInteger(product.getProduct_price(),3,'COMMA')}+'원'">$09.00</span>
                                         </p>
@@ -413,7 +413,7 @@
                                         <img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="...">
                                     </div>
                                     <div class="media-body">
-                                        <a href="#!" class="margin-5px-bottom font-weight-600 text-extra-dark-gray" th:text="${product.getProduct_name()}">Pen Drive 8gb</a>
+                                        <a th:href="'/products/'+${product.getId()}" class="margin-5px-bottom font-weight-600 text-extra-dark-gray" th:text="${product.getProduct_name()}">Pen Drive 8gb</a>
                                         <p class="no-margin">
                                             <span class="display-inline-block text-theme-color font-weight-600" th:text="${#numbers.formatInteger(product.getProduct_price(),3,'COMMA')}+'원'">$09.00</span>
                                         </p>
@@ -442,7 +442,7 @@
                                         <img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="...">
                                     </div>
                                     <div class="media-body">
-                                        <a href="#!" class="margin-5px-bottom font-weight-600 text-extra-dark-gray" th:text="${product.getProduct_name()}">Pen Drive 8gb</a>
+                                        <a th:href="'/products/'+${product.getId()}" class="margin-5px-bottom font-weight-600 text-extra-dark-gray" th:text="${product.getProduct_name()}">Pen Drive 8gb</a>
                                         <p class="no-margin">
                                             <span class="display-inline-block text-theme-color font-weight-600" th:text="${#numbers.formatInteger(product.getProduct_price(),3,'COMMA')}+'원'">$09.00</span>
                                         </p>
