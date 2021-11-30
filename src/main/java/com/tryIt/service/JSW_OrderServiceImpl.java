@@ -63,10 +63,6 @@ public class JSW_OrderServiceImpl implements JSW_OrderService{
 		purchaseMapper.updateOrder(order_success,order_seq);
 	}
 
-	@Override
-	public void insertOrder() {
-
-	}
 
 
 	@Override

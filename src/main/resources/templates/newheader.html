@@ -92,12 +92,6 @@
                                     <i class="ti-search"></i>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#!" class="display-inline-block">
-                                    <i class="ti-heart"></i>
-                                    <span class="badge bg-theme">3</span>
-                                </a>
-                            </li>
                             <li th:if="${session.memberVO == null}">
                                 <a th:href="@{/login-register}"><i class="ti-user"></i></a>
                             </li>
@@ -105,15 +99,9 @@
                                 <a th:href="@{/mypage}"><i class="ti-user"></i></a>
                             </li>
                             <li class="dropdown sm-margin-20px-right">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <a th:href="@{/cart}">
                                     <i class="ti-bag"></i>
-                                    <span class="badge bg-theme">3</span>
                                 </a>
-                                <ul class="dropdown-menu cart-list" id="cartList">
-                                    <li class="total bg-theme">
-                                        <a href="/cart" class="butn-style2 small white float-right w-auto"><span>View Cart</span></a>
-                                    </li>
-                                </ul>
                             </li>
                             <li>
                             <img src = "http://localhost:8089/img/chatbot/chatbot2.png" style = "width:35px; height:35px; margin-top :15px; margin-left:15px;" 

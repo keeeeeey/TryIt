@@ -128,71 +128,35 @@
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">남성 추천 아이웨어</button>
+                                    <button class="btn btn-link collapsed" style="color:black;" onclick="location.href='/productsearch?category=남성선글라스&keyword='">남성 추천 아이웨어</button>
                                         </h5>
-                                    </div>
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#!">일반안경</a></li>
-                                                <li><a href="#!">패션안경</a></li>
-                                                <li><a href="#!">선글라스</a></li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
                                         <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="btn btn-link collapsed" style="color:black;" onclick="location.href='/productsearch?category=여성선글라스&keyword='">
                                       여성 추천 아이웨어
                                     </button>
                                   </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#!">일반안경</a></li>
-                                                <li><a href="#!">패션안경</a></li>
-                                                <li><a href="#!">선글라스</a></li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
                                         <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <button class="btn btn-link collapsed"  style="color:black;" onclick="location.href='/productsearch?category=키즈선글라스&keyword='">
                                         키즈 추천 아이웨어
                                     </button>
                                   </h5>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#!">일반안경</a></li>
-                                                <li><a href="#!">패션안경</a></li>
-                                                <li><a href="#!">선글라스</a></li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="headingFour">
                                         <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        안경 관련 상품
+                                    <button class="btn btn-link collapsed" style="color:black;" onclick="location.href='/productsearch?category=기타&keyword='">
+                                        기타 상품
                                     </button>
                                   </h5>
-                                    </div>
-                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#!">안경케이스</a></li>
-                                                <li><a href="#!">세척용액</a></li>
-                                                <li><a href="#!">기능성 렌즈</a></li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -238,7 +202,7 @@
 
                         <div class="row no-gutters align-items-center bg-light-gray rounded padding-15px-all margin-35px-bottom">
 
-                            <div class="col-12 col-md xs-margin-5px-tb xs-text-center"> we have total 30 products now </div>
+                            <div class="col-12 col-md xs-margin-5px-tb xs-text-center"> we have total 51 products now </div>
 
                             <div class="col-12 col-md-auto">
 
@@ -276,7 +240,12 @@
                                     <div class="product-buttons">
                                         <ul>
                                             <li><a th:onclick="'insertCart('+${product.getId()}+')'" id="insertcart" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
-                                            <li><a href="#!" class="btn-link" title="공유하기"><i class="fas fa-random"></i></a></li>
+                                            <li><span th:onclick="share(${product.getId()})">
+	<script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+	<script type="text/javascript">
+	new ShareNaver.makeButton({"type": "e"});
+	</script>
+</span></li>
                                         </ul>
                                     </div>
 
@@ -393,6 +362,20 @@
     <script src="js/main.js"></script>
 
     <script src="js/insertCart.js"></script>
+
+        <script> function share(product_id) {
+            var url = encodeURI(encodeURIComponent(myform.url.value));
+            var title = encodeURI(myform.title.value);
+            var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title; document.location = shareURL;
+            }
+
+            function shareNaverBlog(url, title) {
+            var encodeUrl = encodeURIComponent( url );
+            var encodeTitle = encodeURIComponent( title );
+            var link = StringTool.format( 'https://share.naver.com/web/shareView.nhn?url={0}&title={1}', encodeUrl, encodeTitle );
+            window.open( link, 'share', 'width=500, height=500' );
+            }
+        </script>
 
     <!-- all js include end -->
 <form id = "actionForm" action="/productlist" method="get">

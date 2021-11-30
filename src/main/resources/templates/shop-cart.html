@@ -230,8 +230,11 @@
                                     <tbody>
                                        <tr class="total">
                                             <th class="text-uppercase text-right no-padding-right xs-no-padding" style="padding-top: 30px;">Order Total</th>
+                                           <div th:if="${emptyList}==null">
                                             <td class="text-uppercase text-right no-padding-right xs-no-padding" style="padding-top: 30px;" id="orderTotal" th:text="${#numbers.formatInteger(cartTotal,3,'COMMA')}+'원'">$44.70</td>
-                                        </tr>
+                                           </div>
+
+                                       </tr>
                                         <tr>
                                             <td class="no-padding-right xs-no-padding" colspan="2">
                                                 <hr class="no-margin-bottom">

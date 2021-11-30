@@ -67,7 +67,7 @@
     </select>
 
     <select id="getSearchProductsCategory" resultMap="productMap">
-        SELECT * from product WHERE product_name like CONCAT('%',#{keyword},'%') OR product_info like CONCAT('%',#{keyword},'%') AND product_category = #{category}
+        SELECT * from product WHERE (product_name like CONCAT('%',#{keyword},'%') OR product_info like CONCAT('%',#{keyword},'%')) AND product_category = #{category}
     </select>
 
 </mapper>
