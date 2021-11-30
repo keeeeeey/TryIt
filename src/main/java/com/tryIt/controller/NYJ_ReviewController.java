@@ -48,10 +48,9 @@ public class NYJ_ReviewController {
         String referer = request.getHeader("Referer");
         String saveName = review_img.getOriginalFilename();
 
-        //String path = System.getProperty("user.dir");
-        //String uploadPath = path+"\\src\\main\\resources\\static\\img\\review";
-        String uploadPath = "C:\\Users\\노예진\\IdeaProjects\\TryIt\\src\\main\\resources\\static\\img\\review";
-        //System.out.println(path);
+        String path = System.getProperty("user.dir");
+        String uploadPath = path+"\\src\\main\\resources\\static\\img\\review";
+        //String uploadPath = "C:\\Users\\노예진\\IdeaProjects\\TryIt\\src\\main\\resources\\static\\img\\review";
         File target = new File(uploadPath, saveName);
         FileCopyUtils.copy(review_img.getBytes(),target);
         KKY_MemberVO memberVO = (KKY_MemberVO) httpSession.getAttribute("memberVO");
