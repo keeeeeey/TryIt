@@ -212,28 +212,6 @@
                                         <a th:href="'/deleteCart/'+${cart.getId()}"><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>
-                            <h3 th:text="${emptyList}"></h3>
-                            <tr th:each="cart:${cartList}">
-                                <td class="product-thumbnail text-left">
-                                    <a th:href="'/products/'+${cart.getProduct_id()}"><img th:src="@{${'/img/products/single-product/preview/'+ cart.getProduct_img()}}" alt="..." ></a>
-                                </td>
-                                <td class="text-left">
-                                    <a th:href="'/products/'+${cart.getProduct_id()}" th:text="${cart.getProduct_name()}">Men's Football Boots</a>
-                                </td>
-                                <td class="text-left" th:text = "${cart.getProduct_price()}" th:id="'price'+${cart.getId()}">
-                                    $15.00
-                                </td>
-                                <td class="product-quantity" >
-                                    <input type="text" name="product_num" th:id="'qty'+${cart.getId()}" th:value ="${cart.getProduct_num()}" readonly/>
-                                    <span><i class="fas fa-arrow-alt-circle-up up" th:onclick="'upCart('+${cart.getId()}+')'"></i></span>
-                                    <span><i class="fas fa-arrow-alt-circle-down down" th:onclick="'downCart('+${cart.getId()}+')'"></i></span>
-                                </td>
-                                <td class="product-subtotal text-left" th:id="'total'+${cart.getId()}" th:text="${cart.getProduct_price()} * ${cart.getProduct_num()}">
-                                </td>
-                                <td class="product-remove text-center">
-                                    <a th:href="'/deleteCart/'+${cart.getId()}"><i class="fas fa-times"></i></a>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
