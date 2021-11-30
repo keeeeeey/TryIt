@@ -10,7 +10,7 @@ import lombok.Data;
 public class JSW_OrderVO {
 	private Long id;
 	private Long order_user_id;
-	private Timestamp order_date;
+	private String order_date;
 	private String order_address;
 	private String order_detail_address;
 	private String order_postalcode;

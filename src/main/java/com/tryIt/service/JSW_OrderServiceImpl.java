@@ -64,6 +64,12 @@ public class JSW_OrderServiceImpl implements JSW_OrderService{
 	}
 
 	@Override
+	public void insertOrder() {
+
+	}
+
+
+	@Override
 	public void deleteOrder(int id) {
 		purchaseMapper.deleteOrder(id);
 	}
