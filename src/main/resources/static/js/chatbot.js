@@ -82,7 +82,7 @@ function show_sendMessage(message) {
 
 function showMessage(message) {
 /*<span style='font-weight:bold;'>*/
-    $("#communicate").append("<span style='font-weight:bold;'>Try IT 챗봇</span><br><div id = 'receiveMessage'><span class = 'balloon'>" + message + "</span>");
+    $("#communicate").append("<div style='margin-bottom:5px;'>Try IT 챗봇</div><div id = 'receiveMessage'><span class = 'balloon'>" + message + "</span>");
 }
 
 function showButton(message) {
