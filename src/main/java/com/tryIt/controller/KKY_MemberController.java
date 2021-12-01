@@ -33,11 +33,6 @@ public class KKY_MemberController {
 		return "account-drop";
 	}
 	
-	@GetMapping("/admin-deleteForm.do")
-	public String admin_deleteForm() {
-		return "account-admin-drop";
-	}
-	
 	@GetMapping("/account-recovery")
 	public String accountRecovery() {
 		return "account-recovery";
