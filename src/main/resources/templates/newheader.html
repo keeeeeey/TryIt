@@ -125,27 +125,6 @@
                         <!-- menu area -->
                         <ul class="navbar-nav" id="nav" style="display: none;">
 
-                            <li><a href="#!">Home</a>
-                                <ul>
-                                    <li><a href="home-shop-1.html">Home 01</a></li>
-                                    <li><a href="home-shop-2.html">Home 02</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#!">Pages</a>
-                                <ul>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="contact-us.html">Contacts</a></li>
-                                    <li><a href="help-faq.html">Help / FAQ</a></li>
-                                    <li><a href="product-comparison.html">Product Comparison</a></li>
-                                    <li><a href="order-tracking.html">Order Tracking</a></li>
-                                    <li><a href="order-tracking-detail.html">Order Tracking Detail</a></li>
-                                    <li><a href="search-results.html">Search Results</a></li>
-                                    <li><a href="404-page.html">404 Not Found</a></li>
-                                    <li><a href="comingsoon.html">Coming Soon</a></li>
-                                    <li><a href="newsletter.html">Newsletter</a></li>
-                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                </ul>
-                            </li>
                             <li><a href="#!">Account</a>
                                 <ul>
                                     <li>
@@ -153,135 +132,18 @@
                                         <a th:if="${session.memberVO != null}" th:href="@{/member/logout.do}">Logout</a>
                                     </li>
                                     <li th:if="${session.memberVO == null}"><a th:href="@{/member/account-recovery}">Account Recovery</a></li>
-                                    <li><a href="account-orders.html">Orders List</a></li>
-                                    <li><a href="account-wishlist.html">Wishlist</a></li>
+                                    <li>
+                                    	<a th:if="${session.memberVO != null && session.memberVO.role == 'user'}" th:href="@{/account-orders}">Orders List</a>
+                                   	</li>
                                     <li>
                                         <a th:if="${session.memberVO != null && session.memberVO.role == 'user'}" th:href="@{/mypage}">Profile Page</a>
                                         <a th:if="${session.memberVO != null && session.memberVO.role == 'admin'}" th:href="@{/adminpage}">Admin Page</a>
                                     </li>
-                                    <li><a href="account-address.html">Contact / Shipping Address</a></li>
-                                    <li><a href="account-tickets.html">My Tickets</a></li>
-                                    <li><a href="account-single-ticket.html">Single Ticket</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#!">Mega Menu</a>
-                                <ul class="row megamenu">
-                                    <li class="col-lg-3 col-sm-12">
-                                        <span class="margin-10px-bottom display-block sm-no-margin sm-padding-10px-tb sm-padding-30px-lr text-uppercase sub-title">Categories 01</span>
-                                        <ul>
-                                            <li><a href="#!">Internal SSD</a></li>
-                                            <li><a href="#!">Memory Cards</a></li>
-                                            <li><a href="#!">Home Theatres</a></li>
-                                            <li><a href="#!">Unique Routers</a></li>
-                                            <li><a href="#!">Security cameras</a></li>
-                                            <li><a href="#!">Effective Laptops</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="col-lg-3 col-sm-12">
-                                        <span class="margin-10px-bottom display-block sm-no-margin sm-padding-10px-tb sm-padding-30px-lr text-uppercase sub-title">Categories 02</span>
-                                        <ul>
-                                            <li><a href="#!">Winterwear</a></li>
-                                            <li><a href="#!">Sportswear</a></li>
-                                            <li><a href="#!">Innerwear</a></li>
-                                            <li><a href="#!">Ethnic Wear</a></li>
-                                            <li><a href="#!">Cotton Lounge Wear</a></li>
-                                            <li><a href="#!">Essential Swimwear</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="col-lg-3 col-sm-12">
-                                        <span class="margin-10px-bottom display-block sm-no-margin sm-padding-10px-tb sm-padding-30px-lr text-uppercase sub-title">Categories 03</span>
-                                        <ul>
-                                            <li><a href="#!">Computer Speakers</a></li>
-                                            <li><a href="#!">Compact Headphones</a></li>
-                                            <li><a href="#!">Best Choice Printers</a></li>
-                                            <li><a href="#!">PC Gaming</a></li>
-                                            <li><a href="#!">Power banks</a></li>
-                                            <li><a href="#!">Musical Instruments</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="col-lg-3 col-sm-12 sm-display-none">
-                                        <span class="margin-10px-bottom display-block sm-no-margin sm-padding-10px-tb sm-padding-30px-lr text-uppercase sub-title">Current Offers</span>
-
-                                        <div class="offer-slider owl-carousel owl-theme">
-
-                                            <div class="offer-banner-slider" style="background-image:url(img/offer-banner/offer-slide-01.jpg);">
-                                                <div class="offer-text">
-                                                    <h6 class="margin-5px-bottom text-white font-weight-500">Men's</h6>
-                                                    <h4 class="font-size36 md-font-size32 sm-font-size30 font-weight-500"><a href="#!">Up to 50% Off</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                                                    <a class="butn-style2 small" href="#!"><span>Buy Now</span></a>
-                                                </div>
-                                            </div>
-
-                                            <div class="offer-banner-slider" style="background-image:url(img/offer-banner/offer-slide-02.jpg);">
-                                                <div class="offer-text">
-                                                    <h6 class="margin-5px-bottom text-white font-weight-500">Women's</h6>
-                                                    <h4 class="font-size36 md-font-size32 sm-font-size30 font-weight-500"><a href="#!" class="text-white">Up to 70% Off</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                                                    <a class="butn-style2 small" href="#!"><span>Buy Now</span></a>
-                                                </div>
-                                            </div>
-
-                                            <div class="offer-banner-slider" style="background-image:url(img/offer-banner/offer-slide-03.jpg);">
-                                                <div class="offer-text">
-                                                    <h6 class="margin-5px-bottom text-white font-weight-500">Electronics</h6>
-                                                    <h4 class="font-size36 md-font-size32 sm-font-size30 font-weight-500"><a href="#!" class="text-white">Mega Sale</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                                                    <a class="butn-style2 small" href="#!"><span>Buy Now</span></a>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li><a href="#!">Blog</a>
-                                <ul>
-                                    <li><a href="blog-grid.html">Blog Grid</a></li>
-                                    <li><a href="blog-right-sidebar.html">Blog List Right Sidebar</a></li>
-                                    <li><a href="blog-left-sidebar.html">Blog List Left Sidebar</a></li>
-                                    <li><a href="blog-full-width.html">Blog Full Width</a></li>
-                                    <li><a href="blog-post.html">Blog Post</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#!">Shop</a>
-                                <ul>
-                                    <li><a href="shop-categories.html">Shop Categories</a></li>
-                                    <li><a href="shop-product-grid.html">Product Grid</a></li>
-                                    <li><a href="/productlist">Product List</a></li>
-                                    <li><a href="shop-product-full-three-coulmn.html">Product Three Coulmns</a></li>
-                                    <li><a href="shop-product-full-four-coulmn.html">Product Four Coulmns</a></li>
-                                    <li><a href="shop-product-detail.html">Product Detail</a></li>
-                                    <li><a href="shop-cart.html">Shop Cart</a></li>
-                                    <li><a href="shop-checkout-address.html">Shop Checkout</a>
-                                        <ul>
-                                            <li><a href="shop-checkout-address.html">Address</a></li>
-                                            <li><a href="shop-checkout-shipping.html">Shipping</a></li>
-                                            <li><a href="shop-checkout-payment.html">Payment</a></li>
-                                            <li><a href="shop-checkout-review.html">Review</a></li>
-                                            <li><a href="checkout-complete.html">Complete</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#!">Elements</a>
-                                <ul>
-                                    <li><a href="accordions.html">Aaccordions</a></li>
-                                    <li><a href="alerts.html">Alerts</a></li>
-                                    <li><a href="buttons.html">Buttons</a></li>
-                                    <li><a href="carousel-slider.html">Carousel Slider</a></li>
-                                    <li><a href="countdown.html">Countdown</a></li>
-                                    <li><a href="forms.html">Forms</a></li>
-                                    <li><a href="google-map.html">Google Map</a></li>
-                                    <li><a href="progress-bars.html">Progress Bars</a></li>
-                                    <li><a href="tables.html">Tables</a></li>
-                                    <li><a href="tabs.html">Tabs</a></li>
-                                    <li><a href="typography.html">Typography</a></li>
-                                    <li><a href="responsive-videos.html">Responsive-videos</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="/productlist">Product List</a></li>
+                            <li><a href="/service-center">Service Center</a></li>
+                            <li><a href="/ar">AR 체험하기</a></li>
                         </ul>
                         <!-- end menu area -->
                         <a href="/productlist" class="butn-style2 wide ml-auto sm-display-none display-inline-block"><span>Shop Now</span><i class="fas fa-arrow-right margin-10px-left"></i></a>
