@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -158,6 +159,29 @@ public class KTE_ChatbotController {
         return encodeBase64String;
 
     }
+    
+	
+	 // 영문 + 숫자를 조합한 키 생성
+	 public static String generateKey() throws Exception{
+	     // 16byte 의 랜럼 수치를 저장
+	     String key = "";
+	     while(true) {
+	         byte[] bytes = new byte[16];
+	         SecureRandom random = new SecureRandom();
+	         random.nextBytes(bytes);
+	
+	         try {
+	             key = new String(Base64.encodeBase64(bytes, false), "UTF-8").replace("==", "");
+	         } catch (Exception e) {
+	             throw new Exception(e);
+	         }
+	         if(key.matches("^[a-zA-Z0-9]*$"))
+	         {
+	             break;
+	         }
+	     }
+	     return key;
+	 }
 
     //보낼 메세지를 네이버 챗봇에 포맷으로 변경해주는 메소드
     public static String getReqMessage(String voiceMessage) {
@@ -174,7 +198,7 @@ public class KTE_ChatbotController {
 
             obj.put("version", "v2");
 //            obj.put("userId", "U47b00b58c90f8e47428af8b7bddc1231heo2");
-            obj.put("userId", "U47b00b58c90f8e47428af8b7bdd");
+            obj.put("userId", generateKey());
 
             obj.put("timestamp", timestamp);
 

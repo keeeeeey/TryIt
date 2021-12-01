@@ -17,8 +17,8 @@ function connect() {
     var socket = new SockJS('/ws');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
-        /*setConnected(true);*/
-        console.log('Connected: ' + frame);
+/*        setConnected(true);
+*/        console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/public', function (message) {
           
 		 console.log('/topic/public' + frame);
@@ -58,8 +58,8 @@ function start() {
     }
     setConnected(false);
     console.log("Disconnected");
-}
-*/
+}*/
+
 function sendMessage() {
 
     let message = $("#msg").val()
@@ -77,11 +77,12 @@ function sendMessage2(message) {
 }
 
 function show_sendMessage(message) {
-    $("#communicate").append("<br><div id = 'sendMessage'><span class = 'balloon'>" + message + "</span></div><br>");
+    $("#communicate").append("<br><br><div id = 'sendMessage'><span class = 'balloon'>" + message + "</span></div><br>");
 }
 
 function showMessage(message) {
-    $("#communicate").append("<div id = 'receiveMessage'><span class = 'balloon'>" + message + "</span>");
+/*<span style='font-weight:bold;'>*/
+    $("#communicate").append("<span style='font-weight:bold;'>Try IT 챗봇</span><br><div id = 'receiveMessage'><span class = 'balloon'>" + message + "</span>");
 }
 
 function showButton(message) {
