@@ -16,4 +16,8 @@ public class NYJ_OrderProductVO {
         this.product_num = product_num;
         this.product_deliver = product_deliver;
     }
+   
+    //add
+    private String product_deliver_message;
+    private String product_name;
 }

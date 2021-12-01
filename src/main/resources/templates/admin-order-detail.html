@@ -1,0 +1,219 @@
+
+<th:block th:include="newheader"></th:block>
+<th:block th:include="/include/resources.html"></th:block>
+
+    <meta http-equiv = "Content-Type" content="text/html;charset=UTF-8"><!--한글 설정-->
+        <script src="/webjars/jquery/jquery.min.js"></script>
+    
+<script>
+
+function modify(order_id, product_id){
+
+
+	
+    let product_deliver = $("#"+product_id).val(); 
+    
+    
+    $.ajax({
+		type:"post",
+		dataType : "text",
+		async : false,
+		url : "/modify_order",
+		data : {order_id:order_id,product_id:product_id,product_deliver:product_deliver},
+		success:function(){
+			alert("수정되었습니다.");
+		
+		},
+		
+	});
+
+	
+}
+</script>
+        <!-- start page title section -->
+        <section class="page-title-section bg-img cover-background" data-background="img/bg/page-title.jpg">
+            <div class="container">
+
+                <div class="title-info">
+                    <h1>OrderList</h1></div>
+                <div class="breadcrumbs-info">
+                    <ul>
+                        <li><a href="home-shop-1.html">Home</a></li>
+                        <li><a href="#!">My Orders</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+        <!-- end page title section -->
+
+        <!-- start account-orders section -->
+        <section>
+            <div class="container">
+                <div class="row justify-content-center">
+
+                    <!-- start left panel -->
+                    <div class="col-lg-4 col-sm-9 sm-margin-40px-bottom">
+
+                        <div class="account-pannel">
+
+                            <div class=" padding-25px-all sm-padding-20px-all">
+
+                                <div class="text-center">
+                                    <div class="padding-15px-bottom">
+                                        <img class="img-fluid rounded-circle img-thumbnail" src="img/avatar/t-3.jpg" alt="...">
+                                    </div>
+                                    <h6 class="font-size18 sm-font-size16 no-margin-bottom">Peter Parker</h6>
+                                    <small>Joined February 06, 2017</small>
+                                    <div class="reward-points">
+                                        <i class="ti-star text-theme-color padding-5px-right"></i> Points: 7386
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="list-group">
+                                <a class="list-group-items active" href="account-orders.html"><i class="ti-bag padding-10px-right"></i>Orders<span class="badge badge-pill">6</span></a>
+                                <a class="list-group-items" href="account-profile.html"><i class="ti-user padding-10px-right"></i>Profile</a>
+                                <a class="list-group-items" href="account-address.html"><i class="ti-location-pin padding-10px-right"></i>Addresses</a>
+                                <a class="list-group-items" href="account-wishlist.html"><i class="ti-heart padding-10px-right"></i>Wishlist<span class="badge badge-pill">3</span></a>
+                                <a class="list-group-items" href="account-tickets.html"><i class="ti-tag padding-10px-right"></i>My Tickets<span class="badge badge-pill">4</span></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end left panel -->
+
+                    <!-- start right panel -->
+                    <div class="col-lg-8">
+
+                        <div class="common-block">
+
+                            <div class="inner-title">
+                                <h4 class="no-margin-bottom">Order</h4>
+                            </div>
+							<table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Seq</th>
+                                        <th>Product_name</th>
+                                        <th>Product_num</th>
+                                        <th>Product_deliver</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="row : ${order_productList}">
+                                        <th th:text="${seq}">
+                                        </th>
+										<td th:text="${row.product_name}">
+                                        </td>
+                                        <td th:text="${row.product_num}">
+
+                                        </td>
+                                        <td>
+                                        	<span th:if="${modify.equals('false')}" th:text="${row.product_deliver_message}"></span>
+                                        	<span th:unless="${modify.equals('false')}">
+                                        	<select name = "product_deliver" th:id = "${row.product_id}" th:value="${row.product_deliver}">
+                                            	<option th:selected="${row.product_deliver}=='0'">주문접수</option>
+                                            	<option th:selected="${row.product_deliver}=='1'">입금확인</option>
+                                            	<option th:selected="${row.product_deliver}=='2'">출고처리중</option>
+                                            	<option th:selected="${row.product_deliver}=='3'">출고완료</option>
+                                            	<option th:selected="${row.product_deliver}=='4'">배송시작</option>
+                                            	<option th:selected="${row.product_deliver}=='5'">배송완료</option>
+                                            	<option th:selected="${row.product_deliver}=='6'">구매확정</option>
+                                            	<option th:selected="${row.product_deliver}=='7'">결제오류</option>
+                                            	<option th:selected="${row.product_deliver}=='8'">주문취소</option>
+                                            </select>
+                                            
+                                        	</span>
+                                        	
+                                        </td>
+                                        <td>
+           								<a th:unless="${modify.equals('false')}" th:onclick="|javascript:modify('${row.order_id}','${row.product_id}')|" class="butn-style2">수정</a>
+                                        
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+          						<div class="btn_wrap text-right">
+          							<a th:href="@{/admin/orderlist}" class="butn-style2">뒤로가기</a>
+									<a th:if="${modify.equals('false')}" th:href="@{/admin/orderlist/view?id={id}&modify=true(id=${id})}" class="butn-style2">수정하기</a>
+									<a th:unless="${modify.equals('false')}" th:href="@{/admin/orderlist/view?id={id}&modify=false(id=${id})}" class="butn-style2">수정완료</a>
+								</div>
+
+                    </div>
+                    <!-- end right panel -->
+                </div>
+            </div>
+        </section>
+        <!-- end account-orders section -->
+
+       <th:block th:include="include/footer"></th:block>
+       
+
+    <!-- start scroll to top -->
+    <a href="#!" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
+    <!-- end scroll to top -->
+
+    <!-- all js include start -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate.min.js"></script>
+
+    <!-- popper js -->
+    <script src="js/popper.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- modernizr js -->
+    <script src="js/modernizr.js"></script>
+
+    <!-- navigation -->
+    <script src="js/nav-menu.js"></script>
+
+    <!-- category navigation -->
+    <script src="js/classie.js"></script>
+    <script src="js/mlpushmenu.js"></script>
+
+    <!-- tab -->
+    <script src="js/easy.responsive.tabs.js"></script>
+
+    <!-- owl carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+
+    <!-- jquery.counterup.min -->
+    <script src="js/jquery.counterup.min.js"></script>
+
+    <!-- stellar js -->
+    <script src="js/jquery.stellar.min.js"></script>
+
+    <!-- waypoints js -->
+    <script src="js/waypoints.min.js"></script>
+
+    <!-- ranger js -->
+    <script src="js/ion.rangeSlider.min.js"></script>
+
+    <!-- countdown js -->
+    <script src="js/countdown.js"></script>
+
+    <!-- jquery.magnific-popup js -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
+
+    <!--  clipboard js -->
+    <script src="js/clipboard.min.js"></script>
+
+    <!--  prism js -->
+    <script src="js/prism.js"></script>
+
+    <!-- custom scripts -->
+    <script src="js/main.js"></script>
+
+    <!-- all js include end -->
+
+</body>
+
+</html>

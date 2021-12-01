@@ -1,7 +1,5 @@
 package com.tryIt.domain;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
@@ -24,7 +22,8 @@ public class JSW_OrderVO {
 	//parameter for kakaopay
 	private int total_price;
 	private int qty;
+	
+	//order number
+	/* private Long num; */
 
-	//추가
-	private String order_status;
 }

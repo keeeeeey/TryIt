@@ -5,9 +5,11 @@
 <script>
 
 function deleteOrder(id){
+	
+	
 	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 
-		location.href="http://localhost:8089/admin-page/delete?id="+id;
+		location.href="http://localhost:8089/admin/orderlist/delete?id="+id;
 
 	}else{   //취소
 
@@ -58,11 +60,12 @@ function deleteOrder(id){
                             </div>
 
                             <div class="list-group">
-                                <a class="list-group-items active" href="account-orders.html"><i class="ti-bag padding-10px-right"></i>Orders<span class="badge badge-pill">6</span></a>
-                                <a class="list-group-items" href="account-profile.html"><i class="ti-user padding-10px-right"></i>Profile</a>
-                                <a class="list-group-items" href="account-address.html"><i class="ti-location-pin padding-10px-right"></i>Addresses</a>
+                                <a class="list-group-items  active"th:href="@{/admin/orderlist}"><i class="ti-bag padding-10px-right"></i>Orders<span class="badge badge-pill">6</span></a>
+                                <a class="list-group-items" th:href="@{/adminpage}"><i class="ti-user padding-10px-right"></i>Profile</a>
+                                <a class="list-group-items" th:href="@{/admin/userlist}"><i class="ti-location-pin padding-10px-right"></i>UserList</a>
                                 <a class="list-group-items" href="account-wishlist.html"><i class="ti-heart padding-10px-right"></i>Wishlist<span class="badge badge-pill">3</span></a>
                                 <a class="list-group-items" href="account-tickets.html"><i class="ti-tag padding-10px-right"></i>My Tickets<span class="badge badge-pill">4</span></a>
+                                <a class="list-group-items" th:href="@{/member/deleteForm.do}"><i class="ti-user padding-10px-right"></i>Drop</a>
                             </div>
 
                         </div>
@@ -83,27 +86,25 @@ function deleteOrder(id){
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Order id</th>
+                                        <th>Seq</th>
                                         <th>Date</th>
                                         <th>Receiver</th>
-                                        <th>ProductName</th>
-                                        <th>Status</th>
+                                        <th>Address</th>
                                         <th>Success</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr th:each="row : ${orderList}">
-                                        <th th:text = "${row.id}">
+                                        <th>
+                                        <a th:href="@{/admin/orderlist/view?id={id}&modify=false(id=${row.id})}">#<span th:text = "${row.order_seq}"></span></a>
                                         </th>
                                         <td th:text = "${row.order_date}">
                                         </td>
                                         <td th:text = "${row.order_receiver}"></td>
                                         <td>
-                                            
-                                        </td>
-                                        <td>
-                                            
+                                        <span  th:text = "${row.order_address}"></span>
+                                        <span th:text = "${row.order_detail_address}"></span>
                                         </td>
                                         <td>
                                         <span  th:if="${row.order_success.equals('Y')}" class="fas fa-circle text-success small mr-1"></span>
@@ -126,14 +127,13 @@ function deleteOrder(id){
 	                                            <li
 	                                                th:with="start = ${pageMaker.startPage}, end = ${pageMaker.endPage}"
 	                                                th:each="pageButton : ${#numbers.sequence(start, end)}" th:class="${pageButton == pageMaker.cri.pageNum} ? 'active'">
-	                                                <a th:href="@{/admin-page?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
+	                                                <a th:href="@{/admin/orderlist?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
 	                                            </li>
 	                                        </th:block>
 	                                    </ul>
 	                                </div>
 	                             
 								<!-- end pagination -->
-                 
 
                     </div>
                     <!-- end right panel -->

@@ -19,7 +19,9 @@ public interface JSW_OrderMapper {
 	JSW_OrderVO getByOrderSeq(String order_seq);
 	void updateOrder(@Param("order_success") String order_success, @Param("order_seq") String order_seq);
 
-	void deleteOrder(int id);
+	void deleteOrder(Long id);
 	List<JSW_OrderVO> getOrderWithPaging(NYJ_Criteria cri);
 	int countOrderNum();
+	void deleteOrderProduct(Long order_id);
+	void updateOrderProduct(Long order_id, Long product_id, String product_deliver_num);
 }

@@ -17,8 +17,12 @@ public interface JSW_OrderService {
 	List<NYJ_OrderProductListVO> getOrderProductList(Long order_id);
 	JSW_OrderVO getByOrderSeq(String order_seq);
 	void updateOrder(String order_success, String order_seq);
-	public void deleteOrder(int id);
-	public List<JSW_OrderVO> getOrderWithPaging(NYJ_Criteria cri);
-	public 	int countOrderNum();
+
+	void deleteOrder(Long id);
+	List<JSW_OrderVO> getOrderWithPaging(NYJ_Criteria cri);
+	int countOrderNum();
+	void deleteOrderProduct(Long order_id);
+	void updateOrderProduct(Long order_id, Long product_id, String product_deliver_num);
+
 
 }

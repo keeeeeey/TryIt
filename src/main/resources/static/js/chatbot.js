@@ -97,7 +97,7 @@ $(function () {
 	$(document).ready(function(){
 		connect(); setTimeout(()=>{
         start();
-    },100);
+    },50);
 		
 		
 	 });

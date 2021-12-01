@@ -32,8 +32,7 @@ public class KTE_ChatbotController {
     @GetMapping("/chatbot")
     public void chatbot(){	
     }
-    
-    
+ 
     
     @MessageMapping("/sendMessage")
     @SendTo("/topic/public")
