@@ -15,12 +15,10 @@
     <title>Smartshop - Multipurpose eCommerce Template</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" th:src="@{/img/logos/favicon.png}">
-
-    <link rel="apple-touch-icon" th:src="@{/img/logos/apple-touch-icon-57x57.png}">
-    <link rel="apple-touch-icon" sizes="72x72" th:src="@{/img/logos/apple-touch-icon-72x72.png}">
-    <link rel="apple-touch-icon" sizes="114x114" th:src="@{/img/logos/apple-touch-icon-114x114.png}">
-
+    <link rel="shortcut icon" th:href="@{/img/logos/favicon2.png}">
+    <link rel="apple-touch-icon" href="/img/logos/try'it_logo-001-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/logos/try'it_logo-001-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/logos/try'it_logo-001-114x114.png">
     <!-- plugins -->
     <link rel="stylesheet" th:href="@{/css/plugins.css}">
 
@@ -283,10 +281,11 @@
 
                                     <label class="font-weight-600">Share on:</label>
                                     <ul class="social-icon-style1">
-                                        <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#!"><i class="fab fa-youtube"></i></a></li>
-                                        <li><a href="#!"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><span th:onclick="share(${product.getId()},${product.getProduct_name()})">
+	                                        <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+	                                        <script type="text/javascript">
+	                                        new ShareNaver.makeButton({"type": "e"});
+	                                        </script></li>
                                     </ul>
 
                                 </div>
@@ -491,9 +490,8 @@
                         </div>
                         <div class="product-buttons">
                             <ul>
-                                <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
                                 <li><a th:onclick="'insertCart('+${product.getId()}+')'" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
-                                <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -644,5 +642,18 @@
 
 
 </body>
+<script> function share(product_id,product_name) {
+    var encodeUrl = encodeURI('http://localhost:8089/products/'+product_id);
+    var encodeTitle = encodeURI("네이버개발자센터 검색결과");
+    var link = StringTool.format( 'https://share.naver.com/web/shareView.nhn?url={0}&title={1}', encodeUrl, encodeTitle );
+    window.open( link, 'share', 'width=500, height=500' );
+}
 
+function shareNaverBlog(url, title) {
+    var encodeUrl = encodeURIComponent( url );
+    var encodeTitle = encodeURIComponent( title );
+    var link = StringTool.format( 'https://share.naver.com/web/shareView.nhn?url={0}&title={1}', encodeUrl, encodeTitle );
+    window.open( link, 'share', 'width=500, height=500' );
+}
+</script>
 </html>

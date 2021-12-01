@@ -87,6 +87,11 @@ public class NYJ_ProductServiceImpl implements NYJ_ProductService{
     }
 
     @Override
+    public List<NYJ_ProductVO> getProductsByCateogry(String category) {
+        return productMapper.getProductsByCateogry(category);
+    }
+
+    @Override
     public List<NYJ_ProductVO> getSearchProductsCategory(String keyword, String category) {
     	List<String> resultKeyword = Search(keyword);
         return productMapper.getSearchProductsCategory(resultKeyword,category);

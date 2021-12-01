@@ -4,10 +4,6 @@ package com.tryIt.mapper;
 import com.tryIt.domain.NYJ_Criteria;
 import com.tryIt.domain.NYJ_ProductVO;
 
-import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
-import kr.co.shineware.nlp.komoran.core.Komoran;
-import kr.co.shineware.nlp.komoran.model.KomoranResult;
-import kr.co.shineware.nlp.komoran.model.Token;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -26,6 +22,7 @@ public interface NYJ_ProductMapper {
     List<NYJ_ProductVO> getSearchProductsCategory(@Param("resultKeyword") List<String> keyword, @Param("category") String category);
     List<NYJ_ProductVO> getAllProductsWithPaging(NYJ_Criteria cri);
     List<NYJ_ProductVO> getBestProducts();
+    List<NYJ_ProductVO> getProductsByCateogry(String category);
     List<NYJ_ProductVO> getHighRatedProducts();
     List<NYJ_ProductVO> getRecentProducts();
     int countProductNum();

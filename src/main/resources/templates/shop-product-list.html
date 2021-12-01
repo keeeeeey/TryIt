@@ -128,14 +128,14 @@
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" style="color:black;" onclick="location.href='/productsearch?category=남성선글라스&keyword='">남성 추천 아이웨어</button>
+                                    <button class="btn btn-link collapsed" style="color:black;" onclick="location.href='/productCategory?category=남성선글라스'">남성 추천 아이웨어</button>
                                         </h5>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
                                         <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" style="color:black;" onclick="location.href='/productsearch?category=여성선글라스&keyword='">
+                                    <button class="btn btn-link collapsed" style="color:black;" onclick="location.href='/productCategory?category=여성선글라스'">
                                       여성 추천 아이웨어
                                     </button>
                                   </h5>
@@ -144,7 +144,7 @@
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
                                         <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed"  style="color:black;" onclick="location.href='/productsearch?category=키즈선글라스&keyword='">
+                                    <button class="btn btn-link collapsed"  style="color:black;" onclick="location.href='/productCategory?category=키즈선글라스'">
                                         키즈 추천 아이웨어
                                     </button>
                                   </h5>
@@ -153,7 +153,7 @@
                                 <div class="card">
                                     <div class="card-header" id="headingFour">
                                         <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" style="color:black;" onclick="location.href='/productsearch?category=기타&keyword='">
+                                    <button class="btn btn-link collapsed" style="color:black;" onclick="location.href='/productCategory?category=기타'">
                                         기타 상품
                                     </button>
                                   </h5>
@@ -240,12 +240,12 @@
                                     <div class="product-buttons">
                                         <ul>
                                             <li><a th:onclick="'insertCart('+${product.getId()}+')'" id="insertcart" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
-                                            <li><span th:onclick="share(${product.getId()})">
-	<script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
-	<script type="text/javascript">
-	new ShareNaver.makeButton({"type": "e"});
-	</script>
-</span></li>
+                                            <li><span th:onclick="share(${product.getId()},${product.getProduct_name()})">
+	                                            <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+	                                            <script type="text/javascript">
+	                                            new ShareNaver.makeButton({"type": "e"});
+	                                            </script>
+                                                </span></li>
                                         </ul>
                                     </div>
 
@@ -363,10 +363,11 @@
 
     <script src="js/insertCart.js"></script>
 
-        <script> function share(product_id) {
-            var url = encodeURI(encodeURIComponent(myform.url.value));
-            var title = encodeURI(myform.title.value);
-            var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title; document.location = shareURL;
+        <script> function share(product_id,product_name) {
+            var encodeUrl = encodeURI('http://localhost:8089/products/'+product_id);
+            var encodeTitle = encodeURI("네이버개발자센터 검색결과");
+            var link = StringTool.format( 'https://share.naver.com/web/shareView.nhn?url={0}&title={1}', encodeUrl, encodeTitle );
+            window.open( link, 'share', 'width=500, height=500' );
             }
 
             function shareNaverBlog(url, title) {

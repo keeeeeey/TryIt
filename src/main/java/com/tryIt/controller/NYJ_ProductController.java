@@ -64,6 +64,14 @@ public class NYJ_ProductController {
         return null;
     }
 
+    @GetMapping("/productCategory")
+    public String toCategoryProduct(@RequestParam(name = "category") String category, Model model,@RequestParam(defaultValue = "1") int page){
+        model.addAttribute("productlist",nyj_productService.getProductsByCateogry(category));
+        NYJ_Criteria cri = new NYJ_Criteria(page,10);
+        model.addAttribute("pageMaker", new NYJ_PageDTO(cri,10));
+        return "shop-product-list";
+    }
+
     @GetMapping("/productsearch")
     public String toProductSearch(@RequestParam(defaultValue = "1") int page,@RequestParam(name = "keyword") String keyword,@RequestParam(name = "category") String category, Model model){
         List<NYJ_ProductVO> productVOList = new ArrayList<NYJ_ProductVO>();

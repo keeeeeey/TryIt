@@ -84,7 +84,6 @@
 		desc
 		limit 10
 	</select>
-
 	<select id="getSearchProductsCategory" resultMap="productMap">
 		SELECT * from product
 		<trim prefix="where(" suffix=")" prefixOverrides="OR">
@@ -96,6 +95,10 @@
 				</trim>
 			</foreach>
 		</trim>
+	</select>
+
+	<select id="getProductsByCateogry" resultMap="productMap">
+		select * from product where product_category = #{category}
 	</select>
 
 </mapper>

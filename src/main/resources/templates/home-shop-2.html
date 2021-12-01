@@ -289,9 +289,8 @@
                                     </div>
                                     <div class="product-buttons" >
                                         <ul>
-                                            <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
                                             <li><a th:onclick="'insertCart('+${product.getId()}+')'" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
-                                            <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -311,9 +310,8 @@
                                     </div>
                                     <div class="product-buttons">
                                         <ul>
-                                            <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
                                             <li><a th:onclick="'insertCart('+${product.getId()}+')'" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
-                                            <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -333,9 +331,7 @@
                                 </div>
                                 <div class="product-buttons">
                                     <ul>
-                                        <li><a href="#!" class="btn-link" title="Add To Wishlist"><i class="far fa-heart"></i></a></li>
                                         <li><a th:onclick="'insertCart('+${product.getId()}+')'" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
-                                        <li><a href="#!" class="btn-link" title="Add To Compare"><i class="fas fa-random"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -559,7 +555,20 @@
     <script src="js/main.js"></script>
     <script src="js/insertCart.js"></script>
     <!-- all js include end -->
+        <script> function share(product_id,product_name) {
+            var encodeUrl = encodeURI('http://localhost:8089/products/'+product_id);
+            var encodeTitle = encodeURI("네이버개발자센터 검색결과");
+            var link = StringTool.format( 'https://share.naver.com/web/shareView.nhn?url={0}&title={1}', encodeUrl, encodeTitle );
+            window.open( link, 'share', 'width=500, height=500' );
+        }
 
+        function shareNaverBlog(url, title) {
+            var encodeUrl = encodeURIComponent( url );
+            var encodeTitle = encodeURIComponent( title );
+            var link = StringTool.format( 'https://share.naver.com/web/shareView.nhn?url={0}&title={1}', encodeUrl, encodeTitle );
+            window.open( link, 'share', 'width=500, height=500' );
+        }
+        </script>
 </body>
 
 </html>
