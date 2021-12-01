@@ -141,25 +141,18 @@
 
                                 <div class="text-center">
                                     <div class="padding-15px-bottom">
-                                        <img class="img-fluid rounded-circle img-thumbnail" src="img/avatar/t-3.jpg" alt="...">
+                                        <img class="img-fluid rounded-circle img-thumbnail" src="/img/avatar/t-3.jpg" alt="...">
                                     </div>
-                                    <h6 class="font-size18 sm-font-size16 no-margin-bottom">Peter Parker</h6>
-                                    <small>Joined February 06, 2017</small>
-                                    <div class="reward-points">
-                                        <i class="ti-star text-theme-color padding-5px-right"></i> Points: 9386
-                                    </div>
+                                    <h6 class="font-size18 sm-font-size16 no-margin-bottom" th:text="${session.memberVO.user_name}"></h6>
+                                    <small th:text="${session.memberVO.user_nickname}"></small>
                                 </div>
                             </div>
 
                             <div class="list-group">
-                                <a class="list-group-items" th:href="@{/account-orders}"><i class="ti-bag padding-10px-right"></i>Orders<span class="badge badge-pill">6</span></a>
+                                <a class="list-group-items" th:href="@{/account-orders}"><i class="ti-bag padding-10px-right"></i>Orders<span class="badge badge-pill"></span></a>
                                 <a class="list-group-items" th:href="@{/mypage}"><i class="ti-user padding-10px-right"></i>Profile</a>
-                                <a class="list-group-items" href="account-address.html"><i class="ti-location-pin padding-10px-right"></i>Addresses</a>
-                                <a class="list-group-items" href="account-wishlist.html"><i class="ti-heart padding-10px-right"></i>Wishlist<span class="badge badge-pill">3</span></a>
-                                <a class="list-group-items" href="account-tickets.html"><i class="ti-tag padding-10px-right"></i>My Tickets<span class="badge badge-pill">4</span></a>
                                 <a class="list-group-items active" th:href="@{/member/deleteForm.do}"><i class="ti-user padding-10px-right"></i>Drop</a>
                             </div>
-
                         </div>
 
                     </div>
