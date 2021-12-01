@@ -1,6 +1,6 @@
 var stompClient = null;
 
-/*function setConnected(connected) {
+function setConnected(connected) {
     $("#disconnect").prop("disabled", !connected);
     $("#send").prop("disabled", !connected);
     if (connected) {
@@ -10,15 +10,15 @@ var stompClient = null;
         $("#communicate").hide();
     }
     $("#msg").html("");
-}*/
+}
 
 function connect() {
 	//start_yn = true;
     var socket = new SockJS('/ws');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
-/*        setConnected(true);
-*/        console.log('Connected: ' + frame);
+       setConnected(true);
+       console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/public', function (message) {
           
 		 console.log('/topic/public' + frame);
@@ -50,7 +50,7 @@ function start() {
 }
 
 
-/*function disconnect() {
+function disconnect() {
 	//start_yn = false;
 
     if (stompClient !== null) {
@@ -58,7 +58,7 @@ function start() {
     }
     setConnected(false);
     console.log("Disconnected");
-}*/
+}
 
 function sendMessage() {
 
@@ -103,7 +103,7 @@ $(function () {
 		
 	 });
 
-   /* $( "#disconnect" ).click(function() { disconnect(); });*/
+   $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() {sendMessage(); });
 
 });
