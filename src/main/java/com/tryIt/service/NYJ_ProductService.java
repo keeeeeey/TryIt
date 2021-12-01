@@ -1,10 +1,9 @@
 package com.tryIt.service;
 
+import java.util.List;
+
 import com.tryIt.domain.NYJ_Criteria;
 import com.tryIt.domain.NYJ_ProductVO;
-
-import java.util.List;
-import java.util.Map;
 
 public interface NYJ_ProductService {
     public NYJ_ProductVO findProduct(Long product_id);

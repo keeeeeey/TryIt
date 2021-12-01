@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-
 <head>
 
     <!-- metas -->
@@ -95,8 +93,11 @@
                             <li th:if="${session.memberVO == null}">
                                 <a th:href="@{/login-register}"><i class="ti-user"></i></a>
                             </li>
-                            <li th:if="${session.memberVO != null}">
+                            <li th:if="${session.memberVO != null && session.memberVO.role == 'user'}">
                                 <a th:href="@{/mypage}"><i class="ti-user"></i></a>
+                            </li>
+                            <li th:if="${session.memberVO != null && session.memberVO.role == 'admin'}">
+                                <a th:href="@{/adminpage}"><i class="ti-user"></i></a>
                             </li>
                             <li class="dropdown sm-margin-20px-right">
                                 <a th:href="@{/cart}">

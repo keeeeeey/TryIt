@@ -1,6 +1,11 @@
 package com.tryIt.service;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.tryIt.domain.NYJ_Criteria;
 import com.tryIt.domain.NYJ_ProductVO;
 import com.tryIt.mapper.NYJ_ProductMapper;
@@ -10,13 +15,6 @@ import kr.co.shineware.nlp.komoran.core.Komoran;
 import kr.co.shineware.nlp.komoran.model.KomoranResult;
 import kr.co.shineware.nlp.komoran.model.Token;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Logger;
 
 @Service
 @AllArgsConstructor
