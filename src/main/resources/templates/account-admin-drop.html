@@ -1,4 +1,5 @@
 <th:block th:include="newheader"></th:block>
+<th:block th:include="/include/resources.html"></th:block>
         <!-- category mp-menu -->
         <div id="mp-menu" class="mp-menu">
             <div class="mp-level">
@@ -117,8 +118,8 @@
                     <h1>My Profile</h1></div>
                 <div class="breadcrumbs-info">
                     <ul>
-                        <li><a href="home-shop-1.html">Home</a></li>
-                        <li><a href="#!">My Profile</a></li>
+                        <li><a th:href="@{/}">Home</a></li>
+                        <li><a href="#!">Delete</a></li>
                     </ul>
                 </div>
 
@@ -151,12 +152,12 @@
                             </div>
 
                             <div class="list-group">
-                                <a class="list-group-items"th:href="@{/admin/orderlist}"><i class="ti-bag padding-10px-right"></i>Orders<span class="badge badge-pill">6</span></a>
-                                <a class="list-group-items active" th:href="@{/adminpage}"><i class="ti-user padding-10px-right"></i>Profile</a>
+                                 <a class="list-group-items" th:href="@{/admin/orderlist}"><i class="ti-bag padding-10px-right"></i>Orders<span class="badge badge-pill">6</span></a>
+                                <a class="list-group-items" th:href="@{/adminpage}"><i class="ti-user padding-10px-right"></i>Profile</a>
                                 <a class="list-group-items" th:href="@{/admin/userlist}"><i class="ti-location-pin padding-10px-right"></i>UserList</a>
                                 <a class="list-group-items" href="account-wishlist.html"><i class="ti-heart padding-10px-right"></i>Wishlist<span class="badge badge-pill">3</span></a>
                                 <a class="list-group-items" href="account-tickets.html"><i class="ti-tag padding-10px-right"></i>My Tickets<span class="badge badge-pill">4</span></a>
-                                <a class="list-group-items" th:href="@{/member/admin-deleteForm.do}"><i class="ti-user padding-10px-right"></i>Drop</a>
+                                <a class="list-group-items  active" th:href="@{/member/deleteForm.do}"><i class="ti-user padding-10px-right"></i>Drop</a>
                             </div>
 
                         </div>
@@ -170,8 +171,8 @@
                         <div class="common-block">
 
                             <div class="inner-title">
-                                <h4 class="no-margin-bottom">My Profile</h4>
-                                <p class="no-margin-bottom">Time for a Sharp My profile.</p>
+                                <h4 class="no-margin-bottom">Drop</h4>
+                                <p class="no-margin-bottom">Delete My account.</p>
                             </div>
 
                             <form name="update">
@@ -182,129 +183,24 @@
 
                                         <div class="form-group" style="margin: 0">
                                             <label>Your ID</label>
-                                            <input type="text" class="form-control" id="user_id" name="user_id" th:value="${session.memberVO.user_id}" readonly>
+                                            <input type="text" class="form-control" id="delete_user_id" name="user_id" th:value="${session.memberVO.user_id}" readonly>
                                         </div>
 
                                     </div>
                                     
-                                     <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Email Address</label>
-                                            <input type="email" class="form-control" id="mypage_user_email" name="user_email" th:value="${session.memberVO.user_email}" onblur="fn_mypageValidateEmail()">
-                                        </div>
-                                        <div id="messageMypageEmail" style="height: 20px; color: #ff0000"></div>
-
-                                    </div>
-
-                                </div>
-                           
-                                <div class="row">
-
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Your Name</label>
-                                            <input type="text" class="form-control" id="user_name" name="user_name" th:value="${session.memberVO.user_name}" readonly>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Your NickName</label>
-                                            <input type="text" class="form-control" id="mypage_user_nickname" name="user_nickname" th:value="${session.memberVO.user_nickname}" onblur="fn_mypageValidateNickName()">
-                                            <input type="hidden" id="hidden_nickname" th:value="${session.memberVO.user_nickname}">
-                                        </div>
-                                        <div id="messageMypageNickName" style="height: 20px"></div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
                                     <div class="col-sm-6 mb-2">
 
                                         <div class="form-group" style="margin: 0">
                                             <label>Password</label>
-                                            <input type="password" class="form-control" id="mypage_user_pw" name="user_pw" placeholder="Your password here" onblur="fn_mypageValidatePW(); fn_mypageCheckPW();">
-                                            <input type="hidden" id="hidden_pw" th:value="${session.memberVO.user_pw}">
+                                            <input type="password" class="form-control" id="delete_user_pw" name="user_pw" placeholder="Your password here">
+                                            <div id="messageDelete" style="height: 20px; color: #ff0000"></div>
                                         </div>
-                                        <div id="messagePw" style="height: 20px"></div>
-
-                                    </div>
-
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Re-Password</label>
-                                            <input type="password" class="form-control" id="mypage_user_re_pw"name="user_re_pw" placeholder="Your re-password here" onblur="fn_mypageCheckPW()">
-                                        </div>
-                                        <div id="messagePwCheck" style="height: 20px"></div>
-
-                                    </div>
-
-                                </div>
-                                
-                                <div class="row">
-
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group">
-                                            <label>Your ZipCode</label>
-                                            <input type="text" class="form-control" id="user_zipcode" name="user_zipcode" th:value="${session.memberVO.user_zipcode}" onchange="fn_checkZipcode()" readonly>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                    <div class="col-sm-6 mb-2">
-
-                                        <button style="margin-top: 33px; height: 48px;" type="button" class="butn-style2 margin-20px-top" onClick="fn_searchPost()">Search</button>
-                                        
-                                    </div>
-                                        
-                                </div>
-                                
-                                <div class="row">
-									
-									 <div class="col-sm-12 mb-2">
-									 
-                                        <div class="form-group">
-                                            <label>Your Address</label>
-                                            <input type="text" class="form-control" id="user_address" name="user_address" th:value="${session.memberVO.user_address}" readonly>
-                                        </div>
-                                     
-                                     </div>   
-                                        
-                                </div>
-                               
-                                <div class="row">
-
- 									<div class="col-sm-6 mb-2">
-									 
-	                                    <div class="form-group" style="margin: 0">
-	                                        <label>Your Detail-Address</label>
-	                                        <input type="text" class="form-control" id="user_detail_address" name="user_detail_address" onblur="fn_checkDetailAddress()" th:value="${session.memberVO.user_detail_address}">
-	                                    </div>
-	                                    <div id="messageDetailAddress" style="height: 20px; color: #ff0000;"></div>
-                                     
-                                    </div>
-
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Contact Number</label>
-                                            <input type="text" class="form-control" id="user_phonenum" name="user_phonenum" onchange="fn_validatePhonenum()" th:value="${session.memberVO.user_phonenum}">
-                                        </div>
-                                        <div id="messagePhonenum" style="height: 20px; color: #ff0000;"></div>
 
                                     </div>
 
                                 </div>
 								
-								<button type="button" class="butn-style2 margin-20px-top" onClick="fn_update()">Update</button>
+								<button type="button" class="butn-style2 margin-20px-top" onClick="fn_deleteAccount()">Delete</button>
 
                             </form>
 
@@ -383,8 +279,6 @@
     <script src="js/main.js"></script>
 
     <!-- all js include end -->
-
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </body>
 
