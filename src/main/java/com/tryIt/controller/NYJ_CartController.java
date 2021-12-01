@@ -34,6 +34,7 @@ public class NYJ_CartController {
             List<NYJ_CartListVO> cartlist = cartService.getCartList((long) memberVO.getId());
             if(cartlist.size()==0){
                 model.addAttribute("emptyList","장바구니에 상품이 없습니다");
+                model.addAttribute("cartTotal"," ");
             }else{
                 model.addAttribute("cartList",cartlist);
                 model.addAttribute("cartTotal",cartService.getTotalPrice((long) memberVO.getId()));

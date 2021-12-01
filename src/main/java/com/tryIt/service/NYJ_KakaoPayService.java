@@ -1,9 +1,9 @@
 package com.tryIt.service;
 
-import com.tryIt.domain.JSW_OrderVO;
-import com.tryIt.domain.NYJ_KakaoPayReadyVO;
-import com.tryIt.domain.NYJ_OrderProductVO;
-import lombok.extern.java.Log;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -11,11 +11,11 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.http.HttpEntity;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.tryIt.domain.JSW_OrderVO;
+import com.tryIt.domain.NYJ_KakaoPayReadyVO;
 
+import lombok.extern.java.Log;
 
 @Service
 @Log

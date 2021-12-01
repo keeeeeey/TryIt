@@ -7,6 +7,7 @@ import com.tryIt.domain.NYJ_OrderProductVO;
 import org.springframework.stereotype.Service;
 
 import com.tryIt.domain.JSW_OrderVO;
+import com.tryIt.domain.NYJ_Criteria;
 import com.tryIt.mapper.JSW_OrderMapper;
 
 import lombok.AllArgsConstructor;
@@ -60,5 +61,22 @@ public class JSW_OrderServiceImpl implements JSW_OrderService{
 	@Override
 	public void updateOrder(String order_success,String order_seq) {
 		purchaseMapper.updateOrder(order_success,order_seq);
+	}
+
+
+
+	@Override
+	public void deleteOrder(int id) {
+		purchaseMapper.deleteOrder(id);
+	}
+
+	@Override
+	public List<JSW_OrderVO> getOrderWithPaging(NYJ_Criteria cri){
+		return purchaseMapper.getOrderWithPaging(cri);
+	}
+
+	@Override
+	public int countOrderNum() {
+		return purchaseMapper.countOrderNum();
 	}
 }

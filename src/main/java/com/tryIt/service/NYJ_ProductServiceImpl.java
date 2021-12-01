@@ -1,20 +1,27 @@
 package com.tryIt.service;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.tryIt.domain.NYJ_Criteria;
 import com.tryIt.domain.NYJ_ProductVO;
 import com.tryIt.mapper.NYJ_ProductMapper;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.logging.Logger;
+import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
+import kr.co.shineware.nlp.komoran.core.Komoran;
+import kr.co.shineware.nlp.komoran.model.KomoranResult;
+import kr.co.shineware.nlp.komoran.model.Token;
+import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class NYJ_ProductServiceImpl implements NYJ_ProductService{
 
     private final NYJ_ProductMapper productMapper;
+    
 
     @Override
     public NYJ_ProductVO findProduct(Long product_id) {
@@ -48,7 +55,8 @@ public class NYJ_ProductServiceImpl implements NYJ_ProductService{
 
     @Override
     public List<NYJ_ProductVO> getSearchProducts(String keyword) {
-        return productMapper.getSearchProducts(keyword);
+    	List<String> resultKeyword = Search(keyword);
+        return productMapper.getSearchProducts(resultKeyword);
     }
 
     @Override
@@ -78,6 +86,21 @@ public class NYJ_ProductServiceImpl implements NYJ_ProductService{
 
     @Override
     public List<NYJ_ProductVO> getSearchProductsCategory(String keyword, String category) {
-        return productMapper.getSearchProductsCategory(keyword,category);
+    	List<String> resultKeyword = Search(keyword);
+        return productMapper.getSearchProductsCategory(resultKeyword,category);
     }
+    
+    public static List<String> Search(String input){
+    	Komoran komoran = new Komoran(DEFAULT_MODEL.FULL);
+	    KomoranResult analyzeResultList = komoran.analyze(input);
+	    List<Token> tokenList = analyzeResultList.getTokenList();
+	    List<String> searchList = new ArrayList<>();
+	    for (Token token : tokenList) {
+	    	searchList.add(token.getMorph());
+	        //System.out.format("(%2d, %2d) %s/%s\n", token.getBeginIndex(), token.getEndIndex(), token.getMorph(), token.getPos());
+	    }
+	    System.out.println(searchList);
+	    return searchList;
+	    
+	  }
 }

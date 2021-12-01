@@ -6,6 +6,7 @@ import com.tryIt.domain.JSW_OrderVO;
 import com.tryIt.domain.NYJ_OrderProductListVO;
 import com.tryIt.domain.NYJ_OrderProductVO;
 import org.apache.ibatis.annotations.Param;
+import com.tryIt.domain.NYJ_Criteria;
 
 public interface JSW_OrderMapper {
 	void insertOrder(JSW_OrderVO orderVO);
@@ -18,4 +19,7 @@ public interface JSW_OrderMapper {
 	JSW_OrderVO getByOrderSeq(String order_seq);
 	void updateOrder(@Param("order_success") String order_success, @Param("order_seq") String order_seq);
 
+	void deleteOrder(int id);
+	List<JSW_OrderVO> getOrderWithPaging(NYJ_Criteria cri);
+	int countOrderNum();
 }

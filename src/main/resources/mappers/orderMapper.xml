@@ -35,6 +35,8 @@
         <result column="product_deliver" property = "product_deliver"></result>
     </resultMap>
 
+
+
 	<insert id="insertOrder">
         insert into member_order(order_user_id,order_address,order_detail_address,order_postalcode,order_receiver,order_message,order_seq) values(#{order_user_id},#{order_address},#{order_detail_address},#{order_postalcode},#{order_receiver},#{order_message},#{order_seq})
     </insert>
@@ -77,5 +79,32 @@
     private int total_price;
     private String product_deliver;
     -->
+	<select id="getAllOrder" resultMap = "orderMap">
+		select * from member_order
+	</select>
+
+	<delete id="deleteOrder">
+		delete from member_order where id = #{id}
+	</delete>
+
+	<select id="countOrderNum" resultType = "int">
+		select count(*) from member_order
+	</select>
+
+
+	<select id="getOrderWithPaging" resultMap = "orderMap">
+        <![CDATA[
+            select *
+                 from (
+                        SELECT @ROWNUM := @ROWNUM + 1 AS rn,m.*
+                        from member_order m
+                        WHERE (@ROWNUM:=0) = 0 AND @ROWNUM < #{pageNum} * #{amount}
+                        order by id desc
+                )AS T
+            where rn > (#{pageNum} - 1) * #{amount}
+
+            ]]>
+    </select>
+
 
 </mapper>

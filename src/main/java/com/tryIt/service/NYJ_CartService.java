@@ -1,10 +1,10 @@
 package com.tryIt.service;
 
-import com.tryIt.domain.NYJ_CartListVO;
-import com.tryIt.domain.NYJ_CartVO;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
+import com.tryIt.domain.NYJ_CartListVO;
 
 public interface NYJ_CartService {
     void insertCart( @Param("member_id") Long member_id,@Param("product_id") Long product_id, int product_num);
