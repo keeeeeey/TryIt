@@ -1,5 +1,6 @@
 <th:block th:include="newheader"></th:block>
-        <!-- category mp-menu -->
+<th:block th:include="/include/resources.html"></th:block>
+       <!-- category mp-menu -->
         <div id="mp-menu" class="mp-menu">
             <div class="mp-level">
                 <h2>All Categories</h2>
@@ -114,11 +115,11 @@
             <div class="container">
 
                 <div class="title-info">
-                    <h1>My Profile</h1></div>
+                    <h1>ProductList</h1></div>
                 <div class="breadcrumbs-info">
                     <ul>
                         <li><a href="home-shop-1.html">Home</a></li>
-                        <li><a href="#!">My Profile</a></li>
+                        <li><a href="#!">ProductList</a></li>
                     </ul>
                 </div>
 
@@ -149,9 +150,9 @@
 
                             <div class="list-group">
                                 <a class="list-group-items"th:href="@{/admin/orderlist}"><i class="ti-bag padding-10px-right"></i>Orders<span class="badge badge-pill"></span></a>
-                                <a class="list-group-items active" th:href="@{/adminpage}"><i class="ti-user padding-10px-right"></i>Profile</a>
+                                <a class="list-group-items" th:href="@{/adminpage}"><i class="ti-user padding-10px-right"></i>Profile</a>
                                 <a class="list-group-items" th:href="@{/admin/userlist}"><i class="ti-location-pin padding-10px-right"></i>UserList</a>
-                                <a class="list-group-items" th:href="@{/admin/productlist}"><i class="ti-heart padding-10px-right"></i>Productlist<span class="badge badge-pill"></span></a>
+                                <a class="list-group-items active" th:href="@{/admin/productlist}"><i class="ti-heart padding-10px-right"></i>Productlist<span class="badge badge-pill"></span></a>
                             </div>
 
                         </div>
@@ -164,150 +165,63 @@
 
                         <div class="common-block">
 
-                            <div class="inner-title">
-                                <h4 class="no-margin-bottom">My Profile</h4>
-                                <p class="no-margin-bottom">Time for a Sharp My profile.</p>
+                            <div class="inner-title" style="margin: 0;">
+                                <h4 class="no-margin-bottom">ProductList</h4>
                             </div>
 
-                            <form name="update">
-								
-								<div class="row">
+							<form name="findProduct">
+								<div style="display: flex; justify-content: right; align-items: center;">
+									<input type="text" name="find_product_id" id="find_product_id" style="width: 200px; height: 35px; border-radius: 4px;" placeholder="제품명 입력">
+									<button type="button" class="butn-style2 margin-20px-top" onClick="fn_findProduct()" style="height: 35px; margin: 10px 5px; padding: 0 15px; vertical-align: center;">찾기</button>			
+								</div>
+							</form>
 
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Your ID</label>
-                                            <input type="text" class="form-control" id="user_id" name="user_id" th:value="${session.memberVO.user_id}" readonly>
-                                        </div>
-
-                                    </div>
-                                    
-                                     <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Email Address</label>
-                                            <input type="email" class="form-control" id="mypage_user_email" name="user_email" th:value="${session.memberVO.user_email}" onblur="fn_mypageValidateEmail()">
-                                        </div>
-                                        <div id="messageMypageEmail" style="height: 20px; color: #ff0000"></div>
-
-                                    </div>
-
+                            <form name="admin_productlist">
+	                            <div class="table-responsive">
+	                                <table class="table v-align-middle">
+	                                    <thead>
+	                                        <tr>
+	                                            <th style="display: flex; align-items: center;"><input type="checkbox" name="userlist_id" value="selectAll" onclick="selectAll(this)">Check</th>
+	                                            <th>Product_id</th>
+	                                            <th>Product_name</th>
+	                                            <th>Product_price</th>
+	                                            <th>Product_category</th>
+	                                            <th>Product_reg_Date</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                    
+	                                        <tr th:each="productlist:${productlist}">
+	                                            <td><input type="checkbox" name="productlist_id" class="productlist_id" th:value="${productlist.id}"></td>
+	                                            <td th:text="${productlist.id}"></td>
+	                                            <td th:text="${productlist.product_name}"></td>
+	                                            <td th:text="${productlist.product_price}"></td>
+	                                            <td th:text="${productlist.product_category}"></td>
+	                                            <td th:text="${productlist.product_reg_date}"></td>
+	                                        </tr>
+	                                        
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                            <div th:if="${pageMaker2 != null}">
+									<div class="pagination text-small text-uppercase text-extra-dark-gray margin-50px-top sm-margin-35px-top">
+	                                    <ul>
+	                                        <th:block th:with="start = ${pageMaker2.startPage}, end = ${pageMaker2.endPage}">
+	                                            <li
+	                                                th:with="start = ${pageMaker2.startPage}, end = ${pageMaker2.endPage}"
+	                                                th:each="pageButton : ${#numbers.sequence(start, end)}" th:class="${pageButton == pageMaker2.cri.pageNum} ? 'active'">
+	                                                <a th:href="@{/admin/productlist?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
+	                                            </li>
+	
+	                                        </th:block>
+	                                    </ul>
+	                                </div>
                                 </div>
-                           
-                                <div class="row">
-
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Your Name</label>
-                                            <input type="text" class="form-control" id="user_name" name="user_name" th:value="${session.memberVO.user_name}" readonly>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Your NickName</label>
-                                            <input type="text" class="form-control" id="mypage_user_nickname" name="user_nickname" th:value="${session.memberVO.user_nickname}" onblur="fn_mypageValidateNickName()">
-                                            <input type="hidden" id="hidden_nickname" th:value="${session.memberVO.user_nickname}">
-                                        </div>
-                                        <div id="messageMypageNickName" style="height: 20px"></div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Password</label>
-                                            <input type="password" class="form-control" id="mypage_user_pw" name="user_pw" placeholder="Your password here" onblur="fn_mypageValidatePW(); fn_mypageCheckPW();">
-                                            <input type="hidden" id="hidden_pw" th:value="${session.memberVO.user_pw}">
-                                        </div>
-                                        <div id="messagePw" style="height: 20px"></div>
-
-                                    </div>
-
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Re-Password</label>
-                                            <input type="password" class="form-control" id="mypage_user_re_pw"name="user_re_pw" placeholder="Your re-password here" onblur="fn_mypageCheckPW()">
-                                        </div>
-                                        <div id="messagePwCheck" style="height: 20px"></div>
-
-                                    </div>
-
-                                </div>
-                                
-                                <div class="row">
-
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group">
-                                            <label>Your ZipCode</label>
-                                            <input type="text" class="form-control" id="user_zipcode" name="user_zipcode" th:value="${session.memberVO.user_zipcode}" onchange="fn_checkZipcode()" readonly>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                    <div class="col-sm-6 mb-2">
-
-                                        <button style="margin-top: 33px; height: 48px;" type="button" class="butn-style2 margin-20px-top" onClick="fn_searchPost()">Search</button>
-                                        
-                                    </div>
-                                        
-                                </div>
-                                
-                                <div class="row">
-									
-									 <div class="col-sm-12 mb-2">
-									 
-                                        <div class="form-group">
-                                            <label>Your Address</label>
-                                            <input type="text" class="form-control" id="user_address" name="user_address" th:value="${session.memberVO.user_address}" readonly>
-                                        </div>
-                                     
-                                     </div>   
-                                        
-                                </div>
-                               
-                                <div class="row">
-
- 									<div class="col-sm-6 mb-2">
-									 
-	                                    <div class="form-group" style="margin: 0">
-	                                        <label>Your Detail-Address</label>
-	                                        <input type="text" class="form-control" id="user_detail_address" name="user_detail_address" onblur="fn_checkDetailAddress()" th:value="${session.memberVO.user_detail_address}">
-	                                    </div>
-	                                    <div id="messageDetailAddress" style="height: 20px; color: #ff0000;"></div>
-                                     
-                                    </div>
-
-                                    <div class="col-sm-6 mb-2">
-
-                                        <div class="form-group" style="margin: 0">
-                                            <label>Contact Number</label>
-                                            <input type="text" class="form-control" id="user_phonenum" name="user_phonenum" onchange="fn_validatePhonenum()" th:value="${session.memberVO.user_phonenum}">
-                                        </div>
-                                        <div id="messagePhonenum" style="height: 20px; color: #ff0000;"></div>
-
-                                    </div>
-
-                                </div>
-								
-								<button type="button" class="butn-style2 margin-20px-top" onClick="fn_update()">Update</button>
-
+	                            <button type="button" class="butn-style2 margin-20px-top" onClick="fn_productDelete()">Delete</button>
                             </form>
-
                         </div>
-
-                    </div>
-                    <!-- end right panel -->
                 </div>
+                <!-- end right panel -->
             </div>
         </section>
         <!-- end account-orders section -->
@@ -376,6 +290,9 @@
 
     <!-- custom scripts -->
     <script src="js/main.js"></script>
+    
+
+    
 
     <!-- all js include end -->
 
