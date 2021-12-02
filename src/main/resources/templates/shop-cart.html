@@ -213,14 +213,14 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div th:if="${emptyList}==null">
                                 <a class="butn-style2 float-right" href="/order-address"><span>Proceed to Checkout</span></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- End Total Block Set -->
-
                 </div>
-
             </div>
         </section>
         <!-- end cart table section -->
@@ -235,6 +235,7 @@
     <!-- start scroll to top -->
     <a href="#!" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
     <!-- end scroll to top -->
+
 
     <!-- all js include start -->
 

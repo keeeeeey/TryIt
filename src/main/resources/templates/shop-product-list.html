@@ -216,11 +216,11 @@
                         </div>
                         <h4 th:text="${emptyList}"></h4>
                         <h5 th:text="${recommend}"></h5>
-                        <div class="row no-gutters product-listing" th:each="product:${productlist}">
+                        <div class="row no-gutters product-listing" th:each="product:${productlist}" id="tableRow">
 
                             <div class="col-sm-4">
                                 <div class="product-img">
-                                    <a href="shop-product-detail.html" style="height: 240px; display: flex; justify-content: center; align-items: center;">
+                                    <a th:href="'/products/'+${product.getId()}" style="height: 240px; display: flex; justify-content: center; align-items: center;">
                                         <img th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}" alt="..."></a>
                                 </div>
                             </div>
@@ -240,7 +240,7 @@
                                     <div class="product-buttons">
                                         <ul>
                                             <li><a th:onclick="'insertCart('+${product.getId()}+')'" id="insertcart" class="butn-style2" title="Add to Cart">Add to Cart</a></li>
-                                            <li><span th:onclick="share(${product.getId()},${product.getProduct_name()})">
+                                            <li><span th:onclick="share(${product.getId()}+','+${product.getProduct_name()})">
 	                                            <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
 	                                            <script type="text/javascript">
 	                                            new ShareNaver.makeButton({"type": "e"});
@@ -377,7 +377,12 @@
             window.open( link, 'share', 'width=500, height=500' );
             }
         </script>
-
+        <script>
+            if(localStorage.getItem("key")!="reload"){
+                location.href='/productlist?page=1'
+                localStorage.setItem("key","reload");
+            }
+        </script>
     <!-- all js include end -->
 <form id = "actionForm" action="/productlist" method="get">
     <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">

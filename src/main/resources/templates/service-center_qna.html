@@ -75,7 +75,7 @@
 											<td th:text="${row.qna_num}"></td>
 											<td th:text="${row.qna_category}"></td>
 											<td class="text-left">
-												<span th:if="${row.qna_secret.equals('Y')}"><img src="http://localhost:8089/img/service-center/lock.png" style="height:12px; width:12px;">
+												<span th:if="${row.qna_secret.equals('Y')}"><img src="/img/service-center/lock.png" style="height:12px; width:12px;">
 												</span>
 												<a th:if="${row.qna_viewYn.equals('Y')}" th:href="@{/service-center_qna/view( idx=${row.qna_id} )}" th:text="${row.qna_title}"></a>
 												<span th:unless="${row.qna_viewYn.equals('Y')}" th:text="${row.qna_title}" style="color:#616161;"></span>

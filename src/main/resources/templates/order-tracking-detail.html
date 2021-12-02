@@ -246,7 +246,6 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-
                                         <th>Product Name</th>
                                         <th>Status</th>
                                         <th>Product Price</th>
@@ -262,16 +261,16 @@
                                         <td th:if="${orders.getProduct_deliver()=='0'}">
                                             <span class="fas fa-circle text-success small mr-1"></span> 주문접수
                                         </td>
-                                        <td th:if="${orders.getProduct_deliver()==1}">
+                                        <td th:if="${orders.getProduct_deliver()=='1'}">
                                             <span class="fas fa-circle text-success small mr-1"></span> 입금확인
                                         </td>
-                                        <td th:if="${orders.getProduct_deliver()==2}">
+                                        <td th:if="${orders.getProduct_deliver()=='2'}">
                                             <span class="fas fa-circle text-success small mr-1"></span> 출고처리중
                                         </td>
-                                        <td th:if="${orders.getProduct_deliver()==3}">
+                                        <td th:if="${orders.getProduct_deliver()=='3'}">
                                             <span class="fas fa-circle text-success small mr-1"></span> 배송시작
                                         </td>
-                                        <td th:if="${orders.getProduct_deliver()==4}">
+                                        <td th:if="${orders.getProduct_deliver()=='4'}">
                                             <span class="fas fa-circle text-success small mr-1"></span> 배송완료
                                         </td>
                                         <td th:text="${#numbers.formatInteger(orders.getProduct_price(),3,'COMMA')}+'원'"></td>
@@ -280,14 +279,9 @@
                                     </tr>
                                     </tbody>
                                 </table>
-
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
         </section>
         <!-- end order tracking section -->
