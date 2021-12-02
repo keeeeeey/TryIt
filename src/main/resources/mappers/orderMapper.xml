@@ -95,7 +95,7 @@
 	</select>
 
 
-	<select id="getOrderWithPaging" resultMap = "orderMap">
+	<select id="getOrderWithPaging" resultType = "com.tryIt.domain.JSW_OrderVO">
         <![CDATA[
             select *
                  from (
@@ -108,6 +108,14 @@
 
             ]]>
     </select>
+
+    <update id = "updateOrderProduct">
+		update order_product set product_deliver = #{product_deliver_num} where order_id = #{order_id} and product_id = #{product_id}
+	</update>
+
+    <delete id="deleteOrderProduct">
+    	delete from order_product where order_id = #{order_id}
+    </delete>
 
 
 </mapper>

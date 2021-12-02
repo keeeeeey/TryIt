@@ -13,6 +13,6 @@ public class KTE_WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/summernoteImage/**")
-                .addResourceLocations("file:///C:/summernote_image/");
+                .addResourceLocations("file://Users/kimkiyun/Desktop/webworkspace/tryIt/src/main/resources/static/img//summernote_image//");
     }
 }
