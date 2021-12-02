@@ -411,12 +411,11 @@ import com.tryIt.service.NYJ_ProductService;
 		
         JsonObject jsonObject = new JsonObject();
 
-        String fileRoot = "C:\\summernote_image\\";	//저장될 파일 경로
+        String fileRoot = "/Users/kimkiyun/Desktop/webworkspace/tryIt/src/main/resources/static/img//summernote_image//";	//저장될 파일 경로
         String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 
         // 랜덤 UUID+확장자로 저장될 savedFileName
-        String savedFileName = UUID.randomUUID() + extension;	
+        String savedFileName = originalFileName;	
         
         File targetFile = new File(fileRoot + savedFileName);
 
