@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.tryIt.mapper.JSW_AdminProductMapper">
+ 	<resultMap id="productMap"
+		type="com.tryIt.domain.NYJ_ProductVO">
+		<id column="id" property="id"></id>
+		<result column="product_name" property="product_name"></result>
+		<result column="product_info" property="product_info"></result>
+		<result column="product_price" property="product_price"></result>
+		<result column="product_weight" property="product_weight"></result>
+		<result column="product_company" property="product_company"></result>
+		<result column="product_reg_date" property="product_reg_date"></result>
+		<result column="product_img" property="product_img"></result>
+		<result column="product_category" property="product_category"></result>
+		<result column="product_score" property="product_score"></result>
+		<result column="product_review_num"
+			property="product_review_num"></result>
+		<result column="product_model" property="product_model"></result>
+	</resultMap>
+	 
+	 <select id="productlist" resultType="com.tryIt.domain.NYJ_ProductVO">
+		<![CDATA[select * from product]]>
+    </select>
+    
+    <select id="productlistWithPaging" resultType="com.tryIt.domain.NYJ_ProductVO">
+		<![CDATA[
+            select id, product_name, product_info, product_price, product_weight, product_company, product_reg_date, product_img, product_category, product_score, product_model
+                 from (
+                        SELECT @ROWNUM := @ROWNUM + 1 AS rn,p.*
+                        from product p
+                        WHERE (@ROWNUM:=0) = 0 AND @ROWNUM < #{pageNum} * #{amount}
+                )AS T
+            where rn > (#{pageNum} - 1) * #{amount}
+            ]]>
+    </select>
+    
+     <delete id="deleteProduct">
+    	<![CDATA[ delete from product where id = #{deleteproductlist}]]>
+    </delete>
+ 
+     <select id="findProduct" resultType="com.tryIt.domain.NYJ_ProductVO">
+    	<![CDATA[
+	       select id, product_name, product_info, product_price, product_weight, product_company, product_reg_date, product_img, product_category, product_score, product_model from product where product_name like concat('%',#{find_product_id},'%')
+        ]]>
+    </select> 
+ 
+    <select id = "countProductlistNum" resultType="int">
+    	<![CDATA[SELECT count(*) from product]]>
+    </select>
+    
+    <select id = "countFindProductNum" resultType="int">
+    	<![CDATA[SELECT count(*) from product where product_name like concat('%',#{find_product_id},'%')]]>
+    </select>
+ 
+ 
+ </mapper>
