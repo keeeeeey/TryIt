@@ -89,8 +89,8 @@
 		<trim prefix="where(" suffix=")" prefixOverrides="OR">
 			<foreach item="val" collection="resultKeyword">
 				<trim prefix="OR">
-					product_name like CONCAT('%',#{val},'%') OR product_info like
-					CONCAT('%',#{val},'%') AND product_category =
+					(product_name like CONCAT('%',#{val},'%') OR product_info like
+					CONCAT('%',#{val},'%')) AND product_category =
 					#{category}
 				</trim>
 			</foreach>
