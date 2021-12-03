@@ -50,11 +50,8 @@ function deleteOrder(id){
                                     <div class="padding-15px-bottom">
                                         <img class="img-fluid rounded-circle img-thumbnail" src="/img/avatar/t-3.jpg" alt="...">
                                     </div>
-                                    <h6 class="font-size18 sm-font-size16 no-margin-bottom">Peter Parker</h6>
-                                    <small>Joined February 06, 2017</small>
-                                    <div class="reward-points">
-                                        <i class="ti-star text-theme-color padding-5px-right"></i> Points: 7386
-                                    </div>
+                                    <h6 class="font-size18 sm-font-size16 no-margin-bottom" th:text="${session.memberVO.user_name}"></h6>
+                                    <small th:text="${session.memberVO.user_nickname}"></small>
                                 </div>
                             </div>
 
