@@ -1,0 +1,174 @@
+<th:block th:include="newheader"></th:block>
+<th:block th:include="/include/resources.html"></th:block>
+    <meta http-equiv = "Content-Type" content="text/html;charset=UTF-8"><!--한글 설정-->
+<title>Insert title here</title>
+<script>
+	function deleteQnA(frm){
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+
+			frm.setAttribute("action","/service-center_qna/delete");
+			frm.setAttribute("method","post");
+			frm.submit();
+
+		}else{   //취소
+
+		    return;
+
+		}
+	}
+	
+	function deleteReply(frm){
+		
+		frm.submit();
+	}
+	
+	function modifyQnA(frm){
+		frm.setAttribute("action","/service-center_qna/modify");
+		frm.setAttribute("method","post");
+		frm.submit();
+	}
+	
+	function goReply(frm) {
+		var reply = frm.qna_reply.value;
+		
+		if (reply.trim() == ''){
+			alert("내용을 입력해주세요");
+			return false;
+		}
+		
+		
+	 frm.submit();
+	}
+
+
+</script>
+</head>
+<body>
+  <!-- start service-center section -->
+        <section>
+            <div class="container">
+                <div class="row justify-content-center">
+
+                    <!-- start left panel -->
+                    <div class="col-lg-4 col-sm-9 sm-margin-40px-bottom">
+
+                        <div class="account-pannel">
+
+                            <div class="list-group">
+                                <a class="list-group-items" href="../service-center"><i class="ti-bag padding-10px-right"></i>공지사항</a>
+                                <a class="list-group-items" href="../service-center_faq"><i class="ti-user padding-10px-right"></i>FAQ</a>
+                                <a class="list-group-items active" href="../service-center_qna"><i class="ti-location-pin padding-10px-right"></i>QnA</a>
+                            </div>
+                            
+
+                        </div>
+
+                    </div>
+                    <!-- end left panel -->
+                    <!-- start right panel -->
+                    <div class="col-lg-8">
+
+                       
+                            <div class="inner-title">
+                                <h4 class="no-margin-bottom">QnA</h4>
+                            </div>
+                            <form th:object="${qna}">
+                            <table class="table table-bordered no-margin-bottom">
+							    <tbody>
+							        <tr>
+							            <td style="width:100px;" >제목</td>
+							            <td th:text="*{qna_title}"></td>
+						
+							        </tr>
+							        <tr>
+							            <td>작성자</td>
+							            <td th:text="*{qna_writer}"></td>
+							        </tr>
+							        <tr>
+							            <td>작성일</td>
+							            <td th:text="*{qna_date}"></td>
+							        </tr>
+							        <tr>
+							        	<td style="width:500px;height:200px" colspan="4" th:utext="*{qna_content}">내용</td>
+							        </tr>
+							    </tbody>
+							</table>
+							<br>
+							<input class="butn-style2" type="button" value="뒤로가기" style="float: right;" onclick="location.href='http://localhost:8089/service-center_qna'"/>
+							<input th:if="${role.equals('writer')}" class="butn-style2" type="button" value="삭제" style="float: right;margin-right:5px;" onclick="deleteQnA(this.form)"/>
+							<input th:if="${role.equals('writer')}" class="butn-style2" type="button" value="수정" style="float: right; margin-right:5px;" onclick="modifyQnA(this.form)"/>
+                        
+							<input type = "hidden" th:value = "*{qna_id}" name="qna_id">
+							<input type = "hidden" th:value = "*{qna_title}" name="qna_title">
+							<input type = "hidden" th:value = "*{qna_content}" name="qna_content">
+							<input type = "hidden" th:value = "*{qna_category}" name="qna_category">
+							<input type = "hidden" th:value = "*{qna_secret}" name="qna_secret">
+							
+							<br> 
+							
+						</form>
+						<div class="inner-title">
+                                <h4 class="no-margin-bottom">Comment</h4>
+                            </div>
+                        
+                       <form method="post" action="/reply_delete" th:object="${qna}">
+	                        <div class="comment-box">
+	                                    <div class="comment-info" style="margin-left:40px;">
+	                                    <span th:if="*{qna_reply_yn.equals('Y')}" style="font-size:20px; color:gray; margin-right:10px;">ㄴ</span>
+	                                    <span th:unless="*{qna_reply_yn.equals('Y')}">답변이 존재하지 않습니다.</span>
+	                                    <span th:text="*{qna_reply}"></span>
+	                                    <span th:if="${role.equals('admin')}">
+	                                    <button th:if="*{qna_reply_yn.equals('Y')}" onclick="deleteReply(this.form)" style="margin-left:20px; background-color:white; color:black; border:0;outline:0">[삭제]</button>
+	                                    </span>
+	                                    </div>
+	                        </div>
+	                   		<input type = "hidden" th:value = "*{qna_id}" name="qna_id">
+	                        
+                        </form>
+                        
+                         <br>   
+                         <!--  start form-->
+
+                            <div class="common-block"  th:if="${role.equals('admin')}">
+
+                            <div class="inner-title">
+                                <h4 class="no-margin-bottom">Post a Comment</h4>
+                            </div>
+
+                            <form method="post" action="/reply_write" th:object="${qna}">
+                                <div class="row">
+
+                                    <div class="col-12 mb-4">
+
+                                        <label>Message</label>
+                                        <div class="form-group mb-1">
+                                            <textarea name="qna_reply" rows="2" class="form-control" placeholder="Tell us a few words"></textarea>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <button type="button" class="butn-style2" onclick="goReply(this.form)">답변 달기</button>
+								<input type = "hidden" th:value = "*{qna_id}" name="qna_id">
+                            </form>
+
+                        </div>
+
+                            <!--  end form-->
+					</div>
+							
+					
+					
+				</div>
+							
+                    
+                
+
+             
+</div>
+</section>
+         <th:block th:include="include/footer"></th:block>
+
+</body>
+</html>

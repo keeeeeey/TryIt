@@ -1,0 +1,110 @@
+<th:block th:include="newheader"></th:block>
+<th:block th:include="/include/resources.html"></th:block>
+    <meta http-equiv = "Content-Type" content="text/html;charset=UTF-8"><!--한글 설정-->
+<title>Insert title here</title>
+<script>
+	function deleteNotice(frm){
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+
+			frm.setAttribute("action","/service-center/delete");
+			frm.setAttribute("method","post");
+			frm.submit();
+
+		}else{   //취소
+
+		    return;
+
+		}
+	}
+	
+	function modifyNotice(frm){
+		frm.setAttribute("action","/service-center/modify");
+		frm.setAttribute("method","post");
+		frm.submit();
+	}
+
+
+</script>
+</head>
+<body>
+  <!-- start service-center section -->
+        <section>
+            <div class="container">
+                <div class="row justify-content-center">
+
+                    <!-- start left panel -->
+                    <div class="col-lg-4 col-sm-9 sm-margin-40px-bottom">
+
+                        <div class="account-pannel">
+
+                            <div class="list-group">
+                                <a class="list-group-items active" href="../service-center"><i class="ti-bag padding-10px-right"></i>공지사항</a>
+                                <a class="list-group-items" href="../service-center_faq"><i class="ti-user padding-10px-right"></i>FAQ</a>
+                                <a class="list-group-items" href="../service-center_qna"><i class="ti-location-pin padding-10px-right"></i>QnA</a>
+                            
+                       
+                                    
+                                </div>
+                            
+
+                        </div>
+
+                    </div>
+                    <!-- end left panel -->
+                    <!-- start right panel -->
+                    <div class="col-lg-8">
+
+                        <div class="common-block">
+
+                            <div class="inner-title">
+                                <h4 class="no-margin-bottom">Notice</h4>
+                            </div>
+                            <form th:object="${notice}">
+                            <table class="table table-bordered no-margin-bottom">
+							    <tbody>
+							        <tr>
+							            <td>제목</td>
+							            <td colspan="3" th:text="*{notice_title}"></td>
+						
+							        </tr>
+							        <tr>
+							            <td>작성자</td>
+							            <td colspan="3" th:text="*{notice_writer}"></td>
+							        </tr>
+							        <tr>
+							            <td>작성일</td>
+							            <td th:text="*{notice_date}"></td>
+							            <td>조회수</td>
+							            <td th:text="*{notice_viewCnt}"></td>
+							        </tr>
+							        <tr>
+							        	<td style="width:500px;height:300px" colspan="4" th:utext="*{notice_content}">내용</td>
+							        </tr>
+							    </tbody>
+							</table>
+							<br>
+							<input class="butn-style2" type="button" value="뒤로가기" style="float: right;" onclick="location.href='http://localhost:8089/service-center'"/>
+							<input  th:if="${role.equals('admin')}" class="butn-style2" type="button" value="삭제" style="float: left;" onclick="deleteNotice(this.form)"/>
+							<input  th:if="${role.equals('admin')}" class="butn-style2" type="button" value="수정" style="float: left; margin-left:5px;" onclick="modifyNotice(this.form)"/>
+
+							<input type = "hidden" th:value = "*{notice_id}" name="notice_id">
+							<input type = "hidden" th:value = "*{notice_title}" name="notice_title">
+							<input type = "hidden" th:value = "*{notice_content}" name="notice_content">
+							<br> 
+							
+						</form>
+						
+						</div>
+					</div>
+				</div>
+		
+                    
+                
+
+             
+</div>
+</section>
+         <th:block th:include="include/footer"></th:block>
+
+</body>
+</html>

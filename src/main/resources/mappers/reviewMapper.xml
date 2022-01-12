@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tryIt.mapper.NYJ_ReviewMapper">
+
+    <resultMap id="reviewMap" type="com.tryIt.domain.NYJ_ReviewVO">
+        <id column="id" property="id"></id>
+        <result column = "review_id" property="review_id"></result>
+        <result column = "product_id" property = "product_id"></result>
+        <result column = "review_content" property = "review_content"></result>
+        <result column = "review_title" property = "review_title"></result>
+        <result column = "review_score" property = "review_score"></result>
+        <result column = "review_date" property="review_date"></result>
+        <result column = "review_like" property="review_like"></result>
+        <result column = "review_img" property = "review_img"></result>
+    </resultMap>
+
+    <select id="getProductReviews" resultMap="reviewMap">
+        SELECT * from review where product_id = #{product_id}
+    </select>
+
+    <select id="getMemberReviews" resultMap="reviewMap">
+        SELECT * from review where review_id = #{member_id}
+    </select>
+
+    <insert id="insertReview">
+        insert into review(review_id,product_id,review_content,review_title,review_score,review_date,review_like,review_img) values(#{review_id},#{product_id},#{review_content},#{review_title},#{review_score},NOW(),0,#{review_img})
+    </insert>
+
+    <select id="findByReviewId" resultMap="reviewMap">
+        select * from review where id = #{review_id}
+    </select>
+
+    <delete id="deleteReview" parameterType="Long">
+        delete from review where id=#{review_id}
+    </delete>
+
+</mapper>

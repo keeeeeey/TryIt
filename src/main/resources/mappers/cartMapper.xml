@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tryIt.mapper.NYJ_CartMapper">
+
+
+    <insert id="insertCart">
+        insert into cart(user_id,product_id,product_num) values(#{member_id},#{product_id},1)
+    </insert>
+
+    <select id="getCartList" resultType="com.tryIt.domain.NYJ_CartListVO">
+        select c.id,c.product_id,c.product_num,p.product_name,p.product_price,p.product_img from product p, cart c where c.user_id = #{member_id} and p.id = c.product_id
+    </select>
+
+    <delete id="deleteCart">
+        delete from cart where id = #{cart_id}
+    </delete>
+
+    <delete id="deleteAll">
+        delete from cart where user_id in (#{member_id});
+    </delete>
+
+    <update id="updateNum">
+        update cart set product_num = (#{product_change_num}+product_num) where id = #{cart_id}
+    </update>
+
+    <select id="findById" resultType="long">
+        select id from cart where product_id = #{product_id} and user_id = #{member_id}
+    </select>
+
+    <select id="getTotalPrice" resultType="int">
+        select sum(p.product_price * c.product_num) from product p, cart c where c.user_id = #{member_id} and p.id = c.product_id
+    </select>
+
+
+
+<!--
+private Long id;
+    private Long user_id;
+    private Long product_id;
+    private Long product_num;
+    private Long product_price;
+    private int total_price;
+     int updateNum(Long cart_id);
+    Long findById(@Param("product_id") Long product_id, @Param("member_id") Long member_id);
+-->
+    <!--
+    void insertCart(@Param("product_id") Long product_id, @Param("member_id") Long member_id,int product_num);
+    void deleteCart(Long cart_id);
+    List<NYJ_CartVO> getCartList(Long member_id);
+    void deleteALl(Long member_id);
+
+    -->
+</mapper>

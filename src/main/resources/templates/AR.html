@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>AR</title>
+<meta charset='utf-8' />
+
+<!-- 창 사이즈 최적화 -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+<!-- script 넣기 -->
+<script src='js/JeelizVTOWidget.js'></script>
+<script th:src="@{/js/xzoom.js}"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script defer src="js/face-api.min.js"></script>
+<script defer src="js/script.js"></script>
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
+	rel="stylesheet">
+
+<!--  css 넣기 -->
+<link rel="stylesheet" href="css/plugins.css">
+<link href="css/styles.css" rel="stylesheet">
+<link rel='stylesheet' href='css/JeelizVTOWidget.css' />
+<style>
+.hi-slide {
+	position: relative;
+	width: 750px;
+	height: 70px;
+	margin: 10px auto 0;
+	margin-bottom: 20px;
+}
+
+.hi-slide .hi-next, .hi-slide .hi-prev {
+	position: absolute;
+	top: 50%;
+	width: 40px;
+	height: 40px;
+	margin-top: -40px;
+	border-radius: 50px;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+	background-color: #fff;
+	color: black;
+	transition: all 0.6s;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.hi-slide .hi-next:hover, .hi-slide .hi-prev:hover {
+	opacity: 1;
+	background-color: #fff;
+}
+
+.hi-slide .hi-prev {
+	top: 55px;
+	left: -50px;
+}
+
+.hi-slide .hi-prev::before {
+	content: '<';
+}
+
+.hi-slide .hi-next {
+	top: 55px;
+	right: -50px;
+}
+
+.hi-slide .hi-next::before {
+	content: '>';
+}
+
+.hi-slide>ul {
+	list-style: none;
+	position: relative;
+	width: 750px;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+}
+
+.hi-slide>ul>li {
+	overflow: hidden;
+	position: absolute;
+	z-index: 0;
+	left: 377px;
+	top: 146px;
+	width: 0;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	background-color: white;
+	cursor: pointer;
+}
+
+.hi-slide>ul>li>img {
+	width: 100%;
+	height: 100%;
+	background-position: center;
+	object-fit: contain;
+}
+</style>
+<script>
+	let _isResized = false;
+	var product_id = getParam("product_id");
+	function test_resizeCanvas() {
+		// halves the height:
+		let halfHeightPx = Math.round(window.innerHeight / 2).toString() + 'px';
+
+		const domWidget = document.getElementById('JeelizVTOWidget');
+		domWidget.style.maxHeight = (_isResized) ? 'none' : halfHeightPx;
+
+		_isResized = !_isResized;
+	}
+
+	function current_product(test) {
+		product_id = test;
+	}
+
+	function getParam(sname) {
+		var params = location.search.substr(location.search.indexOf("?") + 1);
+		var sval = "";
+		params = params.split("&");
+		for (var i = 0; i < params.length; i++) {
+			temp = params[i].split("=");
+			if ([ temp[0] ] == sname) {
+				sval = temp[1];
+			}
+		}
+		return sval;
+	}
+
+	function current_product_show() {
+		location.href = "http://localhost:8089/products/" + product_id;
+	}
+	// entry point:
+	function main() {
+		var queryString = getParam("product_model");
+		if(!queryString){
+			queryString = "rayban_aviator_or_vertFlash";
+			product_id = "10"
+		}
+		JEELIZVTOWIDGET.start({
+			sku : queryString,
+			searchImageMask : "img/ar/target1.png",
+			searchImageColor : 0xeeeeee,
+			callbackReady : function() {
+				console.log('INFO: JEELIZVTOWIDGET is ready :)');
+
+			},
+			onError : function(errorLabel) { // 에러 잡기 시작
+				alert('An error happened. errorLabel =' + errorLabel)
+				switch (errorLabel) {
+				case 'WEBCAM_UNAVAILABLE':
+					break;
+
+				case 'NOFILE':
+					break;
+
+				case 'WRONGFILEFORMAT':
+					break;
+
+				case 'INVALID_SKU':
+					break;
+
+				case 'FALLBACK_UNAVAILABLE':
+					break;
+
+				case 'PLACEHOLDER_NULL_WIDTH':
+				case 'PLACEHOLDER_NULL_HEIGHT':
+					break;
+
+				case 'FATAL':
+				default:
+					break;
+				} // 에러 잡기 종료
+			} // end onError()
+		}) // end JEELIZVTOWIDGET.start call
+	} // end main()
+</script>
+
+</head>
+<body onload="main()">
+
+	<div class='content' style="overflow: scroll;">
+		<div class="slide hi-slide JeelizVTOWidgetControls margin-30px-bottom">
+			<div class="hi-prev"></div>
+			<div class="hi-next"></div>
+			<ul class="margin-30px-bottom">
+				<li th:if="@{${token_jsw}}" class="xzoom5"
+					th:each="product:${productlist}"><img
+					th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}"
+					th:onclick="'JEELIZVTOWIDGET.load(\'' + @{${product.getProduct_model()}} +'\');' + 'current_product(\'' + @{${product.getId()}}+'\');'" /></li>
+				<li th:unless="${token_jsw}" class="xzoom5"
+					th:each="product:${productList_suggest}"><img
+					th:src="@{${'/img/products/single-product/preview/'+ product.getProduct_img()}}"
+					th:onclick="'JEELIZVTOWIDGET.load(\'' + @{${product.getProduct_model()}} +'\');' + 'current_product(\'' + @{${product.getId()}}+'\');'" /></li>
+
+			</ul>
+		</div>
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="js/jquery.hislide.js"></script>
+		<script>
+			$('.slide').hiSlide();
+		</script>
+		<div id='JeelizVTOWidget'>
+			<canvas id='JeelizVTOWidgetCanvas' class='xzoom5 margin-30px-bottom'></canvas>
+			<div class='JeelizVTOWidgetControls JeelizVTOWidgetControlsTop'>
+				<!-- ADJUST BUTTON: -->
+				<button id='JeelizVTOWidgetAdjust'>
+					<div class="buttonIcon">
+						<i class="fas fa-arrows-alt"></i>
+					</div>
+					안경위치조정
+				</button>
+				<button id='buttonResizeCanvas' onclick="current_product_show()">
+					<div class="buttonIcon">
+						<i class="fas fa-search"></i>
+					</div>
+					현재상품보기
+				</button>
+				<button id='JeelizVTOWidgetChangeModelContainer'
+					onclick="location.href='http://localhost:8089/ageGender'">
+					<div class="buttonIcon">
+						<i class="fas fa-list-alt"></i>
+					</div>
+					상품추천
+				</button>
+			</div>
+			<div id='JeelizVTOWidgetAdjustNotice'>
+				안경의 위치를 조정하세요
+				<button class='JeelizVTOWidgetBottomButton'
+					id='JeelizVTOWidgetAdjustExit'>저장</button>
+			</div>
+			<div id='JeelizVTOWidgetLoading'>
+				<div class='JeelizVTOWidgetLoadingText'>로딩중...</div>
+			</div>
+
+
+		</div>
+
+	</div>
+</body>
+</html>

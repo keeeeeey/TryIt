@@ -1,0 +1,386 @@
+<th:block th:include="newheader"></th:block>
+        <!-- category mp-menu -->
+        <div id="mp-menu" class="mp-menu">
+            <div class="mp-level">
+                <h2>All Categories</h2>
+                <ul>
+                    <li class="mp-has-sub">
+                        <a href="#">Devices</a>
+                        <div class="mp-level">
+                            <h2>Devices</h2>
+                            <a class="mp-back" href="#">back</a>
+                            <ul>
+                                <li class="mp-has-sub">
+                                    <a href="#">Mobiles Phones</a>
+                                    <div class="mp-level">
+                                        <h2>Mobile Phones</h2>
+                                        <a class="mp-back" href="#">back</a>
+                                        <ul>
+                                            <li><a href="#">Apple Mobile</a></li>
+                                            <li><a href="#">OnePlus Mobile</a></li>
+                                            <li><a href="#">Lenovo Mobile</a></li>
+                                            <li><a href="#">Micromax Mobile</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="mp-has-sub">
+                                    <a href="#">Laptops</a>
+                                    <div class="mp-level">
+                                        <h2>Laptops</h2>
+                                        <a class="mp-back" href="#">back</a>
+                                        <ul>
+                                            <li><a href="#">Thin Laptops</a></li>
+                                            <li><a href="#">2-in-1 Laptops</a></li>
+                                            <li><a href="#">Gaming Laptops</a></li>
+                                            <li><a href="#">Budget Laptops</a></li>
+                                            <li><a href="#">Light Laptops</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="mp-has-sub">
+                                    <a href="#">Televisions</a>
+                                    <div class="mp-level">
+                                        <h2>Televisions</h2>
+                                        <a class="mp-back" href="#">back</a>
+                                        <ul>
+                                            <li><a href="#">Smart TV</a></li>
+                                            <li><a href="#">Full HD TV</a></li>
+                                            <li><a href="#">Android TV</a></li>
+                                            <li><a href="#">4K TV</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mp-has-sub">
+                        <a href="#">Beauty &amp; Health</a>
+                        <div class="mp-level">
+                            <h2>Beauty &amp; Health</h2>
+                            <a class="mp-back" href="#">back</a>
+                            <ul>
+                                <li><a href="#">Grooming</a></li>
+                                <li><a href="#">Luxury Beauty</a></li>
+                                <li><a href="#">Make-up</a></li>
+                                <li><a href="#">Personal Care</a></li>
+                                <li><a href="#">Nutrition Care</a></li>
+                                <li><a href="#">Health Care</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mp-has-sub">
+                        <a href="#">Store</a>
+                        <div class="mp-level">
+                            <h2>Store</h2>
+                            <a class="mp-back" href="#">back</a>
+                            <ul>
+                                <li class="mp-has-sub">
+                                    <a class="icon icon-t-shirt" href="#">Clothes</a>
+                                    <div class="mp-level">
+                                        <h2 class="icon icon-t-shirt">Clothes</h2>
+                                        <a class="mp-back" href="#">back</a>
+                                        <ul>
+                                            <li>
+                                                <a class="icon icon-female" href="#">Women's Clothing</a>
+                                            </li>
+                                            <li>
+                                                <a class="icon icon-male" href="#">Men's Clothing</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="icon icon-diamond" href="#">Watches</a>
+                                </li>
+                                <li>
+                                    <a class="icon icon-music" href="#">Shoes</a>
+                                </li>
+                                <li>
+                                    <a class="icon icon-food" href="#">Jewellery</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">Books &amp; Audible</a></li>
+                    <li><a href="#">Movies &amp; Games</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <!-- end category mp-menu -->
+
+        <!-- start page title section -->
+        <section class="page-title-section bg-img cover-background" data-background="img/bg/page-title.jpg">
+            <div class="container">
+
+                <div class="title-info">
+                    <h1>My Profile</h1></div>
+                <div class="breadcrumbs-info">
+                    <ul>
+                        <li><a href="home-shop-1.html">Home</a></li>
+                        <li><a href="#!">My Profile</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+        <!-- end page title section -->
+
+        <!-- start account-orders section -->
+        <section>
+            <div class="container">
+                <div class="row justify-content-center">
+
+                    <!-- start left panel -->
+                    <div class="col-lg-4 col-sm-9 sm-margin-40px-bottom">
+
+                        <div class="account-pannel">
+
+                            <div class=" padding-25px-all sm-padding-20px-all">
+
+                                <div class="text-center">
+                                    <div class="padding-15px-bottom">
+                                        <img class="img-fluid rounded-circle img-thumbnail" src="/img/avatar/t-3.jpg" alt="...">
+                                    </div>
+                                    <h6 class="font-size18 sm-font-size16 no-margin-bottom" th:text="${session.memberVO.user_name}"></h6>
+                                    <small th:text="${session.memberVO.user_nickname}"></small>
+                                </div>
+                            </div>
+
+                            <div class="list-group">
+                                <a class="list-group-items"th:href="@{/admin/orderlist}"><i class="ti-bag padding-10px-right"></i>Orders<span class="badge badge-pill"></span></a>
+                                <a class="list-group-items active" th:href="@{/adminpage}"><i class="ti-user padding-10px-right"></i>Profile</a>
+                                <a class="list-group-items" th:href="@{/admin/userlist}"><i class="ti-location-pin padding-10px-right"></i>UserList</a>
+                                <a class="list-group-items" th:href="@{/admin/productlist}"><i class="ti-heart padding-10px-right"></i>Productlist<span class="badge badge-pill"></span></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end left panel -->
+
+                    <!-- start right panel -->
+                    <div class="col-lg-8">
+
+                        <div class="common-block">
+
+                            <div class="inner-title">
+                                <h4 class="no-margin-bottom">My Profile</h4>
+                                <p class="no-margin-bottom">Time for a Sharp My profile.</p>
+                            </div>
+
+                            <form name="update">
+								
+								<div class="row">
+
+                                    <div class="col-sm-6 mb-2">
+
+                                        <div class="form-group" style="margin: 0">
+                                            <label>Your ID</label>
+                                            <input type="text" class="form-control" id="user_id" name="user_id" th:value="${session.memberVO.user_id}" readonly>
+                                        </div>
+
+                                    </div>
+                                    
+                                     <div class="col-sm-6 mb-2">
+
+                                        <div class="form-group" style="margin: 0">
+                                            <label>Email Address</label>
+                                            <input type="email" class="form-control" id="mypage_user_email" name="user_email" th:value="${session.memberVO.user_email}" onblur="fn_mypageValidateEmail()">
+                                        </div>
+                                        <div id="messageMypageEmail" style="height: 20px; color: #ff0000"></div>
+
+                                    </div>
+
+                                </div>
+                           
+                                <div class="row">
+
+                                    <div class="col-sm-6 mb-2">
+
+                                        <div class="form-group" style="margin: 0">
+                                            <label>Your Name</label>
+                                            <input type="text" class="form-control" id="user_name" name="user_name" th:value="${session.memberVO.user_name}" readonly>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-6 mb-2">
+
+                                        <div class="form-group" style="margin: 0">
+                                            <label>Your NickName</label>
+                                            <input type="text" class="form-control" id="mypage_user_nickname" name="user_nickname" th:value="${session.memberVO.user_nickname}" onblur="fn_mypageValidateNickName()">
+                                            <input type="hidden" id="hidden_nickname" th:value="${session.memberVO.user_nickname}">
+                                        </div>
+                                        <div id="messageMypageNickName" style="height: 20px"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-sm-6 mb-2">
+
+                                        <div class="form-group" style="margin: 0">
+                                            <label>Password</label>
+                                            <input type="password" class="form-control" id="mypage_user_pw" name="user_pw" placeholder="Your password here" onblur="fn_mypageValidatePW(); fn_mypageCheckPW();">
+                                            <input type="hidden" id="hidden_pw" th:value="${session.memberVO.user_pw}">
+                                        </div>
+                                        <div id="messagePw" style="height: 20px"></div>
+
+                                    </div>
+
+                                    <div class="col-sm-6 mb-2">
+
+                                        <div class="form-group" style="margin: 0">
+                                            <label>Re-Password</label>
+                                            <input type="password" class="form-control" id="mypage_user_re_pw"name="user_re_pw" placeholder="Your re-password here" onblur="fn_mypageCheckPW()">
+                                        </div>
+                                        <div id="messagePwCheck" style="height: 20px"></div>
+
+                                    </div>
+
+                                </div>
+                                
+                                <div class="row">
+
+                                    <div class="col-sm-6 mb-2">
+
+                                        <div class="form-group">
+                                            <label>Your ZipCode</label>
+                                            <input type="text" class="form-control" id="user_zipcode" name="user_zipcode" th:value="${session.memberVO.user_zipcode}" onchange="fn_checkZipcode()" readonly>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <div class="col-sm-6 mb-2">
+
+                                        <button style="margin-top: 33px; height: 48px;" type="button" class="butn-style2 margin-20px-top" onClick="fn_searchPost()">Search</button>
+                                        
+                                    </div>
+                                        
+                                </div>
+                                
+                                <div class="row">
+									
+									 <div class="col-sm-12 mb-2">
+									 
+                                        <div class="form-group">
+                                            <label>Your Address</label>
+                                            <input type="text" class="form-control" id="user_address" name="user_address" th:value="${session.memberVO.user_address}" readonly>
+                                        </div>
+                                     
+                                     </div>   
+                                        
+                                </div>
+                               
+                                <div class="row">
+
+ 									<div class="col-sm-6 mb-2">
+									 
+	                                    <div class="form-group" style="margin: 0">
+	                                        <label>Your Detail-Address</label>
+	                                        <input type="text" class="form-control" id="user_detail_address" name="user_detail_address" onblur="fn_checkDetailAddress()" th:value="${session.memberVO.user_detail_address}">
+	                                    </div>
+	                                    <div id="messageDetailAddress" style="height: 20px; color: #ff0000;"></div>
+                                     
+                                    </div>
+
+                                    <div class="col-sm-6 mb-2">
+
+                                        <div class="form-group" style="margin: 0">
+                                            <label>Contact Number</label>
+                                            <input type="text" class="form-control" id="user_phonenum" name="user_phonenum" onchange="fn_validatePhonenum()" th:value="${session.memberVO.user_phonenum}">
+                                        </div>
+                                        <div id="messagePhonenum" style="height: 20px; color: #ff0000;"></div>
+
+                                    </div>
+
+                                </div>
+								
+								<button type="button" class="butn-style2 margin-20px-top" onClick="fn_update()">Update</button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+                    <!-- end right panel -->
+                </div>
+            </div>
+        </section>
+        <!-- end account-orders section -->
+        
+       	<th:block th:include="include/footer"></th:block>
+
+        
+    </div>
+    <!-- end main-wrapper section -->
+
+    <!-- start scroll to top -->
+    <a href="#!" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
+    <!-- end scroll to top -->
+
+    <!-- all js include start -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate.min.js"></script>
+
+    <!-- popper js -->
+    <script src="js/popper.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- modernizr js -->
+    <script src="js/modernizr.js"></script>
+
+    <!-- navigation -->
+    <script src="js/nav-menu.js"></script>
+
+    <!-- category navigation -->
+    <script src="js/classie.js"></script>
+    <script src="js/mlpushmenu.js"></script>
+
+    <!-- tab -->
+    <script src="js/easy.responsive.tabs.js"></script>
+
+    <!-- owl carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+
+    <!-- jquery.counterup.min -->
+    <script src="js/jquery.counterup.min.js"></script>
+
+    <!-- stellar js -->
+    <script src="js/jquery.stellar.min.js"></script>
+
+    <!-- waypoints js -->
+    <script src="js/waypoints.min.js"></script>
+
+    <!-- ranger js -->
+    <script src="js/ion.rangeSlider.min.js"></script>
+
+    <!-- countdown js -->
+    <script src="js/countdown.js"></script>
+
+    <!-- jquery.magnific-popup js -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
+
+    <!--  clipboard js -->
+    <script src="js/clipboard.min.js"></script>
+
+    <!--  prism js -->
+    <script src="js/prism.js"></script>
+
+    <!-- custom scripts -->
+    <script src="js/main.js"></script>
+
+    <!-- all js include end -->
+
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<th:block th:include="newheader"></th:block>
+<th:block th:include="/include/resources.html"></th:block>
+<head>
+
+    <!-- metas -->
+    <meta charset="utf-8">
+    <meta name="author" content="Chitrakoot Web" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="Multipurpose Business and Admin HTML5 Template" />
+    <meta name="description" content="Smartshop - Multipurpose eCommerce Template" />
+
+    <!-- title  -->
+    <title>Smartshop - Multipurpose eCommerce Template</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/img/logos/favicon.png">
+    <link rel="apple-touch-icon" href="/img/logos/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/logos/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/logos/apple-touch-icon-114x114.png">
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="/css/plugins.css">
+
+    <!-- custom css -->
+    <link href="/css/styles.css" rel="stylesheet">
+
+	<!-- javascript -->
+	<script src="/js/kky_starrate.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var message = /*[[${msg}]]*/ 'default';
+    if(message != null)
+        alert(message);
+    /*]]>*/
+</script>
+
+
+
+
+    <!-- start page loading -->
+
+<!-- end page loading -->
+
+<!-- start main-wrapper section -->
+<div class="main-wrapper mp-pusher" id="mp-pusher">
+
+
+    <!-- category mp-menu -->
+    <div id="mp-menu" class="mp-menu">
+        <div class="mp-level">
+            <h2>All Categories</h2>
+            <ul>
+                <li class="mp-has-sub">
+                    <a href="#">Devices</a>
+                    <div class="mp-level">
+                        <h2>Devices</h2>
+                        <a class="mp-back" href="#">back</a>
+                        <ul>
+                            <li class="mp-has-sub">
+                                <a href="#">Mobiles Phones</a>
+                                <div class="mp-level">
+                                    <h2>Mobile Phones</h2>
+                                    <a class="mp-back" href="#">back</a>
+                                    <ul>
+                                        <li><a href="#">Apple Mobile</a></li>
+                                        <li><a href="#">OnePlus Mobile</a></li>
+                                        <li><a href="#">Lenovo Mobile</a></li>
+                                        <li><a href="#">Micromax Mobile</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="mp-has-sub">
+                                <a href="#">Laptops</a>
+                                <div class="mp-level">
+                                    <h2>Laptops</h2>
+                                    <a class="mp-back" href="#">back</a>
+                                    <ul>
+                                        <li><a href="#">Thin Laptops</a></li>
+                                        <li><a href="#">2-in-1 Laptops</a></li>
+                                        <li><a href="#">Gaming Laptops</a></li>
+                                        <li><a href="#">Budget Laptops</a></li>
+                                        <li><a href="#">Light Laptops</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="mp-has-sub">
+                                <a href="#">Televisions</a>
+                                <div class="mp-level">
+                                    <h2>Televisions</h2>
+                                    <a class="mp-back" href="#">back</a>
+                                    <ul>
+                                        <li><a href="#">Smart TV</a></li>
+                                        <li><a href="#">Full HD TV</a></li>
+                                        <li><a href="#">Android TV</a></li>
+                                        <li><a href="#">4K TV</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mp-has-sub">
+                    <a href="#">Beauty &amp; Health</a>
+                    <div class="mp-level">
+                        <h2>Beauty &amp; Health</h2>
+                        <a class="mp-back" href="#">back</a>
+                        <ul>
+                            <li><a href="#">Grooming</a></li>
+                            <li><a href="#">Luxury Beauty</a></li>
+                            <li><a href="#">Make-up</a></li>
+                            <li><a href="#">Personal Care</a></li>
+                            <li><a href="#">Nutrition Care</a></li>
+                            <li><a href="#">Health Care</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mp-has-sub">
+                    <a href="#">Store</a>
+                    <div class="mp-level">
+                        <h2>Store</h2>
+                        <a class="mp-back" href="#">back</a>
+                        <ul>
+                            <li class="mp-has-sub">
+                                <a class="icon icon-t-shirt" href="#">Clothes</a>
+                                <div class="mp-level">
+                                    <h2 class="icon icon-t-shirt">Clothes</h2>
+                                    <a class="mp-back" href="#">back</a>
+                                    <ul>
+                                        <li>
+                                            <a class="icon icon-female" href="#">Women's Clothing</a>
+                                        </li>
+                                        <li>
+                                            <a class="icon icon-male" href="#">Men's Clothing</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="icon icon-diamond" href="#">Watches</a>
+                            </li>
+                            <li>
+                                <a class="icon icon-music" href="#">Shoes</a>
+                            </li>
+                            <li>
+                                <a class="icon icon-food" href="#">Jewellery</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#">Books &amp; Audible</a></li>
+                <li><a href="#">Movies &amp; Games</a></li>
+            </ul>
+
+        </div>
+    </div>
+    <!-- end category mp-menu -->
+
+
+    <!-- start blog post section -->
+    <section class="blogs">
+        <div class="container">
+            <div class="row">
+
+                <!--  start blog left-->
+                <div class="col-lg-9 col-md-12 padding-30px-right xs-padding-15px-right sm-margin-30px-bottom">
+                    <div class="posts">
+
+                        <!--  start post-->
+
+                        <!--  start comment-->
+                        <div class="comment-area">
+
+                            <div class="inner-title">
+                                <h3 class="no-margin-bottom">Reviews</h3>
+                            </div>
+                            <h4 th:text="${emptyList}"></h4>
+                            <div class="comment-box" style="margin-left:-40px; border-bottom: 1px solid #eee; padding-top: 20px; padding-bottom: 20px;" th:each="review:${reviewList}">
+                                <div class="media margin-20px-bottom">
+                                    <img th:src="@{${'/img/review/'+ review.getReview_img()}}" alt="..." style="margin-left:10px; width:300px; height:180px;" class="width-85 xs-width-100">
+                                </div>
+                                <div class="comment-info" style="margin-left:40px;">
+                                    <h6><a href="#!" th:text="${review.getReview_title()}">Alex Joyrina</a></h6>
+                                    <span class="text-theme-color">
+                                        <div th:if="${review.getReview_score()}==1">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div th:if="${review.getReview_score()}==2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div th:if="${review.getReview_score()}==3">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div th:if="${review.getReview_score()}==4">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div th:if="${review.getReview_score()}==5">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                     </span>
+                                    <br>
+                                    <p th:text="${review.getReview_content()}">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <div class="reply">
+                                        <a th:href="${'/deleteReview/'+ review.getId()}">
+                                            <i class="fa fa-reply" aria-hidden="true"></i> 리뷰 삭제하기
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end comment-->
+                        <script>
+
+                        </script>
+                        <!--  start form-->
+
+                        <div class="common-block" style="margin-top: 100px;">
+
+                            <div class="inner-title">
+                                <h4 class="no-margin-bottom">Post a Review</h4>
+                            </div>
+
+                            <form method="post" action="/insertReview" enctype="multipart/form-data">
+                                <input th:value="${product_id}" type="hidden" name="product_id"/>
+                                <div class="row">
+
+                                    <div class="col-sm-6 mb-2">
+
+                                        <div class="image-add">
+                                            <label>Review Image</label>
+                                            <input type="file" name="review_img" placeholder="Your Image File here">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-6 mb-2">
+
+                                        <div class="form-group">
+                                            <label>Rating</label>
+                                            <div class="rating">
+                                            	<input type="checkbox" id="rating1" value="1" class="rate_radio" title="1점">
+								                <label for="rating1"></label>
+								                <input type="checkbox" id="rating2" value="2" class="rate_radio" title="2점">
+								                <label for="rating2"></label>
+								                <input type="checkbox" id="rating3" value="3" class="rate_radio" title="3점" >
+								                <label for="rating3"></label>
+								                <input type="checkbox" id="rating4" value="4" class="rate_radio" title="4점">
+								                <label for="rating4"></label>
+								                <input type="checkbox" id="rating5" value="5" class="rate_radio" title="5점">
+								                <label for="rating5"></label>
+								                <input type="hidden" name="review_score" value="">
+                                            </div>
+                                            <!-- <select class="form-control" name="review_score">
+                                                <option value="5">5 Stars</option>
+                                                <option value="4">4 Stars</option>
+                                                <option value="3">3 Stars</option>
+                                                <option value="2">2 Stars</option>
+                                                <option value="1">1 Star</option>
+                                            </select> -->
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-12 mb-4">
+
+                                        <label>Message</label>
+                                        <div class="form-group mb-1">
+                                            <textarea name="review_content" rows="2" class="form-control" placeholder="상품 후기를 적어주세요"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="butn-style2">리뷰 올리기</button>
+                            </form>
+                        </div>
+                        <!--  end form-->
+                    </div>
+                </div>
+                <!--  end blog left-->
+
+            </div>
+        </div>
+    </section>
+    <!-- end blog post section -->
+
+    <!-- start footer section -->
+    <th:block th:include="include/footer"></th:block>
+<!-- end main-wrapper section -->
+</div>
+
+<!-- start scroll to top -->
+<a href="#!" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
+<!-- end scroll to top -->
+
+<!-- all js include start -->
+
+</body>
+
+</html>
