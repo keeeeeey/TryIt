@@ -20,6 +20,8 @@
 ## 1. Try'It 소개<br/>
 > 안녕하세요! AR 기술을 접목하여 마음에 드는 제품을 시착용해보고 제품 추천 기능을 통해 성별과 연령대에 맞춰 어울리는 선글라스 추천해 주는 온라인 쇼핑몰 사이트 Try'It 입니다. :)<br/>
 
+<br>
+
 ## 2. Team Try'It 소개
 |  [김기윤](https://github.com/Allaccpet12)  |  [정석원](https://github.com/ReeedWoood)  |  [노예진](https://github.com/NohYeaJin) | [김태은](https://github.com/taeeun2)
 
@@ -36,6 +38,6 @@
 <br>
 
 ## 4. 설계
-![image](https://user-images.githubusercontent.com/87018762/162679448-f8e5171b-95f4-40d8-8852-3ab5b0a2e0de.png)
+![image](https://user-images.githubusercontent.com/87018762/162680832-57d1b994-1b00-4116-95bf-f9fb9e32b85e.png)
 
 ![image](https://user-images.githubusercontent.com/87018762/162679419-da103470-83c7-471c-ab48-e0edad70a065.png)
