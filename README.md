@@ -27,7 +27,6 @@ D Plus는 디자이너들의 이러한 고민을 줄여드리기 위해 만들�
 
 ## 2. Team Try'It 소개
 |  [김기윤](https://github.com/Allaccpet12)  |  [정석원](https://github.com/ReeedWoood)  |  [노예진](https://github.com/NohYeaJin) | [김태은](https://github.com/taeeun2)
-| :----------: |  :--------:  |  :---------: | 
 
 <br>
 
@@ -41,6 +40,7 @@ D Plus는 디자이너들의 이러한 고민을 줄여드리기 위해 만들�
 
 **`DevOps`**
 
-## 6. 설계
-- [API 설계](https://www.notion.so/robinchoi11/API-d7d777c8aed8498b809fc0b5fe94d845)
-- [ERD 설계](https://github.com/https-github-com-Allaccept12/D-Back/wiki/ERD)
+## 4. 설계
+<img width="905" alt="DB structure" src="![image](https://user-images.githubusercontent.com/87018762/162679215-6d5c363b-d5c0-406b-8acf-19d42e1822db.png)">
+
+<img width="905" alt="DB structure" src="![image](https://user-images.githubusercontent.com/87018762/162679345-a13672ca-9fef-4051-9134-0eaab4112b47.png)">
