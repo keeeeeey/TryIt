@@ -32,7 +32,8 @@
 - SpringBoot - 2.5.6
 - Maven - 4.0.0
 - MyBatis - 2.2.0
-- MySQL 8.0
+- MySQL - 8.0
+- Thymeleaf
 
 <br>
 
