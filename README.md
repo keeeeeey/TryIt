@@ -41,6 +41,6 @@ D Plus는 디자이너들의 이러한 고민을 줄여드리기 위해 만들�
 **`DevOps`**
 
 ## 4. 설계
-<img width="905" alt="DB structure" src="![image](https://user-images.githubusercontent.com/87018762/162679215-6d5c363b-d5c0-406b-8acf-19d42e1822db.png)">
+![image](https://user-images.githubusercontent.com/87018762/162679448-f8e5171b-95f4-40d8-8852-3ab5b0a2e0de.png)
 
-<img width="905" alt="DB structure" src="![image](https://user-images.githubusercontent.com/87018762/162679345-a13672ca-9fef-4051-9134-0eaab4112b47.png)">
+![image](https://user-images.githubusercontent.com/87018762/162679419-da103470-83c7-471c-ab48-e0edad70a065.png)
