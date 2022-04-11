@@ -8,7 +8,7 @@
 [디플러스 바로가기](https://tryit-project-demo.herokuapp.com/)**<br>
 
 <br>
-<img width="905" alt="Try'It" src="![image](https://user-images.githubusercontent.com/87018762/162675954-09f5bd07-6a2b-4a47-9726-2eb5ee3a4339.png)">
+![try'it_logo-001](https://user-images.githubusercontent.com/87018762/162679935-bc37feb5-9761-44bd-b406-b40bae4af320.png)
 
 📌 **시연 영상** : [시연영상](https:/시연영상 링크.com/) <br>
 📌 **발표 자료** : [구글 프레젠테이션으로 이동](https://docs.google.com/presentation/d/1xCenUsrP4Z9viViijuJoPINi8czuDQNlqfq0nASoMXg/edit#slide=id.p1)
