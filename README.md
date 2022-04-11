@@ -5,7 +5,7 @@
 
 포스트 코로나 시대에 밖에 나가지 않고 나에게 어울리는 선글라스를 착용해볼 수 있는 온라인 쇼핑몰, <br>
 **Try'It 를 체험해보세요!<br><br/>
-[Try'It 바로가기](https://tryit-project-demo.herokuapp.com/)**<br>
+[Try'It 바로가기](https://tryit-project-demo.herokuapp.com/)<br>
 [AR 기능  바로가기](https://tryit-project-demo.herokuapp.com/ar)**<br>
 
 <br>
@@ -32,6 +32,8 @@
 - Maven - 4.0.0
 - MyBatis - 2.2.0
 - MySQL 8.0
+
+<br>
 
 ## 4. 설계
 ![image](https://user-images.githubusercontent.com/87018762/162679448-f8e5171b-95f4-40d8-8852-3ab5b0a2e0de.png)
