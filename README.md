@@ -4,9 +4,6 @@
 ### **“선글라스 사고 싶은데 코로나도 심하고 밖에 나가지 않고 나에게 어울리는 선글라스를 찾을 순 없을까?”**
 
 포스트 코로나 시대에 밖에 나가지 않고 나에게 어울리는 선글라스를 착용해볼 수 있는 온라인 쇼핑몰, <br>
-**Try'It 를 체험해보세요!<br><br/>
-[Try'It 바로가기](https://tryit-project-demo.herokuapp.com/)<br>
-[AR 기능  바로가기](https://tryit-project-demo.herokuapp.com/ar)**<br>
 
 <br>
 
